@@ -1,5 +1,7 @@
 import * as React from "react"
 import "react-native-gesture-handler"
+
+import { View, Dimensions } from "react-native"
 import {
 	DefaultTheme,
 	Text,
@@ -12,13 +14,15 @@ import {
 
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
-// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
 //pages
 import Agendamentos from "./pages/agendamentos/index"
 import Cadastro from "./pages/cadastro/index"
 import ProductView from "./pages/productExibition"
 import Acc from "./pages/acc/index"
+import { TouchableOpacity } from "react-native-gesture-handler"
+import styles from "./styles/styles"
 
 const theme = {
 	...DefaultTheme,
@@ -34,7 +38,22 @@ const theme = {
 }
 
 const Stack = createStackNavigator()
-// const bottomTab = createBottomTabNavigator()
+const BottomTab = createBottomTabNavigator()
+
+const BottomNavItem = ({ icon, title }) => (
+	<TouchableOpacity style={styles.col}>
+		<Button icon="camera" />
+		<Text style={styles.textCenter}>Cadastro</Text>
+	</TouchableOpacity>
+)
+
+const BottomNavItemGroup = () => (
+	<View>
+		<BottomNavItem icon="camera" title="cadastro" />
+		<BottomNavItem icon="camera" title="a" />
+		<BottomNavItem icon="camera" title="v" />
+	</View>
+)
 
 const App = () => {
 	const [index, setIndex] = React.useState(0)
@@ -48,17 +67,31 @@ const App = () => {
 	return (
 		<NavigationContainer>
 			<PaperProvider theme={theme}>
-				<Stack.Navigator>
-					<Stack.Screen name="acc" component={Acc} />
-					<Stack.Screen
+				<View
+					style={{
+						height: Dimensions.get("screen").height * 0.075,
+						borderBottomColor: "black",
+						borderBottomWidth: 1,
+						justifyContent: "flex-end",
+						alignItems: "center",
+					}}
+				>
+					<Text>toplay</Text>
+				</View>
+				<BottomTab.Navigator
+					lazy={false}
+					tabBar={() => <BottomNavItemGroup />}
+				>
+					<BottomTab.Screen name="acc" component={Acc} />
+					<BottomTab.Screen
 						name="agendamentos"
 						component={Agendamentos}
 					/>
-				</Stack.Navigator>
+					<BottomTab.Screen name="cadastro" component={Cadastro} />
+				</BottomTab.Navigator>
 			</PaperProvider>
 		</NavigationContainer>
 	)
 }
 
 export default App
-
