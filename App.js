@@ -41,14 +41,14 @@ const Stack = createStackNavigator()
 const BottomTab = createBottomTabNavigator()
 
 const BottomNavItem = ({ icon, title }) => (
-	<TouchableOpacity style={styles.col}>
+	<TouchableOpacity style={[styles.col, { alignContent: "center" }]}>
 		<Button icon="camera" />
 		<Text style={styles.textCenter}>Cadastro</Text>
 	</TouchableOpacity>
 )
 
 const BottomNavItemGroup = () => (
-	<View>
+	<View style={{ justifyContent: "space-around", flexDirection: "row" }}>
 		<BottomNavItem icon="camera" title="cadastro" />
 		<BottomNavItem icon="camera" title="a" />
 		<BottomNavItem icon="camera" title="v" />
@@ -67,17 +67,6 @@ const App = () => {
 	return (
 		<NavigationContainer>
 			<PaperProvider theme={theme}>
-				<View
-					style={{
-						height: Dimensions.get("screen").height * 0.075,
-						borderBottomColor: "black",
-						borderBottomWidth: 1,
-						justifyContent: "flex-end",
-						alignItems: "center",
-					}}
-				>
-					<Text>toplay</Text>
-				</View>
 				<BottomTab.Navigator
 					lazy={false}
 					tabBar={() => <BottomNavItemGroup />}
