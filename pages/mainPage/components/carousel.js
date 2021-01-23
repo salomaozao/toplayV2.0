@@ -36,14 +36,15 @@ const slideList = Array.from({ length: 30 }).map((_, i) => {
 	}
 })
 
-const Slide = memo(function Slide({ slides }) {
-	return <View style={[styles.slide]}>{slides}</View>
+const Slide = memo(function Slide({ slides, index }) {
+	slides = [<Text>a</Text>, <Text>b</Text>, <Text>c</Text>, <Text>d</Text>]
+	return <Text style={[styles.slide]}>{index}</Text>
 })
 
 export default function Carousel(slides) {
 	const [index, setIndex] = useState(0)
 	const indexRef = useRef(index)
-	indexRef.current = index
+	indexRef.current = index > 4 ? indexRef.current : index
 	const onScroll = useCallback((event) => {
 		const slideSize = event.nativeEvent.layoutMeasurement.width
 		const index = event.nativeEvent.contentOffset.x / slideSize
@@ -79,7 +80,7 @@ export default function Carousel(slides) {
 	}
 
 	const renderItem = useCallback(function renderItem({ item }) {
-		return <Slide slides={slides} />
+		return <Slide slides={slides} index={indexRef.current} />
 	}, [])
 
 	return (
@@ -97,6 +98,7 @@ export default function Carousel(slides) {
 				showsHorizontalScrollIndicator={false}
 				bounces={false}
 				onScroll={onScroll}
+				
 				{...flatListOptimizationProps}
 			/>
 		</View>

@@ -28,8 +28,8 @@ const Show2 = () => (
 )
 
 const Slide = () => {
-	let ComponentsList = []
-	ComponentsList = [<Show2 />, <Show2 />, <Show2 />]
+	// let ComponentsList = []
+	// ComponentsList = [<Show2 />, <Show2 />, <Show2 />]
 	// for (let i; i === 3; i++) {
 	// 	ComponentsList.push(Show2)
 	// }
@@ -73,7 +73,7 @@ const mainPage = (userData) => {
 						<Show1 />
 						<Show1 />
 					</View>
-					<Carousel slides={[<Slide />, <Slide />]}/> 
+					<Carousel slides={[<Slide />, <Slide />]} />
 				</View>
 			</ScrollView>
 		</>
