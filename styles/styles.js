@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native"
 import { Colors } from "react-native-paper"
 
 const styles = StyleSheet.create({
-	footerMargin:  90 ,
+	footerMargin: 90,
 
 	bgPrimary: { backgroundColor: Colors.blueGrey200 /*MUDAR COR*/ },
 
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
 
 	textSecondary: { color: "#666464", fontWeight: "bold" /*MUDAR COR*/ },
 
-	title: { fontSize: 36, fontWeight: "bold" },
+	title: { fontSize: 36, fontWeight: "bold", color: Colors.grey900 },
 
 	titleSecondary: { fontSize: 24, fontWeight: "bold", color: Colors.grey800 },
 

@@ -1,7 +1,8 @@
+//basic shit
 import * as React from "react"
 import "react-native-gesture-handler"
 
-import { View, Dimensions } from "react-native"
+import { View, Dimensions, SafeAreaView, Platform } from "react-native"
 import {
 	DefaultTheme,
 	Text,
@@ -10,17 +11,23 @@ import {
 	Button,
 } from "react-native-paper"
 
-// import safeAreaView
-
+//navigation
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+
+//custom
+// import {
+// 	hideNavigationBar,
+// 	ShowNavigationBar,
+// } from "react-native-navigation-bar-color"
 
 //pages
 import Agendamentos from "./pages/agendamentos/index"
 import Cadastro from "./pages/cadastro/index"
 import ProductView from "./pages/productExibition"
 import Acc from "./pages/acc/index"
+import MainPage from "./pages/mainPage/index"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import styles from "./styles/styles"
 
@@ -65,21 +72,27 @@ const App = () => {
 	])
 
 	return (
-		<NavigationContainer>
-			<PaperProvider theme={theme}>
-				<BottomTab.Navigator
-					lazy={false}
-					tabBar={() => <BottomNavItemGroup />}
-				>
-					<BottomTab.Screen name="acc" component={Acc} />
-					<BottomTab.Screen
-						name="agendamentos"
-						component={Agendamentos}
-					/>
-					<BottomTab.Screen name="cadastro" component={Cadastro} />
-				</BottomTab.Navigator>
-			</PaperProvider>
-		</NavigationContainer>
+		<SafeAreaView style={{ flex: 1 }}>
+			<NavigationContainer>
+				<PaperProvider theme={theme}>
+					<BottomTab.Navigator
+						lazy={false}
+						// tabBarOptions={Platform.OS === "android" ? {tabStyle: {alignContent: "flex-start"}}}
+						// tabBar={() => <BottomNavItemGroup />}
+					>
+						<BottomTab.Screen name="acc" component={MainPage} />
+						<BottomTab.Screen
+							name="agendamentos"
+							component={Agendamentos}
+						/>
+						<BottomTab.Screen
+							name="cadastro"
+							component={Cadastro}
+						/>
+					</BottomTab.Navigator>
+				</PaperProvider>
+			</NavigationContainer>
+		</SafeAreaView>
 	)
 }
 
