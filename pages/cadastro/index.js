@@ -3,7 +3,7 @@ import { View, Dimensions } from "react-native"
 import { Text, Button } from "react-native-paper"
 
 import FormComponent from "./components/formComponent"
-import styles from "../../styles/styles"
+import styles from "../styles/styles"
 
 const cadastro = (props) => {
 	const [showingComp, setShowingComp] = useState([

@@ -1,7 +1,7 @@
 import React from "react"
 import { View } from "react-native"
 import { Avatar, Text, Button } from "react-native-paper"
-import styles from "../../styles/styles"
+import styles from "../styles/styles"
 
 const Header = () => (
 	<View style={styles.bgPrimary}>

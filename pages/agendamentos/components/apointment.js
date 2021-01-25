@@ -7,7 +7,7 @@ import {
 	Menu,
 
 } from "react-native-paper"
-import styles from "../../../styles/styles"
+import styles from "../../styles/styles"
 
 const Apointments = ({ name, date, passed }) => {
 	const color = passed ? Colors.red500 : Colors.green500

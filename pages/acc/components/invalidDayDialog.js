@@ -1,6 +1,6 @@
 import React from "react"
 import { Button, Dialog, Portal } from "react-native-paper"
-import styles from "../../../styles/styles"
+import styles from "../../styles/styles"
 
 const ConfirmDialog = ({ action, isVisible, setVisible }) => {
 	return (

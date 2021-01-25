@@ -4,7 +4,7 @@ import { Text, Colors } from "react-native-paper"
 
 import SearchBar from "./components/searchBar"
 import CardGroup from "./components/cardGroups"
-import styles from "../../styles/styles"
+import styles from "../styles/styles"
 import media from "../../media/media"
 
 const Show1 = ({}) => (

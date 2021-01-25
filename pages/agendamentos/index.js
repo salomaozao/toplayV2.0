@@ -1,7 +1,7 @@
 import React from "react"
 import { View, Dimensions, ScrollView } from "react-native"
 import { Text, Title, IconButton } from "react-native-paper"
-import styles from "../../styles/styles"
+import styles from "../styles/styles"
 
 import Apointments from "./components/apointment"
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { DataTable, Avatar } from "react-native-paper"
 import { Text, View } from "react-native"
-import styles from "../../../styles/styles"
+import styles from "../../styles/styles"
 
 const pagesContent = [
 	[

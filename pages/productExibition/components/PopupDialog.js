@@ -2,7 +2,7 @@ import * as React from "react"
 import { View, ScrollView, Dimensions } from "react-native"
 import { Button, Paragraph, Dialog, Portal, Text } from "react-native-paper"
 
-import styles from "../../../styles/styles"
+import styles from "../../styles/styles"
 
 const PopupDialog = ({ visible, setVisible, hideDialog }) => {
 	return (

@@ -4,7 +4,7 @@ import { Text } from "react-native-paper"
 
 import FormInput from "./formInput"
 import FormCheck from "./formComponentCheck"
-import styles from "../../../styles/styles"
+import styles from "../../styles/styles"
 
 const formFase = ({ type, content, display, ...props }) => {
 	if (type === "input") {

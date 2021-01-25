@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { View, Dimensions } from "react-native"
 import { TextInput, IconButton } from "react-native-paper"
-import styles from "../../../styles/styles"
+import styles from "../../styles/styles"
 
 const InfoInpt = ({
 	label,

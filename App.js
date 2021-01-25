@@ -29,7 +29,7 @@ import ProductView from "./pages/productExibition"
 import Acc from "./pages/acc/index"
 import MainPage from "./pages/mainPage/index"
 import { TouchableOpacity } from "react-native-gesture-handler"
-import styles from "./styles/styles"
+import styles from "./pages/styles/styles"
 
 const theme = {
 	...DefaultTheme,

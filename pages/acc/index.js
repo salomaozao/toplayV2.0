@@ -12,7 +12,7 @@ import {
 import InfoInpt from "./components/infoInpt"
 import ConfirmDialog from "./components/confirmDialog"
 import InvalidDayDialog from "./components/invalidDayDialog"
-import styles from "../../styles/styles"
+import styles from "../styles/styles"
 
 const AccPage = ({ navigation }) => {
 	const [page, setPage] = useState(0)

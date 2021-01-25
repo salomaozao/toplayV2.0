@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Searchbar } from "react-native-paper"
-import styles from "../../../styles/styles"
+import styles from "../../styles/styles"
 
 const SearchBar = () => {
 	const [searchQuery, setSearchQuery] = React.useState("")

@@ -3,7 +3,7 @@ import { Dimensions, View, Image } from "react-native"
 import { Text } from "react-native-paper"
 
 import media from "../../../media/media"
-import styles from "../../../styles/styles"
+import styles from "../../styles/styles"
 
 const CardCustom = ({ i }) => {
 	const width = Dimensions.get("screen").width * 0.4

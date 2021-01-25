@@ -12,7 +12,7 @@ import {
 	Paragraph,
 } from "react-native-paper"
 import { View, Image, Dimensions, ScrollView } from "react-native"
-import styles from "../../styles/styles"
+import styles from "../styles/styles"
 
 // import Carousel from "./components/carousel"
 import Calendar from "./components/calendar"
