@@ -1,22 +1,40 @@
 import * as React from "react"
 import { View, Dimensions, Image, ScrollView } from "react-native"
-import { Text } from "react-native-paper"
+import { Text, Colors } from "react-native-paper"
 
+import SearchBar from "./components/searchBar"
 import CardGroup from "./components/cardGroups"
 import styles from "../../styles/styles"
+import media from "../../media/media"
 
-const Show1 = () => (
+const Show1 = ({}) => (
 	<View
 		style={[
-			styles.border,
 			styles.my2,
 			{ justifyContent: "center", height: 50, width: "95%" },
 		]}
 	>
+		<Image
+			style={{
+				width: "100%",
+				height: "100%",
+				position: "absolute",
+				zIndex: -10,
+			}}
+			source={{ uri: media.quadra1 }}
+		/>
 		<Text
-			style={[styles.titleSecondary, styles.mx2, { textAlign: "left" }]}
+			style={[
+				styles.titleSecondary,
+				{
+					textAlign: "left",
+					backgroundColor: "rgba(52, 52, 52, 0.3)",
+					padding: 8,
+					color: Colors.grey900,
+				},
+			]}
 		>
-			Quadra São João
+			Quadra São Joaão
 		</Text>
 	</View>
 )
@@ -49,34 +67,53 @@ const mainPage = (userData) => {
 	}
 
 	return (
-		<>
-			<ScrollView>
-				<View
+		<ScrollView>
+			<View
+				style={[
+					styles.center,
+					styles.bgPrimary,
+					styles.col,
+					{ height: 200 },
+				]}
+			>
+				<View style={{ right: 20 }}>
+					<Text style={[styles.title]}>Olá, {userData.name}!</Text>
+					<Text style={[styles.small]}>configurar sua conta</Text>
+				</View>
+			</View>
+			<SearchBar />
+			<View style={styles.mt4}>
+				<Text
 					style={[
-						styles.center,
-						styles.bgPrimary,
-						styles.col,
-						{ height: 200 },
+						styles.titleSecondary,
+						styles.ml2,
+						styles.textCenter,
+						{ fontSize: 20, color: Colors.grey800 },
 					]}
 				>
-					<View style={{ right: 20 }}>
-						<Text style={[styles.title]}>
-							Olá, {userData.name}!
-						</Text>
-						<Text style={[styles.small]}>configurar sua conta</Text>
-					</View>
+					Mais recentes
+				</Text>
+				<View style={[{ alignItems: "center" }]}>
+					<Show1 />
+					<Show1 />
+					<Show1 />
 				</View>
-				<View style={styles.mt4}>
-					<Text>Mais recentes</Text>
-					<View style={[{ alignItems: "center" }]}>
-						<Show1 />
-						<Show1 />
-						<Show1 />
-					</View>
-					<CardGroup />
-				</View>
-			</ScrollView>
-		</>
+			</View>
+			<View style={styles.my2}>
+				<Text
+					style={[
+						styles.titleSecondary,
+						styles.ml2,
+						styles.mb2,
+						styles.textCenter,
+						{ fontSize: 20, color: Colors.grey800 },
+					]}
+				>
+					Populares na sua cidade
+				</Text>
+				<CardGroup />
+			</View>
+		</ScrollView>
 	)
 }
 

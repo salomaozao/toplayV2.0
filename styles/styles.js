@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 
 	title: { fontSize: 36, fontWeight: "bold", color: Colors.grey900 },
 
-	titleSecondary: { fontSize: 24, fontWeight: "bold", color: Colors.grey800 },
+	titleSecondary: { fontSize: 24, fontWeight: "bold", color: Colors.grey700 },
 
 	small: { fontSize: 16 /*AJUSTAR?*/ },
 

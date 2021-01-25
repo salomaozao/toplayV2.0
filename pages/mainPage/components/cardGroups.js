@@ -16,8 +16,8 @@ const Group = () => {
 				justifyContent: "space-between",
 			}}
 		>
-			<Card />
-			<Card />
+			<Card i={0} />
+			<Card i={1} />
 		</View>
 	)
 }
