@@ -1,21 +1,15 @@
 import React from "react"
+import { Dimensions, View } from "react-native"
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper"
 
-const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />
+const CardCustom = () => {
+	const width = Dimensions.get("screen").width
+	const height = width * 1.2
+	return (
+		<View style={{ width: width, height: height, borde }}>
+			<Text></Text>
+		</View>
+	)
+}
 
-const CardCustom = () => (
-	<Card>
-		<Card.Title
-			title="Quadra são João"
-			subtitle="Disponível nos dias de semana"
-		/>
-		<Card.Cover source={{ uri: "https://picsum.photos/700" }} />
-
-		<Card.Actions>
-			<Button>Like</Button>
-			<Button>Dislike</Button>
-		</Card.Actions>
-	</Card>
-)
-
-export default Card
+export default CardCustom

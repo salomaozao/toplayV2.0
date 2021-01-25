@@ -14,7 +14,7 @@ import {
 import { View, Image, Dimensions, ScrollView } from "react-native"
 import styles from "../../styles/styles"
 
-import Carousel from "./components/carousel"
+// import Carousel from "./components/carousel"
 import Calendar from "./components/calendar"
 import Datatable from "./components/datatable"
 import PopupDialog from "./components/PopupDialog"
@@ -93,9 +93,6 @@ const ProductView = () => {
 						</View>
 					</View>
 					<View style={styles.col}>
-						<View>
-							<Carousel />
-						</View>
 						<Datatable />
 						<View>
 							<Calendar />

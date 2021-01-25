@@ -2,7 +2,7 @@ import * as React from "react"
 import { View, Dimensions, Image, ScrollView } from "react-native"
 import { Text } from "react-native-paper"
 
-import Carousel from "./components/carousel"
+import CardGroup from "./components/cardGroups"
 import styles from "../../styles/styles"
 
 const Show1 = () => (
@@ -73,7 +73,7 @@ const mainPage = (userData) => {
 						<Show1 />
 						<Show1 />
 					</View>
-					<Carousel slides={[<Slide />, <Slide />]} />
+					<CardGroup />
 				</View>
 			</ScrollView>
 		</>
