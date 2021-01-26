@@ -7,14 +7,14 @@ import styles from "../../styles/styles"
 
 const imgs = [media.quadra3, media.quadra2, media.quadra1]
 
-const CardSquare = ({ i }) => {
+const CardSquare = ({ i, navigation }) => {
 	const width = Dimensions.get("screen").width * 0.4
 	const height = width * 1.2
 
 	const iconSize = Dimensions.get("screen").width * 0.035
 
 	return (
-		<TouchableOpacity onPress={() => console.log("hehe")}>
+		<TouchableOpacity onPress={() => navigation.navigate("ProductView")}>
 			<Surface
 				style={[
 					{ width: width, height: height },
@@ -91,7 +91,7 @@ const CardRect = ({ i }) => (
 			{ justifyContent: "center", height: 50, width: "95%" },
 		]}
 	>
-		<TouchableOpacity onPress={() => console.log("touch")}>
+		<TouchableOpacity onPress={() => navigation.navigate("ProductView")}>
 			<Image
 				style={[
 					{
@@ -177,7 +177,7 @@ const CardRectBigger = ({ i, side }) => {
 				<View>
 					<Button
 						mode="contained"
-						onPress={() => console.log("touch")}
+						onPress={() => navigation.navigate("ProductView")}
 						style={[
 							{
 								backgroundColor: Colors.green500,

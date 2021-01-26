@@ -82,7 +82,7 @@ const App = () => {
 					>
 						<BottomTab.Screen name="acc" component={MainPage} />
 						<BottomTab.Screen
-							name="agendamentos"
+							name="product"
 							component={ProductView}
 						/>
 						<BottomTab.Screen name="cadastro" component={Acc} />
