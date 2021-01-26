@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
 	border: { borderWidth: 0.5 },
 
 	borderBottom: { borderBottomWidth: 1 },
+	borderBottom: { borderTopWidth: 1 },
 
 	BorderHorizontal: {
 		borderLeftWidth: 1,
@@ -80,6 +81,8 @@ const styles = StyleSheet.create({
 	textCenter: { textAlign: "center" },
 
 	center: { justifyContent: "center", alignItems: "center" },
+
+	centerSelf: { alignSelf: "center" },
 
 	bottomAbs: { flex: 1 },
 
