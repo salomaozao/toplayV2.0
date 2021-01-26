@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 	mr4: { marginRight: 16 },
 
 	ml2: { marginLeft: 8 },
-	ml2: { marginLeft: 8 },
+	ml4: { marginLeft: 16 },
 
 	my2: { marginVertical: 8 },
 
@@ -72,9 +72,11 @@ const styles = StyleSheet.create({
 
 	textSecondary: { color: "#666464", fontWeight: "bold" /*MUDAR COR*/ },
 
+	textLight: { color: Colors.grey200 },
+
 	title: { fontSize: 36, fontWeight: "bold", color: Colors.grey900 },
 
-	titleSecondary: { fontSize: 24, fontWeight: "bold", color: Colors.grey700 },
+	titleSecondary: { fontSize: 24, fontWeight: "bold" },
 
 	small: { fontSize: 16 /*AJUSTAR?*/ },
 
@@ -93,6 +95,41 @@ const styles = StyleSheet.create({
 	row: { flexDirection: "row" },
 
 	underline: { textDecorationLine: "underline" },
+
+	rounded: { borderRadius: 8 },
+
+	shadowMd: {
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 3.84,
+		elevation: 5,
+	},
+
+	shadowLg: {
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 0,
+			height: 9,
+		},
+		shadowOpacity: 0.48,
+		shadowRadius: 11.95,
+		elevation: 18,
+	},
+
+	shadowWhiteSm: {
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 0,
+			height: 3,
+		},
+		shadowOpacity: 0.29,
+		shadowRadius: 4.65,
+		elevation: 7,
+	},
 })
 
 export default styles

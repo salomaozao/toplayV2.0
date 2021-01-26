@@ -1,7 +1,7 @@
 import React from "react"
 import { View, Dimensions } from "react-native"
 
-import Card from "./cardSquare"
+import { CardSquare } from "./cards"
 
 import styles from "../../styles/styles"
 
@@ -21,8 +21,8 @@ const Group = () => {
 				styles.my4,
 			]}
 		>
-			<Card i={0} />
-			<Card i={1} />
+			<CardSquare i={0} />
+			<CardSquare i={1} />
 		</View>
 	)
 }

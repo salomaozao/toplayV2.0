@@ -14,7 +14,7 @@ import {
 import { View, Image, Dimensions, ScrollView } from "react-native"
 import styles from "../styles/styles"
 
-// import Carousel from "./components/carousel"
+import Carousel from "./components/carousel"
 import Calendar from "./components/calendar"
 import Datatable from "./components/datatable"
 import PopupDialog from "./components/PopupDialog"
@@ -48,17 +48,17 @@ const ProductView = () => {
 				}}
 			>
 				<View>
-					<View style={[styles.mx2]}>
+					<View style={[styles.mx2, { marginTop: 25 }]}>
 						<View style={styles.title}>
 							<Text style={[styles.title, styles.textCenter]}>
-								Nome da quadra
+								Quadra São João
 							</Text>
 						</View>
 						<View
 							style={[
 								styles.row,
 								styles.centerX,
-								styles.ml2,
+								styles.ml4,
 								{ position: "relative" },
 							]}
 						>
@@ -67,7 +67,9 @@ const ProductView = () => {
 								source={{ uri: "https://picsum.photos/700" }}
 								style={styles.mr2}
 							/>
-							<Text style={[styles.small]}>Nome do dono</Text>
+							<Text style={[styles.small]}>
+								São João Nascimento
+							</Text>
 						</View>
 						<View
 							style={[
@@ -92,6 +94,7 @@ const ProductView = () => {
 							/>
 						</View>
 					</View>
+					<Carousel />
 					<View style={styles.col}>
 						<Datatable />
 						<View>

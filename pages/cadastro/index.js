@@ -39,8 +39,9 @@ const cadastro = (props) => {
 			<View
 				style={[
 					{
-						height: Dimensions.get("window").height - 90,
+						height: "100%",
 						marginBottom: 15,
+						flexDirection: "column",
 						justifyContent: "space-between",
 					},
 				]}
@@ -169,7 +170,11 @@ const cadastro = (props) => {
 						></FormComponent>
 					</View>
 				</View>
-				<Button onPress={updateForm} labelStyle={styles.textSecondary}>
+				<Button
+					onPress={updateForm}
+					labelStyle={styles.textSecondary}
+					style={{ position: "relative", bottom: 15 }} //PROVISÓRIO
+				>
 					Próximo
 				</Button>
 			</View>

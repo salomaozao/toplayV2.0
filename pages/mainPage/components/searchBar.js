@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Searchbar } from "react-native-paper"
+import { Searchbar, Colors } from "react-native-paper"
 import styles from "../../styles/styles"
 
 const SearchBar = () => {
@@ -14,6 +14,11 @@ const SearchBar = () => {
 				styles.mb2,
 				styles.mt4,
 			]}
+			theme={{
+				colors: {
+					text: Colors.white,
+				},
+			}}
 			placeholder="Buscar"
 			onChangeText={onChangeSearch}
 			value={searchQuery}

@@ -36,10 +36,10 @@ const theme = {
 	roundness: 2,
 	colors: {
 		...DefaultTheme.colors,
-		primary: Colors.blue900,
+		primary: Colors.blue100,
 		accent: "#f1c40f",
 		// background: Colors.blueA100,
-		surface: Colors.grey100,
+		surface: Colors.grey800,
 		text: Colors.grey700,
 	},
 }
@@ -85,10 +85,7 @@ const App = () => {
 							name="agendamentos"
 							component={ProductView}
 						/>
-						<BottomTab.Screen
-							name="cadastro"
-							component={Cadastro}
-						/>
+						<BottomTab.Screen name="cadastro" component={Acc} />
 					</BottomTab.Navigator>
 				</PaperProvider>
 			</NavigationContainer>

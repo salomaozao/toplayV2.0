@@ -73,7 +73,6 @@ export default class Calendar extends Component {
 					]}
 					disabledDatesTextStyle={{ color: "#f2acac" }}
 					selectedDayStyle={{ backgroundColor: "#aae8a9" }}
-					
 				/>
 				{/* <Text>SELECTED DATE:{startDate}</Text> */}
 			</View>
