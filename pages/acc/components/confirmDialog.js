@@ -4,14 +4,16 @@ import styles from "../../styles/styles"
 
 const ConfirmDialog = ({ action, isVisible, setVisible }) => {
 	return (
-		<Portal>
+		<Portal theme={{ colors: { surface: "white", onSurface: "black" } }}>
 			<Dialog
 				visible={isVisible}
 				onDismiss={() => {
 					setVisible(true)
 				}}
 			>
-				<Dialog.Title>Tem certeza?</Dialog.Title>
+				<Dialog.Title style={styles.textLight}>
+					Tem certeza?
+				</Dialog.Title>
 				<Dialog.Actions>
 					<Button
 						onPress={() => {
@@ -19,7 +21,6 @@ const ConfirmDialog = ({ action, isVisible, setVisible }) => {
 							setVisible(false)
 						}}
 						style={styles.bgSecondary}
-						mode="outlined"
 					>
 						Sim, eu tenho
 					</Button>

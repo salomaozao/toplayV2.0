@@ -7,6 +7,7 @@ import {
 	DataTable,
 	IconButton,
 	Colors,
+	Surface,
 } from "react-native-paper"
 
 import InfoInpt from "./components/infoInpt"
@@ -49,25 +50,43 @@ const AccPage = ({ navigation }) => {
 			/>
 			<View>
 				<ScrollView>
-					<View style={[styles.centerX, styles.bgDark]}>
-						<View style={[{ height: 200 }, styles.center]}>
+					<Surface style={[styles.centerX, styles.shadowXl]}>
+						<View
+							style={[
+								{
+									height:
+										Dimensions.get("screen").height * 0.3,
+								},
+								styles.center,
+							]}
+						>
 							<Avatar.Text
 								size={100}
 								label="GS"
-								style={styles.bgPrimary}
+								style={[
+									styles.bgPrimary,
+									styles.shadowLg,
+									styles.mb2,
+								]}
 							/>
-							<Text style={styles.textSecondary}>
+							<Text style={styles.textLight2}>
 								Gabriel Salomão
 							</Text>
 						</View>
-					</View>
-					<Button
-						style={[styles.bgLight, styles.mx4, styles.my2]}
-						icon="calendar"
-						onPress={() => navigation.navigate("agendamentos")}
-					>
-						Agendamentos
-					</Button>
+						<Button
+							mode="outlined"
+							style={[
+								styles.mx4,
+								styles.mb2,
+								styles.round,
+								{ borderWidth: 1 },
+							]}
+							icon="calendar"
+							onPress={() => navigation.navigate("agendamentos")}
+						>
+							Agendamentos
+						</Button>
+					</Surface>
 
 					<View>
 						{userInfo === "unlogged" ? (
@@ -111,118 +130,128 @@ const AccPage = ({ navigation }) => {
 									>
 										Informações sobre você
 									</Text>
-									<View
-										style={
-											page === 0
-												? { display: "flex" }
-												: { display: "none" }
-										}
-									>
-										<InfoInpt
-											isDisabled={showInpts}
-											label="Nome completo"
-											value={userInfo.name}
-										/>
 
-										<InfoInpt
-											isDisabled={showInpts}
-											label="Email"
-											value={userInfo.email}
-										/>
-
-										<InfoInpt
-											isDisabled={showInpts}
-											label="CPF registrado"
-											value={userInfo.cpf}
-										/>
-
-										<InfoInpt
-											isDisabled={showInpts}
-											label="Senha"
-											value={userInfo.pw}
-											secured
-										/>
-									</View>
-
-									<View
-										style={
-											page === 1
-												? { display: "flex" }
-												: { display: "none" }
-										}
-									>
-										<InfoInpt
-											isDisabled={showInpts}
-											label="Número de cartão"
-											value={userInfo.cartao}
-											secured
-											icon={[
-												"credit-card",
-												"credit-card-off",
-											]}
-										/>
-
-										<InfoInpt
-											isDisabled={showInpts}
-											label="Preencher"
-											value="placeholder"
-										/>
-
-										<InfoInpt
-											isDisabled={showInpts}
-											label="preencher"
-											value="placeholder"
-										/>
-
-										<InfoInpt
-											isDisabled={showInpts}
-											label="preencher"
-											value="placeholder"
-										/>
-									</View>
-
-									<View
-										style={{
-											flex: 1,
-											alignItems: "flex-end",
-										}}
-									>
-										<View style={styles.my2}>
-											<Button
-												style={styles.bgSecondary}
-												onPress={() => {
-													setShowConfirmDialog(true)
-												}}
+									<View>
+										<View>
+											<View
+												style={
+													page === 0
+														? { display: "flex" }
+														: { display: "none" }
+												}
 											>
-												{showInpts === true
-													? "Editar"
-													: "Confirmar"}
-											</Button>
-											<View style={styles.row}>
-												<IconButton
-													icon="arrow-left"
-													disabled={page === 0}
-													onPress={() =>
-														changePage(-1)
-													}
-													size={20}
+												<InfoInpt
+													isDisabled={showInpts}
+													label="Nome completo"
+													value={userInfo.name}
 												/>
-												<Text
-													style={{
-														position: "relative",
-														top: 10,
+
+												<InfoInpt
+													isDisabled={showInpts}
+													label="Email"
+													value={userInfo.email}
+												/>
+
+												<InfoInpt
+													isDisabled={showInpts}
+													label="CPF registrado"
+													value={userInfo.cpf}
+												/>
+
+												<InfoInpt
+													isDisabled={showInpts}
+													label="Senha"
+													value={userInfo.pw}
+													secured
+												/>
+											</View>
+											<View
+												style={
+													page === 1
+														? { display: "flex" }
+														: { display: "none" }
+												}
+											>
+												<InfoInpt
+													isDisabled={showInpts}
+													label="Número de cartão"
+													value={userInfo.cartao}
+													secured
+													icon={[
+														"credit-card",
+														"credit-card-off",
+													]}
+												/>
+
+												<InfoInpt
+													isDisabled={showInpts}
+													label="Preencher"
+													value="placeholder"
+												/>
+
+												<InfoInpt
+													isDisabled={showInpts}
+													label="preencher"
+													value="placeholder"
+												/>
+
+												<InfoInpt
+													isDisabled={showInpts}
+													label="preencher"
+													value="placeholder"
+												/>
+											</View>
+										</View>
+
+										<View
+											style={{
+												flex: 1,
+												alignItems: "flex-end",
+											}}
+										>
+											<View style={styles.my2}>
+												<Button
+													style={styles.bgSecondary}
+													onPress={() => {
+														setShowConfirmDialog(
+															true,
+														)
 													}}
 												>
-													{page + 1} de {pageMax + 1}
-												</Text>
-												<IconButton
-													icon="arrow-right"
-													disabled={page === pageMax}
-													onPress={() =>
-														changePage(+1)
-													}
-													size={20}
-												/>
+													{showInpts === true
+														? "Editar"
+														: "Confirmar"}
+												</Button>
+												<View style={styles.row}>
+													<IconButton
+														icon="arrow-left"
+														disabled={page === 0}
+														onPress={() =>
+															changePage(-1)
+														}
+														size={20}
+													/>
+													<Text
+														style={{
+															position:
+																"relative",
+															top: 10,
+														}}
+													>
+														{page + 1} de{" "}
+														{pageMax + 1}
+													</Text>
+													<IconButton
+														icon="arrow-right"
+														disabled={
+															page === pageMax
+														}
+														onPress={() =>
+															changePage(+1)
+														}
+														size={20}
+													/>
+												</View>
 											</View>
 										</View>
 									</View>

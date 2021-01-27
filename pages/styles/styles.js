@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
 
 	bgSecondary: { backgroundColor: Colors.blue700 /*MUDAR COR*/ },
 
-	bgLight: { backgroundColor: "white" /*MUDAR COR*/ },
+	bgLight: { backgroundColor: Colors.grey300 /*MUDAR COR*/ },
 
 	bgDark: { backgroundColor: "#cccccc" },
 
