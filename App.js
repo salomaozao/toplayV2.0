@@ -36,9 +36,9 @@ const theme = {
 	roundness: 2,
 	colors: {
 		...DefaultTheme.colors,
-		primary: Colors.blue100,
-		accent: "#f1c40f",
-		// background: Colors.blueA100,
+		primary: Colors.blue200,
+		accent: Colors.green300,
+		// background: Colors.green900,
 		surface: Colors.grey800,
 		text: Colors.grey700,
 	},
@@ -80,12 +80,12 @@ const App = () => {
 						// tabBarOptions={Platform.OS === "android" ? {tabStyle: {alignContent: "flex-start"}}}
 						// tabBar={() => <BottomNavItemGroup />}
 					>
-						<BottomTab.Screen name="acc" component={MainPage} />
+						<BottomTab.Screen name="main" component={MainPage} />
 						<BottomTab.Screen
 							name="product"
 							component={ProductView}
 						/>
-						<BottomTab.Screen name="cadastro" component={Acc} />
+						<BottomTab.Screen name="acc" component={Acc} />
 					</BottomTab.Navigator>
 				</PaperProvider>
 			</NavigationContainer>

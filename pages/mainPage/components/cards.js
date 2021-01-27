@@ -14,7 +14,7 @@ const CardSquare = ({ i, navigation }) => {
 	const iconSize = Dimensions.get("screen").width * 0.035
 
 	return (
-		<TouchableOpacity onPress={() => navigation.navigate("ProductView")}>
+		<TouchableOpacity onPress={() => navigation.navigate("product")}>
 			<Surface
 				style={[
 					{ width: width, height: height },
@@ -34,11 +34,6 @@ const CardSquare = ({ i, navigation }) => {
 						}}
 						source={{
 							uri: imgs[i],
-						}}
-						onError={() => {
-							el = imgs
-							el[i] = media.error
-							setImages(el)
 						}}
 					/>
 					<Text
@@ -82,7 +77,7 @@ const CardSquare = ({ i, navigation }) => {
 	)
 }
 
-const CardRect = ({ i }) => (
+const CardRect = ({ i, navigation }) => (
 	<Surface
 		style={[
 			styles.my2,
@@ -91,7 +86,7 @@ const CardRect = ({ i }) => (
 			{ justifyContent: "center", height: 50, width: "95%" },
 		]}
 	>
-		<TouchableOpacity onPress={() => navigation.navigate("ProductView")}>
+		<TouchableOpacity onPress={() => navigation.navigate("product")}>
 			<Image
 				style={[
 					{
@@ -119,7 +114,7 @@ const CardRect = ({ i }) => (
 	</Surface>
 )
 
-const CardRectBigger = ({ i, side }) => {
+const CardRectBigger = ({ i, side, navigation }) => {
 	const iconSize = Dimensions.get("screen").width * 0.035
 	return (
 		<Surface
@@ -177,7 +172,7 @@ const CardRectBigger = ({ i, side }) => {
 				<View>
 					<Button
 						mode="contained"
-						onPress={() => navigation.navigate("ProductView")}
+						onPress={() => navigation.navigate("product")}
 						style={[
 							{
 								backgroundColor: Colors.green500,

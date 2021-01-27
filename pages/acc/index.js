@@ -47,7 +47,7 @@ const AccPage = ({ navigation }) => {
 				action={() => setShowInpts(!showInpts)}
 				setVisible={setShowConfirmDialog}
 			/>
-			<View style={styles.bgPrimary}>
+			<View>
 				<ScrollView>
 					<View style={[styles.centerX, styles.bgDark]}>
 						<View style={[{ height: 200 }, styles.center]}>

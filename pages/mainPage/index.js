@@ -17,12 +17,12 @@ import {
 
 import SearchBar from "./components/searchBar"
 import CardGroup from "./components/cardGroups"
-import {CardRect, CardRectBigger} from "./components/cards"
+import { CardRect, CardRectBigger } from "./components/cards"
 
 import styles from "../styles/styles"
 import media from "../../media/media"
 
-const mainPage = (userData) => {
+const mainPage = ({ userData, navigation }) => {
 	userData = {
 		name: "Gabriel",
 	}
@@ -59,7 +59,11 @@ const mainPage = (userData) => {
 						},
 					]}
 				>
-					<Avatar.Text size={48} label="GS" />
+					<TouchableOpacity
+						onPress={() => navigation.navigate("acc")}
+					>
+						<Avatar.Text size={48} label="GS" />
+					</TouchableOpacity>
 				</View>
 			</View>
 			<SearchBar />
@@ -75,9 +79,9 @@ const mainPage = (userData) => {
 					Mais recentes
 				</Text>
 				<View style={[{ alignItems: "center" }]}>
-					<CardRect i={0} />
-					<CardRect i={1} />
-					<CardRect i={2} />
+					<CardRect i={0} navigation={navigation} />
+					<CardRect i={1} navigation={navigation} />
+					<CardRect i={2} navigation={navigation} />
 				</View>
 			</View>
 			<View style={styles.my2}>

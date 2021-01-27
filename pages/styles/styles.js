@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native"
-import { Colors } from "react-native-paper"
+import { Colors, useTheme } from "react-native-paper"
 
 const styles = StyleSheet.create({
 	footerMargin: 90,
 
-	bgPrimary: { backgroundColor: Colors.blueGrey200 /*MUDAR COR*/ },
+	bgPrimary: { backgroundColor: Colors.green300 /*MUDAR COR*/ },
 
 	bgSecondary: { backgroundColor: Colors.blue700 /*MUDAR COR*/ },
 
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 
 	p1: { padding: 4 },
 
-	py2: { paddingTop: 20 },
+	py2: { paddingVertical: 20 },
 
 	m2: { margin: 8 },
 
@@ -74,6 +74,8 @@ const styles = StyleSheet.create({
 
 	textLight: { color: Colors.grey200 },
 
+	textLight2: { color: Colors.grey300 },
+
 	title: { fontSize: 36, fontWeight: "bold", color: Colors.grey900 },
 
 	titleSecondary: { fontSize: 24, fontWeight: "bold" },
@@ -99,7 +101,7 @@ const styles = StyleSheet.create({
 	rounded: { borderRadius: 8 },
 
 	shadowMd: {
-		shadowColor: "#000",
+		shadowColor: Colors.black,
 		shadowOffset: {
 			width: 0,
 			height: 2,
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
 	},
 
 	shadowLg: {
-		shadowColor: "#000",
+		shadowColor: Colors.black,
 		shadowOffset: {
 			width: 0,
 			height: 9,
@@ -120,15 +122,25 @@ const styles = StyleSheet.create({
 		elevation: 18,
 	},
 
-	shadowWhiteSm: {
+	shadowXl: {
 		shadowColor: "#000",
+		shadowOffset: {
+			width: 0,
+			height: 12,
+		},
+		shadowOpacity: 0.58,
+		shadowRadius: 16.0,
+		elevation: 24,
+	},
+
+	shadowWhiteSm: {
+		shadowColor: Colors.black,
 		shadowOffset: {
 			width: 0,
 			height: 3,
 		},
 		shadowOpacity: 0.29,
 		shadowRadius: 4.65,
-		elevation: 7,
 	},
 })
 

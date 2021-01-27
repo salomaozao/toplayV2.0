@@ -8,6 +8,8 @@ import {
 	Image,
 } from "react-native"
 
+import stylesMain from "../../styles/styles"
+
 //CAROUSEL DOES NOT HANDLE MARGINS VERY WELL!
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get("window")
@@ -41,7 +43,11 @@ const Slide = memo(function Slide({ data }) {
 		<View style={[styles.slide]}>
 			<Image
 				source={{ uri: data.image }}
-				style={[styles.slideImage]}
+				style={[
+					styles.slideImage,
+					stylesMain.shadowWhiteSm,
+					stylesMain.round,
+				]}
 			></Image>
 			{/* <Text style={styles.slideTitle}>{data.title}</Text>
 			<Text style={styles.slideSubtitle}>{data.subtitle}</Text> */}

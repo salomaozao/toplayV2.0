@@ -1,17 +1,14 @@
 import React from "react"
+import { View, Image, Dimensions, ScrollView } from "react-native"
 import {
 	Text,
 	Button,
 	Chip,
 	Avatar,
-	Appbar, // no fundo
 	Drawer,
-	Dialog,
-	Portal,
 	Surface,
-	Paragraph,
+	Colors,
 } from "react-native-paper"
-import { View, Image, Dimensions, ScrollView } from "react-native"
 import styles from "../styles/styles"
 
 import Carousel from "./components/carousel"
@@ -22,7 +19,7 @@ import PopubAbout from "./components/popupAbout"
 import { TouchableHighlight } from "react-native-gesture-handler"
 import PopupAbout from "./components/popupAbout"
 
-const ProductView = () => {
+const ProductView = ({ navigation }) => {
 	const [isDialogVisile, setDialogVisible] = React.useState(false)
 	const showDialog = () => setDialogVisible(true)
 
@@ -94,22 +91,44 @@ const ProductView = () => {
 							/>
 						</View>
 					</View>
-					<Carousel />
-					<View style={styles.col}>
+					<Surface style={[styles.py2, styles.my2, styles.shadowLg]}>
+						<Carousel />
 						<Datatable />
+					</Surface>
+					<View style={styles.col}>
 						<View>
+							{/* <Surface style={[styles.my2, styles.shadowMd]}> */}
 							<Calendar />
+							{/* </Surface> */}
 							<View
 								style={[{ alignSelf: "flex-end" }, styles.mx4]}
 							>
-								<Surface>
-									<Text style={styles.title}>
+								<Surface
+									style={[
+										styles.shadowLg,
+										styles.my2,
+										styles.round,
+										{ padding: 8 },
+									]}
+								>
+									<Text
+										style={[
+											styles.title,
+											styles.textLight2,
+										]}
+									>
 										R$18,00
-										<Text style={styles.small}>
+										<Text
+											style={[
+												styles.small,
+												styles.textLight2,
+											]}
+										>
 											por hora
 										</Text>
 									</Text>
 									<Button
+										mode="contained"
 										contentStyle={styles.bgPrimary}
 										onPress={showDialog}
 									>
@@ -122,6 +141,7 @@ const ProductView = () => {
 													styles.small,
 													styles.mt2,
 													styles.underline,
+													styles.textLight2,
 													{
 														textAlign: "right",
 													},

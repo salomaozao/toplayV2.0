@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { DataTable, Avatar } from "react-native-paper"
+import { DataTable, Avatar, Colors } from "react-native-paper"
 import { Text, View } from "react-native"
 import styles from "../../styles/styles"
 
@@ -46,7 +46,9 @@ const DataTableCustom = () => {
 			<View>
 				<DataTable.Row>
 					<DataTable.Cell>
-						{pagesContent[page][0].title}
+						<Text style={styles.textLight2}>
+							{pagesContent[page][0].title}
+						</Text>
 					</DataTable.Cell>
 					<DataTable.Cell numeric>
 						{pagesContent[page][0].content}
@@ -55,7 +57,9 @@ const DataTableCustom = () => {
 
 				<DataTable.Row>
 					<DataTable.Cell>
-						{pagesContent[page][1].title}
+						<Text style={styles.textLight2}>
+							{pagesContent[page][1].title}
+						</Text>
 					</DataTable.Cell>
 					<DataTable.Cell numeric>
 						{pagesContent[page][1].content}
@@ -69,7 +73,11 @@ const DataTableCustom = () => {
 				onPageChange={(page) => {
 					setPage(page)
 				}}
-				label={page + 1 + " de 3"}
+				label={
+					<Text style={{ color: Colors.grey400 }}>
+						{page + 1} de {pagesContent.length}
+					</Text>
+				}
 			/>
 		</DataTable>
 	)
