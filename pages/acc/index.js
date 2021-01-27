@@ -8,11 +8,11 @@ import {
 	IconButton,
 	Colors,
 	Surface,
+	Divider,
 } from "react-native-paper"
 
 import InfoInpt from "./components/infoInpt"
-import ConfirmDialog from "./components/confirmDialog"
-import InvalidDayDialog from "./components/invalidDayDialog"
+import ConfirmDialog from "./components/dialogs"
 import styles from "../styles/styles"
 
 const AccPage = ({ navigation }) => {
@@ -36,18 +36,33 @@ const AccPage = ({ navigation }) => {
 
 	const [showInpts, setShowInpts] = useState(true)
 	const [showConfirmDialog, setShowConfirmDialog] = useState(false)
-	const [showInvalidDialog, setShowInvalidDialog] = useState(false)
+	const [showLogoutDialog, setShowLogoutDialog] = useState(false)
+	const [showLogoutConfirmDialog, setShowLogoutConfirmDialog] = useState(
+		false,
+	)
 	return (
 		<>
-			<InvalidDayDialog
-				isVisible={showInvalidDialog}
-				setVisible={setShowInvalidDialog}
+			<ConfirmDialog
+				texts={{ question: "Fazer logout?", confirm: "sim" }}
+				action={() => setShowLogoutConfirmDialog(true)}
+				isVisible={showLogoutDialog}
+				setVisible={setShowLogoutDialog}
 			/>
+
+			<ConfirmDialog
+				texts={{ question: "Tem certeza?", confirm: "sim" }}
+				// action = {logout}
+				isVisible={showLogoutConfirmDialog}
+				setVisible={setShowLogoutConfirmDialog}
+				danger
+			/>
+
 			<ConfirmDialog
 				isVisible={showConfirmDialog}
 				action={() => setShowInpts(!showInpts)}
 				setVisible={setShowConfirmDialog}
 			/>
+
 			<View>
 				<ScrollView>
 					<Surface style={[styles.centerX, styles.shadowXl]}>
@@ -209,9 +224,12 @@ const AccPage = ({ navigation }) => {
 												alignItems: "flex-end",
 											}}
 										>
-											<View style={styles.my2}>
+											<View style={styles.m2}>
 												<Button
-													style={styles.bgSecondary}
+													style={[
+														styles.bgDark,
+														styles.shadowMd,
+													]}
 													onPress={() => {
 														setShowConfirmDialog(
 															true,
@@ -257,6 +275,8 @@ const AccPage = ({ navigation }) => {
 									</View>
 								</View>
 
+								<Divider />
+
 								<View>
 									<Text
 										style={[
@@ -268,7 +288,15 @@ const AccPage = ({ navigation }) => {
 										O que você já fez:
 									</Text>
 									<View>
-										<DataTable style={styles.my2}>
+										<DataTable
+											style={[
+												styles.my2,
+												{
+													width: "96%",
+													alignSelf: "center",
+												},
+											]}
+										>
 											<DataTable.Row>
 												<DataTable.Cell>
 													Quadras alugadas
@@ -313,6 +341,11 @@ const AccPage = ({ navigation }) => {
 											styles.textSecondary,
 										]}
 										disabled={userInfo === "unlogged"}
+										onPress={() =>
+											setShowLogoutDialog(
+												!showLogoutDialog,
+											)
+										}
 									>
 										Fazer logout
 									</Button>

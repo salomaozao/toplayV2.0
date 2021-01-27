@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
 
 	bgLight: { backgroundColor: Colors.grey300 /*MUDAR COR*/ },
 
-	bgDark: { backgroundColor: "#cccccc" },
+	bgDark: { backgroundColor: Colors.grey800 },
 
 	p1: { padding: 4 },
 
