@@ -7,6 +7,8 @@ var media = {
 		"https://jundiai.sp.gov.br/noticias/wp-content/uploads/sites/32/2017/11/dal_santo_futebol-40.jpg",
 	error:
 		"https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png",
+	/*780x1170*/ player:
+		"https://img.r7.com/images/ronaldinho-gaucho-20032018174023061",
 }
 
 export default media

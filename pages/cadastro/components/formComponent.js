@@ -6,7 +6,7 @@ import FormInput from "./formInput"
 import FormCheck from "./formComponentCheck"
 import styles from "../../styles/styles"
 
-const formFase = ({ type, content, display, ...props }) => {
+const formFase = ({ type, content, display }) => {
 	if (type === "input") {
 		return (
 			<View

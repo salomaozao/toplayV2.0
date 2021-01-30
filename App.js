@@ -1,5 +1,5 @@
 //basic shit
-import * as React from "react"
+import React, { useState } from "react"
 import "react-native-gesture-handler"
 
 import { View, Dimensions, SafeAreaView, Platform } from "react-native"
@@ -23,6 +23,7 @@ import Agendamentos from "./pages/agendamentos/index"
 import Cadastro from "./pages/cadastro/index"
 import ProductView from "./pages/productExibition"
 import Acc from "./pages/acc/index"
+import Login from "./pages/login/index"
 import MainPage from "./pages/mainPage/index"
 
 //components
@@ -46,6 +47,7 @@ const theme = {
 const BottomTab = createBottomTabNavigator()
 
 const App = () => {
+	const { userData, setUserData } = useState({ username: "Gabriel Salomão" })
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 			<NavigationContainer>
@@ -64,6 +66,13 @@ const App = () => {
 						/>
 
 						<BottomTab.Screen name="acc" component={Acc} />
+
+						<BottomTab.Screen name="login" component={Login} />
+
+						<BottomTab.Screen
+							name="agendamentos"
+							component={Agendamentos}
+						/>
 						<BottomTab.Screen
 							name="cadastro"
 							component={Cadastro}
