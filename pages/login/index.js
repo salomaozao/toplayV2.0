@@ -12,9 +12,30 @@ import media from "../../media/media"
 import Dialog from "../acc/components/dialogs"
 import styles from "../styles/styles"
 
+const Input = ({ label, isSecure, onPress, secret }) => {
+	let pwIcon = isSecure ? "eye-off" : "eye"
+	return (
+		<TextInput
+			mode="outlined"
+			label={label}
+			secureTextEntry={isSecure}
+			style={[
+				{ width: "80%", border: 0 },
+				styles.mx4,
+				styles.my4,
+				styles.bg,
+				styles.round,
+				styles.shadowXl,
+			]}
+			right={
+				secret ? <TextInput.Icon icon={pwIcon} onPress={onPress} /> : {}
+			}
+		/>
+	)
+}
+
 const login = () => {
-	const [isPwVisible, setPwVisible] = useState(false)
-	let pwIcon = isPwVisible ? "eye-off" : "eye"
+	const [isPwVisible, setPwVisible] = useState(true)
 
 	return (
 		<>
@@ -62,19 +83,7 @@ const login = () => {
 							>
 								Fazer login
 							</Text>
-							<TextInput
-								mode="outlined"
-								label="Seu email aqui!"
-								style={[
-									{ width: "80%", border: 0 },
-									styles.mx4,
-									styles.my4,
-									styles.bg,
-									styles.round,
-									styles.shadowXl,
-								]}
-								// left={<TextInput.Icon icon="person" />}
-							/>
+							<Input label="Seu nome aqui!" />
 							<View
 								style={[
 									styles.center,
@@ -103,31 +112,14 @@ const login = () => {
 									onPress={() => {}}
 								/>
 							</View>
-						</View>
-
-						<View style={{ alignItems: "center", width: "100%" }}>
-							<TextInput
-								mode="outlined"
+							<Input
 								label="Sua senha aqui!"
-								secureTextEntry={isPwVisible}
-								style={[
-									{ width: "80%", border: 0 },
-									styles.mx4,
-									styles.my4,
-									styles.bg,
-									styles.round,
-									styles.shadowXl,
-								]}
-								right={
-									<TextInput.Icon
-										icon={pwIcon}
-										onPress={() =>
-											setPwVisible(!isPwVisible)
-										}
-									/>
-								}
+								isSecure={isPwVisible}
+								secret
+								onPress={() => setPwVisible(!isPwVisible)}
 							/>
 						</View>
+
 						<Button labelStyle={{ fontSize: 12 }}>
 							Fazer cadastro
 						</Button>
