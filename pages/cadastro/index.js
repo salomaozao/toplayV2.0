@@ -1,11 +1,12 @@
 import React, { useState } from "react"
-import { View, Dimensions } from "react-native"
+import { View, Image } from "react-native"
 import { Text, Button } from "react-native-paper"
 
 import FormComponent from "./components/formComponent"
 import styles from "../styles/styles"
+import media from "../../media/media"
 
-const cadastro = (props) => {
+const cadastro = () => {
 	const [showingComp, setShowingComp] = useState([
 		true,
 		false,
@@ -35,23 +36,29 @@ const cadastro = (props) => {
 	}
 
 	return (
-		<View>
+		<>
+			<Image
+				source={{ uri: media.player }}
+				style={{ position: "absolute", width: "100%", height: "100%" }}
+			/>
 			<View
 				style={[
+					styles.center,
 					{
 						height: "100%",
-						marginBottom: 15,
 						flexDirection: "column",
 						justifyContent: "space-between",
+						backgroundColor: "rgba(107, 107, 107, 0.8)",
+						paddingTop: 25,
 					},
 				]}
 			>
 				<View>
-					<View style={[styles.my2]}>
+					<View>
 						{/*todo: update colours and how they are defined*/}
 						<FormComponent
 							display={showingComp[0]}
-							type="+"
+							type="input"
 							content={[
 								{
 									mainTitle: "Bem vindo!",
@@ -70,7 +77,7 @@ const cadastro = (props) => {
 						></FormComponent>
 						<FormComponent
 							display={showingComp[1]}
-							type="+"
+							type="input"
 							content={[
 								{
 									mainTitle:
@@ -90,7 +97,7 @@ const cadastro = (props) => {
 						></FormComponent>
 						<FormComponent
 							display={showingComp[2]}
-							type="+"
+							type="input"
 							content={[
 								{
 									mainTitle: "Bem vindo!",
@@ -108,7 +115,7 @@ const cadastro = (props) => {
 						></FormComponent>
 						<FormComponent
 							display={showingComp[3]}
-							type="+"
+							type="input"
 							content={[
 								{
 									mainTitle: "Bem vindo!",
@@ -152,13 +159,13 @@ const cadastro = (props) => {
 				</View>
 				<Button
 					onPress={updateForm}
-					labelStyle={styles.textSecondary}
+					// labelStyle={styles.textSecondary}
 					style={{ position: "relative", bottom: 15 }}
 				>
 					Próximo
 				</Button>
 			</View>
-		</View>
+		</>
 	)
 }
 

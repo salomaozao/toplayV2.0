@@ -34,7 +34,7 @@ const Input = ({ label, isSecure, onPress, secret }) => {
 	)
 }
 
-const login = () => {
+const login = ({navigation}) => {
 	const [isPwVisible, setPwVisible] = useState(true)
 
 	return (
@@ -120,7 +120,7 @@ const login = () => {
 							/>
 						</View>
 
-						<Button labelStyle={{ fontSize: 12 }}>
+						<Button labelStyle={{ fontSize: 12 }} onPress={()=>navigation.navigate("cadastro")}>
 							Fazer cadastro
 						</Button>
 					</View>

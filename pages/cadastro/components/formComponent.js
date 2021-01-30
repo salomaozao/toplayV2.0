@@ -21,7 +21,13 @@ const formFase = ({ type, content, display }) => {
 						<Text style={[styles.title, styles.textCenter]}>
 							{content[0].mainTitle}
 						</Text>
-						<Text style={[styles.textCenter, styles.mt2]}>
+						<Text
+							style={[
+								styles.textCenter,
+								styles.mt2,
+								styles.textPrimary,
+							]}
+						>
 							{content[0].desc}
 						</Text>
 					</View>
