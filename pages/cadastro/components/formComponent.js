@@ -6,46 +6,42 @@ import FormInput from "./formInput"
 import FormCheck from "./formComponentCheck"
 import styles from "../../styles/styles"
 
-const formFase = ({ type, content, display }) => {
-	if (type === "input") {
-		return (
-			<View
-				style={[
-					styles.mx4,
-					styles.my2,
-					{ display: display ? "flex" : "none" },
-				]}
-			>
-				<View style={[styles.mx4, styles.my2]}>
-					<View style={[styles.centerX]}>
-						<Text style={[styles.title, styles.textCenter]}>
-							{content[0].mainTitle}
-						</Text>
-						<Text
-							style={[
-								styles.textCenter,
-								styles.mt2,
-								styles.textPrimary,
-							]}
-						>
-							{content[0].desc}
-						</Text>
-					</View>
-				</View>
+const FormInputZone = ({ content, display }) => {
+	return (
+		<View
+			style={[
+				styles.center,
+				{
+					display: display ? "flex" : "none",
+				},
+			]}
+		>
+			<View style={[styles.my4]}>
+				<Text style={[styles.title, styles.textCenter]}>
+					{content[0].mainTitle}
+				</Text>
 
-				<View style={styles.mt4}>
-					<FormInput
-						title={content[1].title}
-						placeholder={content[1].placeholder}
-					/>
-				</View>
+				<Text style={[styles.mt2]}>{content[0].desc}</Text>
+			</View>
+
+			<View>
+				<FormInput
+					title={content[1].title}
+					placeholder={content[1].placeholder}
+				/>
 
 				<FormInput
 					title={content[2].title}
 					placeholder={content[2].placeholder}
 				/>
 			</View>
-		)
+		</View>
+	)
+}
+
+const formFase = ({ type, content, display }) => {
+	if (type === "input") {
+		return <FormInputZone content={content} display={display} />
 	} else if (type === "check") {
 		return (
 			<View

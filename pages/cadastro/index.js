@@ -1,172 +1,83 @@
 import React, { useState } from "react"
-import { View, Image } from "react-native"
-import { Text, Button } from "react-native-paper"
-
-import FormComponent from "./components/formComponent"
+import { Image, View } from "react-native"
+import { TextInput, Text, Button } from "react-native-paper"
 import styles from "../styles/styles"
 import media from "../../media/media"
+import { max } from "moment"
 
-const cadastro = () => {
-	const [showingComp, setShowingComp] = useState([
-		true,
-		false,
-		false,
-		false,
-		false,
-	])
+const AreasData = [
+	[{ label: "Seu nome aqui" }, { label: "Coloque aqui seu email" }],
+	[{ label: "aksd" }, { label: "Coloque aqui seu email" }],
+	[{ label: "sdolsmfkds" }, { label: "Coloque aqui seu email" }],
+]
 
-	const changeForm = (num) => {
-		let arr = [false, false, false, false, false]
-		arr[num] = true
-		setShowingComp(arr)
-	}
+const FormInputArea = ({ i, bttn }) => {
+	return (
+		<View
+			style={[
+				styles.col,
+				{
+					justifyContent: "space-between",
+					alignContent: "center",
+					height: "100%",
+				},
+			]}
+		>
+			<View style={{ alignSelf: "center" }}>
+				<Text style={[styles.title]}>Olá, bem vindo!</Text>
+				<Text>Coloque seus dados abaixo!</Text>
+			</View>
 
-	const nextForm = () => {
-		changeForm(showingComp.indexOf(true) + 1)
-	}
+			<View style={[styles.col, styles.centerSelf, { width: "80%" }]}>
+				<TextInput style={[styles.my2]} label={AreasData[i][0].label} />
+				<TextInput style={[styles.my2]} label={AreasData[i][1].label} />
+			</View>
 
-	const finishForm = () => {}
+			<View>{bttn}</View>
+		</View>
+	)
+}
 
-	const updateForm = () => {
-		if (showingComp.indexOf(true) === showingComp.length - 1) {
-			finishForm()
-		} else {
-			nextForm()
-		}
-	}
+const Cadastro = (navigation) => {
+	const [index, setIndex] = useState(0)
+
+	const updateIndex = () =>
+		index + 1 !== AreasData.length ? setIndex(index + 1) : {}
 
 	return (
-		<>
+		<View>
 			<Image
 				source={{ uri: media.player }}
 				style={{ position: "absolute", width: "100%", height: "100%" }}
 			/>
 			<View
 				style={[
-					styles.center,
+					styles.col,
 					{
-						height: "100%",
-						flexDirection: "column",
-						justifyContent: "space-between",
-						backgroundColor: "rgba(107, 107, 107, 0.8)",
-						paddingTop: 25,
+						paddingTop: 35,
+						backgroundColor: "rgba(79, 79, 79, 0.7)",
 					},
 				]}
 			>
-				<View>
-					<View>
-						{/*todo: update colours and how they are defined*/}
-						<FormComponent
-							display={showingComp[0]}
-							type="input"
-							content={[
-								{
-									mainTitle: "Bem vindo!",
-									desc:
-										"Tá pronto para bater aquela bola com os amigos?",
-								},
-								{
-									title: "Nome",
-									placeholder: "EXEMPLO DE NOME",
-								},
-								{
-									title: "email",
-									placeholder: "EXEMPLO DE RG",
-								},
-							]}
-						></FormComponent>
-						<FormComponent
-							display={showingComp[1]}
-							type="input"
-							content={[
-								{
-									mainTitle:
-										"Texto demonstrativo, 20 palavras",
-									desc:
-										"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ornare volutpat velit nec laoreet. Morbi mattis scelerisque augue. Nullam imperdiet. ",
-								},
-								{
-									title: "Senha",
-									placeholder: "EXEMPLO DE NOME",
-								},
-								{
-									title: "Verificar",
-									placeholder: "EXEMPLO DE RG",
-								},
-							]}
-						></FormComponent>
-						<FormComponent
-							display={showingComp[2]}
-							type="input"
-							content={[
-								{
-									mainTitle: "Bem vindo!",
-									desc: "Frases pequenas!",
-								},
-								{
-									title: "CPF",
-									placeholder: "EXEMPLO DE NOME",
-								},
-								{
-									title: "SLA",
-									placeholder: "EXEMPLO DE RG",
-								},
-							]}
-						></FormComponent>
-						<FormComponent
-							display={showingComp[3]}
-							type="input"
-							content={[
-								{
-									mainTitle: "Bem vindo!",
-									desc: "Bora pro play?",
-								},
-								{
-									title: "hihi",
-									placeholder: "EXEMPLO DE NOME",
-								},
-								{
-									title: "huhu",
-									placeholder: "EXEMPLO DE RG",
-								},
-							]}
-						></FormComponent>
-
-						<FormComponent
-							display={showingComp[4]}
-							type={"check"}
-							content={{
-								title: "hihi",
-								text: (
-									<View style={styles.centerX}>
-										<Text>
-											Você concorda com os termos e
-											condições de uso?
-										</Text>
-										<Text
-											style={[
-												styles.small,
-												{ color: "#5cbac4" },
-											]}
-										>
-											Toque para ver mais
-										</Text>
-									</View>
-								),
-							}}
-						></FormComponent>
-					</View>
-				</View>
-				<Button
-					onPress={updateForm}
-					// labelStyle={styles.textSecondary}
-					style={{ position: "relative", bottom: 15 }}
-				>
-					Próximo
-				</Button>
+				<FormInputArea
+					i={index}
+					bttn={
+						<Button
+							onPress={
+								index !== AreasData.length
+									? updateIndex
+									: console.log("Acabou")
+							}
+						>
+							{index + 1 !== AreasData.length
+								? "Próximo"
+								: "Finalizar!"}
+						</Button>
+					}
+				/>
 			</View>
-		</>
+		</View>
 	)
 }
 
-export default cadastro
+export default Cadastro

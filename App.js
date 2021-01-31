@@ -77,6 +77,11 @@ const App = () => {
 							name="cadastro"
 							component={Cadastro}
 						/>
+
+						<BottomTab.Screen
+							name="termsAndConditions"
+							component={Acc}
+						/>
 					</BottomTab.Navigator>
 				</PaperProvider>
 			</NavigationContainer>
