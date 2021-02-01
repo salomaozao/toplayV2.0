@@ -1,11 +1,11 @@
 import React from "react"
-import { View, Dimensions, ScrollView } from "react-native"
+import { View, Dimensions, ScrollView, Surface } from "react-native"
 import { Text, Title, IconButton } from "react-native-paper"
 import styles from "../styles/styles"
 
 import Apointments from "./components/apointment"
 
-const Agendamentos = () => {
+const Agendamentos = ({navigation}) => {
 	const apointmentArr = [
 		{ name: "Quadra São João", date: "1", passed: true, key: "0" },
 		{ name: "Quadra São José", date: "2", passed: false, key: "1" },
@@ -25,34 +25,32 @@ const Agendamentos = () => {
 
 	for (let data of apointmentArr) {
 		data.passed
-			? pastApointmentsComponentsArr.push(<Apointments {...data} />)
-			: nextApointmentsComponentsArr.push(<Apointments {...data} />)
+			? pastApointmentsComponentsArr.push(<Apointments navigation={navigation} {...data} />)
+			: nextApointmentsComponentsArr.push(<Apointments navigation={navigation} {...data} />)
 	}
 
 	return (
 		<>
 			<ScrollView
 				style={[
-					styles.bgDark,
 					{
-						height:
-							Dimensions.get("window").height -
-							styles.footerMargin,
+						marginTop: 35,
 					},
 				]}
 			>
 				<Text style={[styles.title, styles.textCenter]}>
 					Agendamentos
 				</Text>
-				<View>
-					<Title style={styles.textCenter}>Próximos</Title>
-					{nextApointmentsComponentsArr}
-				</View>
+				<View style={{ marginBottom: 25 }}>
+					<View style={styles.my2}>
+						<Title style={styles.textCenter}>Próximos</Title>
+						{nextApointmentsComponentsArr}
+					</View>
 
-				<View>
-					<Title style={styles.textCenter}>Passados</Title>
-					{pastApointmentsComponentsArr}
-					{/*Organizar por tempo */}
+					<View style={styles.my2}>
+						<Title style={styles.textCenter}>Passados</Title>
+						{pastApointmentsComponentsArr}
+					</View>
 				</View>
 			</ScrollView>
 			<IconButton

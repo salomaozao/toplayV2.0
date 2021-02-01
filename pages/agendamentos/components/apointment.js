@@ -1,15 +1,9 @@
 import React, { useState } from "react"
 import { View, TouchableHighlight } from "react-native"
-import {
-	Colors,
-	Text,
-	Title,
-	Menu,
-
-} from "react-native-paper"
+import { Colors, Text, Title, Menu, Surface } from "react-native-paper"
 import styles from "../../styles/styles"
 
-const Apointments = ({ name, date, passed }) => {
+const Apointments = ({ navigation, name, date, passed }) => {
 	const color = passed ? Colors.red500 : Colors.green500
 
 	const [menuVisible, setMenuVisible] = useState(false)
@@ -22,19 +16,20 @@ const Apointments = ({ name, date, passed }) => {
 			anchor={
 				<TouchableHighlight
 					style={[
-						styles.border,
-						styles.borderDark,
+						styles.my2,
+						styles.shadowMd,
 						{
-							marginVertical: 5,
+							marginVertical: 10,
 							height: 50,
 							justifyContent: "center",
 						},
 					]}
-					onPress={() => setMenuVisible(true)}
+					onLongPress={() => setMenuVisible(true)}
+					onPress={() => navigation.navigate("product")}
 				>
-					<View
+					<Surface
 						style={[
-							styles.mx2,
+							styles.p2,
 							{
 								flexDirection: "row",
 								justifyContent: "space-between",
@@ -42,7 +37,14 @@ const Apointments = ({ name, date, passed }) => {
 						]}
 					>
 						<View>
-							<Title>{name}</Title>
+							<Text
+								style={[
+									styles.titleSecondary,
+									styles.textLight2,
+								]}
+							>
+								{name}
+							</Text>
 						</View>
 
 						<View style={styles.row}>
@@ -65,23 +67,17 @@ const Apointments = ({ name, date, passed }) => {
 								</Text>
 							</View>
 						</View>
-					</View>
+					</Surface>
 				</TouchableHighlight>
 			}
 		>
 			<Menu.Item
-				titleStyle={{ textAlign: "right" }}
-				onPress={() => console.log("Clicou em visitar")}
+				onPress={() => navigation.navigate("product")}
 				title="Visitar"
 			/>
+
 			<Menu.Item
-				titleStyle={{ textAlign: "right" }}
-				onPress={() => console.log("Clicou em excluir")}
-				title="Excluir"
-			/>
-			<Menu.Item
-				titleStyle={{ textAlign: "right" }}
-				onPress={() => console.log("Clicou em remarcar")}
+				onPress={() => navigation.navigate("product")}
 				title="Remarcar"
 			/>
 		</Menu>

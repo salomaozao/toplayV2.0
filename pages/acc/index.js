@@ -24,15 +24,15 @@ const AccPage = ({ navigation }) => {
 			: {}
 	}
 
-	// const userInfo = {
-	// 	name: "Gabriel S",
-	// 	pw: "1234",
-	// 	email: "nome@exemplo.com",
-	// 	cpf: "XXX. XXX. XXX-XX",
-	// 	cartao: "111 111 1111 11",
-	// }
+	const userInfo = {
+		name: "Gabriel S",
+		pw: "1234",
+		email: "nome@exemplo.com",
+		cpf: "XXX. XXX. XXX-XX",
+		cartao: "111 111 1111 11",
+	}
 
-	const userInfo = "unlogged"
+	// const userInfo = "unlogged"
 
 	const [showInpts, setShowInpts] = useState(true)
 	const [showConfirmDialog, setShowConfirmDialog] = useState(false)

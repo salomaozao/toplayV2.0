@@ -96,7 +96,7 @@ const mainPage = ({ userData, navigation }) => {
 				>
 					Populares na sua cidade (slider)
 				</Text>
-				<CardGroup />
+				<CardGroup navigation={navigation}/>
 			</View>
 			<View>
 				<Text
@@ -111,9 +111,13 @@ const mainPage = ({ userData, navigation }) => {
 					Você também pode gostar
 				</Text>
 				<View>
-					<CardRectBigger side="left" i={0} />
-					<CardRectBigger side="right" i={1} />
-					<CardRectBigger side="left" i={2} />
+					<CardRectBigger side="left" i={0} navigation={navigation} />
+					<CardRectBigger
+						side="right"
+						i={1}
+						navigation={navigation}
+					/>
+					<CardRectBigger side="left" i={2} navigation={navigation} />
 				</View>
 			</View>
 		</ScrollView>
