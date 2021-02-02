@@ -21,10 +21,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 //pages
 import Agendamentos from "./pages/agendamentos/index"
 import Cadastro from "./pages/cadastro/index"
-import ProductView from "./pages/productExibition"
+import ProductView from "./pages/productExibition/index"
 import Acc from "./pages/acc/index"
 import Login from "./pages/login/index"
 import MainPage from "./pages/mainPage/index"
+
+//admin pages
+import ManagerPageUplaod from "./pages/manager/productUpload/index"
 
 //components
 import Footer from "./pages/generalComponents/footer"
@@ -81,6 +84,11 @@ const App = () => {
 						<BottomTab.Screen
 							name="termsAndConditions"
 							component={Acc}
+						/>
+
+						<BottomTab.Screen
+							name="upload"
+							component={ManagerPageUplaod}
 						/>
 					</BottomTab.Navigator>
 				</PaperProvider>

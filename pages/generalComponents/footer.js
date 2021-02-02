@@ -14,24 +14,9 @@ const BottomNavItem = ({ icon, title, navigation, route }) => (
 
 const BottomNavItemGroup = ({ navigation }) => (
 	<Surface style={{ justifyContent: "space-around", flexDirection: "row" }}>
-		<BottomNavItem
-			icon="a"
-			title="cadastro"
-			navigation={navigation}
-			route="cadastro"
-		/>
-		<BottomNavItem
-			icon="home"
-			title="Página Principal"
-			navigation={navigation}
-			route="main"
-		/>
-		<BottomNavItem
-			icon="account"
-			title="Sua conta"
-			navigation={navigation}
-			route="acc"
-		/>
+		<BottomNavItem icon="a" navigation={navigation} route="upload" />
+		<BottomNavItem icon="home" navigation={navigation} route="main" />
+		<BottomNavItem icon="account" navigation={navigation} route="acc" />
 	</Surface>
 )
 

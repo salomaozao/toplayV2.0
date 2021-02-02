@@ -15,7 +15,7 @@ import {
 	Surface,
 	Colors,
 } from "react-native-paper"
-import styles from "../styles/styles"
+import styles from "../../styles/styles"
 
 import Carousel from "./components/carousel"
 import Calendar from "./components/calendar"
@@ -33,17 +33,6 @@ const ProductView = ({ navigation }) => {
 
 	return (
 		<>
-			<PopupDialog
-				visible={isDialogVisile}
-				setVisible={setDialogVisible}
-				hideDialog={() => setDialogVisible(false)}
-			/>
-
-			<PopupAbout
-				visible={isAboutVisible}
-				setVisible={setAboutVisible}
-				hideDialog={() => setAboutVisible(false)}
-			/>
 			<ScrollView
 				style={{
 					height: Dimensions.get("window").height - 90,
@@ -97,7 +86,9 @@ const ProductView = ({ navigation }) => {
 						</View>
 					</View>
 					<Surface style={[styles.py2, styles.my2, styles.shadowLg]}>
-						<Carousel />
+						<View style={{borderStyle: "dashed"}}>
+							<Text>asdmiasmd</Text>
+						</View>
 						<Datatable />
 					</Surface>
 					<View style={styles.col}>
@@ -140,7 +131,7 @@ const ProductView = ({ navigation }) => {
 										alugar
 									</Button>
 									<View>
-										<TouchableOpacity>
+										<TouchableHighlight>
 											<Text
 												style={[
 													styles.small,
@@ -155,7 +146,7 @@ const ProductView = ({ navigation }) => {
 											>
 												Saber mais
 											</Text>
-										</TouchableOpacity>
+										</TouchableHighlight>
 									</View>
 								</Surface>
 							</View>
