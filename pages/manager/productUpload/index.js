@@ -9,22 +9,51 @@ import {
 import {
 	Text,
 	Button,
-	Chip,
 	Avatar,
-	Drawer,
 	Surface,
 	Colors,
+	TextInput,
 } from "react-native-paper"
 import styles from "../../styles/styles"
 
 import Carousel from "./components/carousel"
 import Calendar from "./components/calendar"
-import Datatable from "./components/datatable"
+import DatatableInsert from "./components/datatableInsert"
 import PopupDialog from "./components/PopupDialog"
 import PopubAbout from "./components/popupAbout"
 import PopupAbout from "./components/popupAbout"
 
-const ProductView = ({ navigation }) => {
+/* 
+TODO: 
+1) DATATABLE COMPONENTS AD INPUTS
+2) VALIDATION AND DIALOG
+3) INPUT FORMATS
+
+*/
+
+
+import Icon from "react-native-vector-icons/FontAwesome"
+const ImagesUploadBox = () => (
+	<View
+		style={[
+			styles.my2,
+			styles.centerSelf,
+			styles.center,
+			{
+				width: "90%",
+				height: 200,
+				borderWidth: 4,
+				borderStyle: "dashed",
+				borderRadius: 1,
+			},
+		]}
+	>
+		<Icon name="camera" size={24} />
+		<Text style={styles.titleSecondary}>Fazer upload de imagens!</Text>
+	</View>
+)
+
+const ProductUpload = ({ navigation }) => {
 	const [isDialogVisile, setDialogVisible] = React.useState(false)
 	const showDialog = () => setDialogVisible(true)
 
@@ -35,15 +64,17 @@ const ProductView = ({ navigation }) => {
 		<>
 			<ScrollView
 				style={{
-					height: Dimensions.get("window").height - 90,
+					marginTop: 20,
 				}}
 			>
 				<View>
-					<View style={[styles.mx2, { marginTop: 25 }]}>
+					<View style={[styles.m2, { marginTop: 25 }]}>
 						<View style={styles.title}>
-							<Text style={[styles.title, styles.textCenter]}>
-								Quadra São João
-							</Text>
+							<TextInput
+								mode="outlined"
+								label="Nome da quadra"
+								style={styles.m2}
+							/>
 						</View>
 						<View
 							style={[
@@ -62,58 +93,47 @@ const ProductView = ({ navigation }) => {
 								São João Nascimento
 							</Text>
 						</View>
-						<View
-							style={[
-								styles.row,
-								styles.ml2,
-								styles.mt2,
-								styles.centerX,
-							]}
-						>
-							<Chip
-								icon="information"
-								onPress={() => console.log("Pressed")}
-							>
-								Esta quadra não é aberta em fins de semana
-							</Chip>
-						</View>
-						<View style={styles.centerX}>
-							<Drawer.Item
-								style={{ backgroundColor: "#5dc8d4" }}
-								icon="star"
-								label="CAMPEONATOS!"
-							/>
-						</View>
 					</View>
+
+					<ImagesUploadBox />
+
 					<Surface style={[styles.py2, styles.my2, styles.shadowLg]}>
-						<View style={{borderStyle: "dashed"}}>
-							<Text>asdmiasmd</Text>
-						</View>
-						<Datatable />
+						<DatatableInsert />
 					</Surface>
 					<View style={styles.col}>
 						<View>
-							{/* <Surface style={[styles.my2, styles.shadowMd]}> */}
 							<Calendar />
-							{/* </Surface> */}
 							<View
 								style={[{ alignSelf: "flex-end" }, styles.mx4]}
 							>
 								<Surface
 									style={[
-										styles.shadowLg,
-										styles.my2,
+										styles.shadowMd,
+										styles.my4,
 										styles.round,
 										{ padding: 8 },
 									]}
 								>
-									<Text
+									<View
 										style={[
-											styles.title,
-											styles.textLight2,
+											styles.row,
+											styles.mb2,
+											{ alignItems: "flex-end" },
 										]}
 									>
-										R$18,00
+										<TextInput
+											placeholder="Preço"
+											mode="outlined"
+											theme={{
+												colors: { text: "white" },
+											}}
+											style={{
+												backgroundColor:
+													"rgba(50,50,50,0.5)",
+												width: "50%",
+												marginRight: 10,
+											}}
+										/>
 										<Text
 											style={[
 												styles.small,
@@ -122,7 +142,8 @@ const ProductView = ({ navigation }) => {
 										>
 											por hora
 										</Text>
-									</Text>
+									</View>
+
 									<Button
 										mode="contained"
 										contentStyle={styles.bgPrimary}
@@ -130,26 +151,37 @@ const ProductView = ({ navigation }) => {
 									>
 										alugar
 									</Button>
-									<View>
-										<TouchableHighlight>
-											<Text
-												style={[
-													styles.small,
-													styles.mt2,
-													styles.underline,
-													styles.textLight2,
-													{
-														textAlign: "right",
-													},
-												]}
-												onPress={showAbout}
-											>
-												Saber mais
-											</Text>
-										</TouchableHighlight>
-									</View>
 								</Surface>
 							</View>
+							<View
+								style={[
+									{ width: "80%", alignSelf: "center" },
+									styles.my2,
+								]}
+							>
+								<Text
+									style={[
+										styles.titleSecondary,
+										styles.textCenter,
+									]}
+								>
+									Sobre a quadra
+								</Text>
+								<Text style={styles.textCenter}>
+									Escreva um pequeno texto falando sobre a
+									quadra.
+								</Text>
+								<TextInput
+									style={[{ height: 100 }, styles.my2]}
+								/>
+							</View>
+							<Button
+								color={Colors.grey900}
+								mode="outlined"
+								style={[styles.bgPrimary]}
+							>
+								Anúnciar!
+							</Button>
 						</View>
 					</View>
 				</View>
@@ -157,4 +189,4 @@ const ProductView = ({ navigation }) => {
 		</>
 	)
 }
-export default ProductView
+export default ProductUpload
