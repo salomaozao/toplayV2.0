@@ -4,7 +4,7 @@ import {
 	Image,
 	Dimensions,
 	ScrollView,
-	TouchableOpacity,
+	TouchableOpacity, 
 } from "react-native"
 import {
 	Text,
@@ -27,7 +27,7 @@ import PopupAbout from "./components/popupAbout"
 TODO: 
 1) DATATABLE COMPONENTS AD INPUTS
 2) VALIDATION AND DIALOG
-3) INPUT FORMATS
+3) INPUT FORMATS (ex.: XXX-XX-XXX)
 
 */
 

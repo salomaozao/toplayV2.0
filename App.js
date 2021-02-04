@@ -27,11 +27,11 @@ import Login from "./pages/login/index"
 import MainPage from "./pages/mainPage/index"
 
 //admin pages
-import ManagerPageUplaod from "./pages/manager/productUpload/index"
+import Manager_PageUplaod from "./pages/manager/productUpload/index"
+import Manager_MainPage from "./pages/manager/mainPage/index"
 
 //components
 import Footer from "./pages/generalComponents/footer"
-
 import styles from "./pages/styles/styles"
 
 const theme = {
@@ -87,8 +87,13 @@ const App = () => {
 						/>
 
 						<BottomTab.Screen
-							name="upload"
-							component={ManagerPageUplaod}
+							name="manager_upload"
+							component={Manager_PageUplaod}
+						/>
+
+						<BottomTab.Screen
+							name="manager_mainPage"
+							component={Manager_MainPage}
 						/>
 					</BottomTab.Navigator>
 				</PaperProvider>

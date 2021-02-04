@@ -14,7 +14,11 @@ const BottomNavItem = ({ icon, title, navigation, route }) => (
 
 const BottomNavItemGroup = ({ navigation }) => (
 	<Surface style={{ justifyContent: "space-around", flexDirection: "row" }}>
-		<BottomNavItem icon="a" navigation={navigation} route="upload" />
+		<BottomNavItem
+			icon="a"
+			navigation={navigation}
+			route="manager_mainPage"
+		/>
 		<BottomNavItem icon="home" navigation={navigation} route="main" />
 		<BottomNavItem icon="account" navigation={navigation} route="acc" />
 	</Surface>
