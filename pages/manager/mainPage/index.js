@@ -1,19 +1,6 @@
 import * as React from "react"
-import {
-	View,
-	Dimensions,
-	Image,
-	ScrollView,
-	TouchableOpacity,
-} from "react-native"
-import {
-	Text,
-	Colors,
-	Avatar,
-	Button,
-	IconButton,
-	Surface,
-} from "react-native-paper"
+import { View, ScrollView, TouchableOpacity } from "react-native"
+import { Text, Colors, Avatar } from "react-native-paper"
 
 import SearchBar from "./components/searchBar"
 import CardGroup from "./components/cardGroups"

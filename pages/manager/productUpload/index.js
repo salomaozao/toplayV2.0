@@ -1,11 +1,5 @@
 import React from "react"
-import {
-	View,
-	Image,
-	Dimensions,
-	ScrollView,
-	TouchableOpacity, 
-} from "react-native"
+import { View, ScrollView } from "react-native"
 import {
 	Text,
 	Button,
@@ -16,12 +10,9 @@ import {
 } from "react-native-paper"
 import styles from "../../styles/styles"
 
-import Carousel from "./components/carousel"
 import Calendar from "./components/calendar"
 import DatatableInsert from "./components/datatableInsert"
 import PopupDialog from "./components/PopupDialog"
-import PopubAbout from "./components/popupAbout"
-import PopupAbout from "./components/popupAbout"
 
 /* 
 TODO: 
@@ -30,7 +21,6 @@ TODO:
 3) INPUT FORMATS (ex.: XXX-XX-XXX)
 
 */
-
 
 import Icon from "react-native-vector-icons/FontAwesome"
 const ImagesUploadBox = () => (

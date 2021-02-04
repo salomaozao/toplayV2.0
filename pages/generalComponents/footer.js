@@ -1,7 +1,5 @@
 //basic shit
 import * as React from "react"
-import "react-native-gesture-handler"
-
 import { IconButton, Surface, Colors } from "react-native-paper"
 
 const BottomNavItem = ({ icon, title, navigation, route }) => (

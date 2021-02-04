@@ -2,20 +2,15 @@
 import React, { useState } from "react"
 import "react-native-gesture-handler"
 
-import { View, Dimensions, SafeAreaView, Platform } from "react-native"
+import { SafeAreaView } from "react-native"
 import {
 	DefaultTheme,
-	Text,
-	IconButton,
 	Provider as PaperProvider,
 	Colors,
-	Button,
-	Surface,
 } from "react-native-paper"
 
 //navigation
 import { NavigationContainer } from "@react-navigation/native"
-import { createStackNavigator } from "@react-navigation/stack"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
 //pages
@@ -32,7 +27,6 @@ import Manager_MainPage from "./pages/manager/mainPage/index"
 
 //components
 import Footer from "./pages/generalComponents/footer"
-import styles from "./pages/styles/styles"
 
 const theme = {
 	...DefaultTheme,
