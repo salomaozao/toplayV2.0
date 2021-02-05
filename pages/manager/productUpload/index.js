@@ -67,7 +67,7 @@ const ProductUpload = ({ navigation }) => {
 							/>
 						</View>
 						<View
-							style={[
+							style={[ 
 								styles.row,
 								styles.centerX,
 								styles.ml4,

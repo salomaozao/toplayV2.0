@@ -23,7 +23,7 @@ const mainPage = ({ userData, navigation }) => {
 						justifyContent: "space-between",
 						flexDirection: "row",
 						paddingTop: 25,
-					},
+					},	
 				]}
 			>
 				<View
@@ -36,7 +36,7 @@ const mainPage = ({ userData, navigation }) => {
 					}}
 				>
 					<Text style={[styles.title]}>Olá, {userData.name}!</Text>
-					<Text style={[styles.underline, styles.small]}>
+					<Text style={[styles.underline, styles.small]}> {/* admim exclusive component */}
 						Acessar suas quadras
 					</Text>
 				</View>
