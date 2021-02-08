@@ -1,6 +1,6 @@
 import * as React from "react"
 import { View, ScrollView, TouchableOpacity } from "react-native"
-import { Text, Colors, Avatar } from "react-native-paper"
+import { Text, Colors, Avatar, TouchableRipple } from "react-native-paper"
 
 import SearchBar from "./components/searchBar"
 import CardGroup from "./components/cardGroups"
@@ -23,7 +23,7 @@ const mainPage = ({ userData, navigation }) => {
 						justifyContent: "space-between",
 						flexDirection: "row",
 						paddingTop: 25,
-					},	
+					},
 				]}
 			>
 				<View
@@ -36,9 +36,17 @@ const mainPage = ({ userData, navigation }) => {
 					}}
 				>
 					<Text style={[styles.title]}>Olá, {userData.name}!</Text>
-					<Text style={[styles.underline, styles.small]}> {/* admim exclusive component */}
-						Acessar suas quadras
-					</Text>
+					<TouchableRipple
+						rippleColor="rgba(100,100,100,0.4)"
+						onPress={() =>
+							navigation.navigate("manager_ProductListing")
+						}
+					>
+						{/* admim exclusive component */}
+						<Text style={[styles.underline, styles.small]}>
+							Acessar suas quadras
+						</Text>
+					</TouchableRipple>
 				</View>
 				<View
 					style={[

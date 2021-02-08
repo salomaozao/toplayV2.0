@@ -24,6 +24,7 @@ import MainPage from "./pages/mainPage/index"
 //admin pages
 import Manager_PageUplaod from "./pages/manager/productUpload/index"
 import Manager_MainPage from "./pages/manager/mainPage/index"
+import Manager_ProductListing from "./pages/manager/productListing/index"
 
 //components
 import Footer from "./pages/generalComponents/footer"
@@ -88,6 +89,11 @@ const App = () => {
 						<BottomTab.Screen
 							name="manager_mainPage"
 							component={Manager_MainPage}
+						/>
+
+						<BottomTab.Screen
+							name="manager_ProductListing"
+							component={Manager_ProductListing}
 						/>
 					</BottomTab.Navigator>
 				</PaperProvider>

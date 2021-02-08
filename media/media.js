@@ -9,6 +9,8 @@ var media = {
 		"https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png",
 	/*780x1170*/ player:
 		"https://img.r7.com/images/ronaldinho-gaucho-20032018174023061",
+	/*1082 x 712*/ quadra_basquete1:
+		"https://folhapopular.info/wp-content/uploads/2018/07/Quadra-de-basquete-foi-lavada-pintada-e-reformada-1068x712.jpg",
 }
 
 export default media

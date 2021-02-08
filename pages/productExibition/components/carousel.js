@@ -7,10 +7,12 @@ import {
 	StyleSheet,
 	Image,
 } from "react-native"
+import media from "../../../media/media"
 
 import stylesMain from "../../styles/styles"
 
 //CAROUSEL DOES NOT HANDLE MARGINS VERY WELL!
+const Images = [media.quadra1, media.quadra2, media.quadra3]
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get("window")
 
@@ -30,7 +32,8 @@ const styles = StyleSheet.create({
 const slideList = Array.from({ length: 30 }).map((_, i) => {
 	return {
 		id: i,
-		image: `https://picsum.photos/1440/2842?random=${i}`,
+		// image: `https://picsum.photos/1440/2842?random=${i}`,
+		image: Images[i],
 		// title: `This is the title ${i + 1}!`,
 		// subtitle: `This is the subtitle ${i + 1}!`,
 		title: null,
@@ -73,6 +76,7 @@ export default function Carousel() {
 
 		if (roundIndex !== indexRef.current && !isNoMansLand) {
 			setIndex(roundIndex)
+			
 		}
 	}, [])
 
