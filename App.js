@@ -13,6 +13,9 @@ import {
 import { NavigationContainer } from "@react-navigation/native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
+//Document handling
+// import UploadyWrapper from "@rpldy/uploady"
+
 //pages
 import Agendamentos from "./pages/agendamentos/index"
 import Cadastro from "./pages/cadastro/index"
@@ -48,56 +51,63 @@ const App = () => {
 	const { userData, setUserData } = useState({ username: "Gabriel Salomão" })
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
-			<NavigationContainer>
-				<PaperProvider theme={theme}>
-					<BottomTab.Navigator
-						lazy={false}
-						tabBar={({ navigation }) => (
-							<Footer navigation={navigation} />
-						)}
-					>
-						<BottomTab.Screen name="main" component={MainPage} />
+			{/* <UploadyWrapper
+				destination={{ url: "https://my-server.test.com/upload" }}
+			> */}
+				<NavigationContainer>
+					<PaperProvider theme={theme}>
+						<BottomTab.Navigator
+							lazy={false}
+							tabBar={({ navigation }) => (
+								<Footer navigation={navigation} />
+							)}
+						>
+							<BottomTab.Screen
+								name="main"
+								component={MainPage}
+							/>
 
-						<BottomTab.Screen
-							name="product"
-							component={ProductView}
-						/>
+							<BottomTab.Screen
+								name="product"
+								component={ProductView}
+							/>
 
-						<BottomTab.Screen name="acc" component={Acc} />
+							<BottomTab.Screen name="acc" component={Acc} />
 
-						<BottomTab.Screen name="login" component={Login} />
+							<BottomTab.Screen name="login" component={Login} />
 
-						<BottomTab.Screen
-							name="agendamentos"
-							component={Agendamentos}
-						/>
-						<BottomTab.Screen
-							name="cadastro"
-							component={Cadastro}
-						/>
+							<BottomTab.Screen
+								name="agendamentos"
+								component={Agendamentos}
+							/>
+							<BottomTab.Screen
+								name="cadastro"
+								component={Cadastro}
+							/>
 
-						<BottomTab.Screen
-							name="termsAndConditions"
-							component={Acc}
-						/>
+							<BottomTab.Screen
+								name="termsAndConditions"
+								component={Acc}
+							/>
 
-						<BottomTab.Screen
-							name="manager_upload"
-							component={Manager_PageUplaod}
-						/>
+							<BottomTab.Screen
+								name="manager_upload"
+								component={Manager_PageUplaod}
+							/>
 
-						<BottomTab.Screen
-							name="manager_mainPage"
-							component={Manager_MainPage}
-						/>
+							<BottomTab.Screen
+								name="manager_mainPage"
+								component={Manager_MainPage}
+							/>
 
-						<BottomTab.Screen
-							name="manager_ProductListing"
-							component={Manager_ProductListing}
-						/>
-					</BottomTab.Navigator>
-				</PaperProvider>
-			</NavigationContainer>
+							<BottomTab.Screen
+								name="manager_ProductListing"
+								component={Manager_ProductListing}
+							/>
+						</BottomTab.Navigator>
+					</PaperProvider>
+				</NavigationContainer>
+			{/* </UploadyWrapper> */}
 		</SafeAreaView>
 	)
 }

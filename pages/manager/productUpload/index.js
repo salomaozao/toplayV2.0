@@ -1,5 +1,5 @@
 import React from "react"
-import { View, ScrollView } from "react-native"
+import { View, ScrollView, TouchableOpacity } from "react-native"
 import {
 	Text,
 	Button,
@@ -19,12 +19,16 @@ TODO:
 1) DATATABLE COMPONENTS AD INPUTS
 2) VALIDATION AND DIALOG
 3) INPUT FORMATS (ex.: XXX-XX-XXX)
+4) image upload
+5) popups check
 
 */
 
 import Icon from "react-native-vector-icons/FontAwesome"
+import DocumentPicker from "react-native-document-picker"
+
 const ImagesUploadBox = () => (
-	<View
+	<TouchableOpacity
 		style={[
 			styles.my2,
 			styles.centerSelf,
@@ -37,13 +41,14 @@ const ImagesUploadBox = () => (
 				borderRadius: 1,
 			},
 		]}
+		onPress={() => console.log(DocumentPicker.pick())}
 	>
 		<Icon name="camera" size={24} />
 		<Text style={styles.titleSecondary}>Fazer upload de imagens!</Text>
-	</View>
+	</TouchableOpacity>
 )
 
-const ProductUpload = ({ navigation }) => {
+const ProductUpload = ({ navigation, route }) => {
 	const [isDialogVisile, setDialogVisible] = React.useState(false)
 	const showDialog = () => setDialogVisible(true)
 
@@ -67,7 +72,7 @@ const ProductUpload = ({ navigation }) => {
 							/>
 						</View>
 						<View
-							style={[ 
+							style={[
 								styles.row,
 								styles.centerX,
 								styles.ml4,

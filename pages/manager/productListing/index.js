@@ -112,7 +112,7 @@ const ProductListing = ({ navigation }) => {
 						}}
 						small
 						icon="plus"
-						onPress={() => navigation.navigate("manager_upload")}
+						onPress={() => navigation.navigate("manager_upload", {un: "Jorge"})}
 					/>
 				</View>
 
