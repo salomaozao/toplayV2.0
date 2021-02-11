@@ -13,6 +13,8 @@ import {
 	Avatar,
 	Drawer,
 	Surface,
+	Portal,
+	Dialog,
 	Colors,
 } from "react-native-paper"
 import styles from "../styles/styles"
@@ -20,9 +22,118 @@ import styles from "../styles/styles"
 import Carousel from "./components/carousel"
 import Calendar from "./components/calendar"
 import Datatable from "./components/datatable"
-import PopupDialog from "./components/PopupDialog"
-import PopubAbout from "./components/popupAbout"
-import PopupAbout from "./components/popupAbout"
+
+//Todo: receive product details and pass it on to payment thrue routing
+
+const PopupDialog = ({ visible, setVisible, hideDialog, navigation }) => {
+	const TimesBttn = ({ time }) => (
+		<Button
+			onPress={() => {
+				hideDialog()
+				navigation.navigate("payment", { time: time, productName: "Quadra São João" }) // ? pass only one productID?
+			}}
+			mode="contained"
+			compact
+			style={[
+				styles.shadowMd,
+
+				{
+					marginVertical: 5,
+					backgroundColor: Colors.grey500,
+					borderWidth: 2,
+					borderColor: Colors.grey300,
+				},
+			]}
+		>
+			{time}
+		</Button>
+	)
+
+	let BttnsArr = []
+	const availableTimes = [
+		"11:15",
+		"12:00",
+		"15:00",
+		"16:00",
+		"17:00",
+		"18:00",
+	]
+	for (let data of availableTimes) {
+		BttnsArr.push(
+			<TimesBttn navigation={navigation} time={data} {...data} />,
+		)
+	}
+
+	return (
+		<Portal>
+			<Dialog visible={visible} onDismiss={hideDialog}>
+				<Dialog.Title
+					style={[styles.titleSecondary, styles.textLight2]}
+				>
+					Horários
+				</Dialog.Title>
+				<Dialog.Content>
+					<Dialog.ScrollArea
+						style={{
+							maxHeight: Dimensions.get("screen").width * 0.6,
+						}}
+					>
+						<ScrollView
+							contentContainerStyle={{ paddingHorizontal: 24 }}
+						>
+							{BttnsArr}
+						</ScrollView>
+					</Dialog.ScrollArea>
+				</Dialog.Content>
+				<Dialog.Actions>
+					<Button onPress={hideDialog} style={styles.textPrimary}>
+						Fechar
+					</Button>
+				</Dialog.Actions>
+			</Dialog>
+		</Portal>
+	)
+}
+
+const PopupAbout = ({ visible, setVisible, hideDialog }) => (
+	<Portal>
+		<Dialog visible={visible} onDismiss={hideDialog}>
+			<Dialog.Title>
+				<View>
+					<Text
+						style={[
+							styles.textSecondary,
+							styles.title,
+							{ textAlign: "left", marginTop: 16 },
+						]}
+					>
+						Sobre a quadra
+					</Text>
+				</View>
+			</Dialog.Title>
+			<Dialog.Content>
+				<View style={[{ marginHorizontal: 32 }, styles.mt4]}>
+					<Text style={{ textAlign: "left" }}>
+						orem ipsum dolor sit amet, consectetur adipiscing it.In
+						quis erat eget nisi mattis ornare dictum a a.Donec
+						dignissim neque sit amet molestie consequat
+					</Text>
+				</View>
+			</Dialog.Content>
+			<Dialog.Actions>
+				<Button
+					onPress={() => {
+						hideDialog
+					}}
+					style={styles.textPrimary}
+				>
+					Fechar
+				</Button>
+				<Button icon="share" />
+			</Dialog.Actions>
+		</Dialog>
+	</Portal>
+)
 
 const ProductView = ({ navigation }) => {
 	const [isDialogVisile, setDialogVisible] = React.useState(false)
@@ -37,6 +148,7 @@ const ProductView = ({ navigation }) => {
 				visible={isDialogVisile}
 				setVisible={setDialogVisible}
 				hideDialog={() => setDialogVisible(false)}
+				navigation={navigation}
 			/>
 
 			<PopupAbout
@@ -46,7 +158,7 @@ const ProductView = ({ navigation }) => {
 			/>
 			<ScrollView
 				style={{
-					height: Dimensions.get("window").height - 90,
+					marginTop: 25,
 				}}
 			>
 				<View>

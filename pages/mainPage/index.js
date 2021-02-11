@@ -29,7 +29,7 @@ const mainPage = ({ userData, navigation }) => {
 
 	return (
 		<ScrollView>
-			<View
+			<View   
 				style={[
 					styles.bgPrimary,
 					{
