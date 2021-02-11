@@ -178,6 +178,8 @@ const CardRectBigger = ({ i, side, navigation }) => {
 								backgroundColor: Colors.green500,
 								width: "80%",
 								alignSelf: "center",
+								position: "relative",
+								top: 15,
 							},
 							styles.shadowWhiteLg,
 							styles.mb2,

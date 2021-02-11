@@ -11,46 +11,94 @@ import styles from "../../../styles/styles"
 
 //foreach added item in content make a Datatable.Row conaining removeBttn and TextInputs
 //Confirmation
-const DatatableContentRow = () => (
-	<DataTable.Row>
-		<IconButton
-			icon="bookmark-remove"
-			style={{ top: 10 }}
-			color={Colors.grey200}
-			onPress={() => {}}
-		/>
-		<TextInput
-			value="Banheiro"
-			mode="outlined"
+
+//DIAS DISPONIVEIS?
+//DATATABLE.ROW? FUCK DATATABLE
+const DatatableAdd = ({ setAdding, contentState }) => {
+	function add(val) {
+		contentState.setContent([...contentState.content, val])
+	}
+
+	const [labelVal, setLabelVal] = useState("")
+	const [contVal, setContVal] = useState("")
+
+	return (
+		<View
 			style={[
 				{
-					backgroundColor: "rgba(0,0,0,0,)",
-					width: "40%",
+					justifyContent: "space-between",
+					flexDirection: "row",
+					paddingVertical: 10,
 				},
+				styles.borderVertical,
+				styles.borderDark,
 			]}
-		/>
-	</DataTable.Row>
-)
+		>
+			<TextInput
+				value="Banheiro"
+				mode="outlined"
+				value={labelVal}
+				onKeyPress={(text) => setLabelVal(text)}
+				style={[
+					{
+						backgroundColor: "rgba(0,0,0,0,)",
+						width: "35%",
+					},
+					styles.ml2,
+				]}
+			/>
+			<IconButton
+				icon="bookmark-remove"
+				style={{ top: 10 }}
+				color={Colors.grey200}
+				onPress={() => setAdding(false)}
+			/>
+			<IconButton
+				icon="bookmark-check"
+				style={{ top: 10 }}
+				color={Colors.grey200}
+				onPress={() => add({ labelVal: contVal })} //STATE NOT WORKING
+			/>
+			<TextInput
+				placeholder="disp./quant."
+				mode="outlined"
+				value={contVal}
+				onKeyPress={(text) => setContVal(text)}
+				style={[
+					styles.mr2,
+					{
+						backgroundColor: "rgba(0,0,0,0,)",
+					},
+				]}
+			/>
+		</View>
+	)
+}
 
 const DataTableCustom = () => {
-	const [content, setContent] = useState([])
+	const [content, setContent] = useState({ name: "Gabriel" })
+	const [isAdding, setAdding] = useState(false)
+
 	const [page, setPage] = useState(0)
 	return (
 		<DataTable>
-			<View>
-				<DataTable.Row>
-					<DataTable.Cell>
-						<Text style={styles.textLight2}>
-							{/* {pagesContent[page][0].title} */}
-						</Text>
-					</DataTable.Cell>
-					<DataTable.Cell numeric>
-						{/* {pagesContent[page][0].content} */}
-					</DataTable.Cell>
-				</DataTable.Row>
+			{/* {content.forEach(el => {
+				
+			});} */}
 
-				<DatatableContentRow />
-			</View>
+			{isAdding ? (
+				<DatatableAdd
+					setAdding={setAdding}
+					contentState={[content, setContent]}
+				/>
+			) : (
+				<></>
+			)}
+			<IconButton
+				style={{ width: "99%" }}
+				icon="bookmark-plus"
+				onPress={() => setAdding(true)}
+			/>
 
 			<DataTable.Pagination
 				page={page}

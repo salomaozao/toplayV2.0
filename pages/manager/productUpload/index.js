@@ -41,7 +41,7 @@ const ImagesUploadBox = () => (
 				borderRadius: 1,
 			},
 		]}
-		onPress={() => console.log(DocumentPicker.pick())}
+		onPress={() => console.log(DocumentPicker.pickMultiple())}
 	>
 		<Icon name="camera" size={24} />
 		<Text style={styles.titleSecondary}>Fazer upload de imagens!</Text>
