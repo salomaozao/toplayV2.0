@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native"
 import { Colors, useTheme } from "react-native-paper"
 
 const styles = StyleSheet.create({
-	footerMargin: 90,
+	iconPos: { position: "relative", top: 5 },
 
 	bgPrimary: { backgroundColor: Colors.green300 /*MUDAR COR*/ },
 

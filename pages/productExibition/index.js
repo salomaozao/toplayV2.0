@@ -25,12 +25,12 @@ import Datatable from "./components/datatable"
 
 //Todo: receive product details and pass it on to payment thrue routing
 
-const PopupDialog = ({ visible, setVisible, hideDialog, navigation }) => {
+const PopupDialog = ({ visible, hideDialog, navigation }) => {
 	const TimesBttn = ({ time }) => (
 		<Button
 			onPress={() => {
 				hideDialog()
-				navigation.navigate("payment", { time: time, productName: "Quadra São João" }) // ? pass only one productID?
+				navigation.navigate("payment", { prodId: "0000" }) // ? pass only one productID?
 			}}
 			mode="contained"
 			compact
@@ -95,7 +95,7 @@ const PopupDialog = ({ visible, setVisible, hideDialog, navigation }) => {
 	)
 }
 
-const PopupAbout = ({ visible, setVisible, hideDialog }) => (
+const PopupAbout = ({ visible, hideDialog }) => (
 	<Portal>
 		<Dialog visible={visible} onDismiss={hideDialog}>
 			<Dialog.Title>
@@ -146,14 +146,12 @@ const ProductView = ({ navigation }) => {
 		<>
 			<PopupDialog
 				visible={isDialogVisile}
-				setVisible={setDialogVisible}
 				hideDialog={() => setDialogVisible(false)}
 				navigation={navigation}
 			/>
 
 			<PopupAbout
 				visible={isAboutVisible}
-				setVisible={setAboutVisible}
 				hideDialog={() => setAboutVisible(false)}
 			/>
 			<ScrollView
