@@ -21,15 +21,18 @@ import { CardRect, CardRectBigger } from "./components/cards"
 
 import styles from "../styles/styles"
 import media from "../../media/media"
+import data from "../testing/data/quadras.json"
 
 const mainPage = ({ userData, navigation }) => {
 	userData = {
 		name: "Gabriel",
 	}
 
+	const recommendedProdsIds = ["0000", "0001", "0002"]
+
 	return (
 		<ScrollView>
-			<View   
+			<View
 				style={[
 					styles.bgPrimary,
 					{
@@ -79,9 +82,9 @@ const mainPage = ({ userData, navigation }) => {
 					Mais recentes
 				</Text>
 				<View style={[{ alignItems: "center" }]}>
-					<CardRect i={0} navigation={navigation} />
-					<CardRect i={1} navigation={navigation} />
-					<CardRect i={2} navigation={navigation} />
+					<CardRect id={recommendedProdsIds[0]} navigation={navigation} />
+					<CardRect id={recommendedProdsIds[1]} navigation={navigation} />
+					<CardRect id={recommendedProdsIds[2]} navigation={navigation} />
 				</View>
 			</View>
 			<View style={styles.my2}>
@@ -96,7 +99,7 @@ const mainPage = ({ userData, navigation }) => {
 				>
 					Populares na sua cidade (slider)
 				</Text>
-				<CardGroup navigation={navigation}/>
+				<CardGroup navigation={navigation} />
 			</View>
 			<View>
 				<Text

@@ -24,7 +24,7 @@ import Acc from "./pages/acc/index"
 import Login from "./pages/login/index"
 import MainPage from "./pages/mainPage/index"
 import Payment from "./pages/payment/index"
-
+0
 //admin pages
 import Manager_PageUplaod from "./pages/manager/productUpload/index"
 import Manager_MainPage from "./pages/manager/mainPage/index"

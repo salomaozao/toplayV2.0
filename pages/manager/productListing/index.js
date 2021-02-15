@@ -15,23 +15,14 @@ import styles from "../../styles/styles"
 
 const ProductListingDataArr = [
 	{
-		name: "Quadra Seu João",
-		subtitle: "Quadra Disponível feita por você",
-		image: media.quadra1,
 		sport: "footbal",
 		key: "0",
 	},
 	{
-		name: "Quadra Seu Nome",
-		subtitle: "Nomes personalizados para esportes!",
-		image: media.quadra_basquete1,
 		sport: "basket",
 		key: "1",
 	},
 	{
-		name: "Quadra Seu Carlos",
-		subtitle: "Nomes personalizados para esportes!",
-		image: media.quadra2,
 		sport: "footbal",
 		key: "2",
 	},
@@ -87,7 +78,11 @@ const CardShow = ({ navigation, name, subtitle, image, sport = "footbal" }) => {
 
 const ProductListing = ({ navigation }) => {
 	for (let data of ProductListingDataArr) {
-		ProductsComponents.push(<CardShow navigation={navigation} {...data} />)
+		let c = 0
+		ProductsComponents.push(
+			<CardShow navigation={navigation} key={c} {...data} />,
+		)
+		c++
 	}
 	return (
 		<>
@@ -112,7 +107,11 @@ const ProductListing = ({ navigation }) => {
 						}}
 						small
 						icon="plus"
-						onPress={() => navigation.navigate("manager_upload", {un: "Jorge"})}
+						onPress={() =>
+							navigation.navigate("manager_upload", {
+								un: "Jorge",
+							})
+						}
 					/>
 				</View>
 

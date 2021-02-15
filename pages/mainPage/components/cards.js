@@ -4,10 +4,10 @@ import { Text, Colors, Button, IconButton, Surface } from "react-native-paper"
 
 import media from "../../../media/media"
 import styles from "../../styles/styles"
-
+import data from "../../testing/data/quadras.json"
 const imgs = [media.quadra3, media.quadra2, media.quadra1]
 
-const CardSquare = ({ i, navigation }) => {
+const CardSquare = ({ id, navigation }) => {
 	const width = Dimensions.get("screen").width * 0.4
 	const height = width * 1.2
 
@@ -32,9 +32,7 @@ const CardSquare = ({ i, navigation }) => {
 							borderTopLeftRadius: 2.5,
 							borderTopRightRadius: 2.5,
 						}}
-						source={{
-							uri: imgs[i],
-						}}
+						source={{ uri: media[data[id].img] }}
 					/>
 					<Text
 						style={[
@@ -77,7 +75,7 @@ const CardSquare = ({ i, navigation }) => {
 	)
 }
 
-const CardRect = ({ i, navigation }) => (
+const CardRect = ({ id, navigation }) => (
 	<Surface
 		style={[
 			styles.my2,
@@ -96,7 +94,7 @@ const CardRect = ({ i, navigation }) => (
 						zIndex: -10,
 					},
 				]}
-				source={{ uri: imgs[i] }}
+				source={{ uri: media[data[id].img] }}
 			/>
 			<Text
 				style={[
@@ -108,7 +106,7 @@ const CardRect = ({ i, navigation }) => (
 					},
 				]}
 			>
-				Quadra São João
+				{data[id].name}
 			</Text>
 		</TouchableOpacity>
 	</Surface>
