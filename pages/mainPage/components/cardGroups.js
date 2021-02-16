@@ -21,8 +21,8 @@ const Group = ({ navigation }) => {
 				styles.my4,
 			]}
 		>
-			<CardSquare i={0} navigation={navigation} />
-			<CardSquare i={1} navigation={navigation} />
+			<CardSquare id="0000" navigation={navigation} />
+			<CardSquare id="0001" navigation={navigation} />
 		</View>
 	)
 }

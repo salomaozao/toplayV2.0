@@ -12,25 +12,13 @@ import {
 } from "react-native-paper"
 import media from "../../../media/media"
 import styles from "../../styles/styles"
+import data from "../../testing/data/quadras.json"
 
-const ProductListingDataArr = [
-	{
-		sport: "footbal",
-		key: "0",
-	},
-	{
-		sport: "basket",
-		key: "1",
-	},
-	{
-		sport: "footbal",
-		key: "2",
-	},
-]
+const ProductListingArr = ["0000", "0003"]
 
 const ProductsComponents = []
 
-const CardShow = ({ navigation, name, subtitle, image, sport = "footbal" }) => {
+const CardShow = ({ navigation, id }) => {
 	const sportsColors = {
 		footbal: Colors.green900,
 		basket: Colors.orange900,
@@ -41,6 +29,7 @@ const CardShow = ({ navigation, name, subtitle, image, sport = "footbal" }) => {
 
 	const closeMenu = () => setVisible(false)
 
+	const comp = data[id]
 	return (
 		<View>
 			<Menu
@@ -54,21 +43,27 @@ const CardShow = ({ navigation, name, subtitle, image, sport = "footbal" }) => {
 						]}
 						onPress={openMenu}
 					>
-						<Card.Cover source={{ uri: image }} />
+						<Card.Cover source={{ uri: media[comp.img] }} />
 						<Card.Title
-							title={name}
-							subtitle={subtitle}
-							titleStyle={{ color: sportsColors[sport] }}
+							title={comp.name}
+							// subtitle={subtitle}
+							titleStyle={{ color: sportsColors[comp.sport] }}
 						/>
 					</Card>
 				}
 			>
 				<Menu.Item
-					onPress={() => navigation.navigate("product")}
+					onPress={() => {
+						closeMenu()
+						navigation.navigate("product")
+					}}
 					title="Visitar"
 				/>
 				<Menu.Item
-					onPress={() => navigation.navigate("manager_upload")}
+					onPress={() => {
+						closeMenu()
+						navigation.navigate("manager_upload", { productId: id })
+					}}
 					title="Personalizar"
 				/>
 			</Menu>
@@ -77,12 +72,22 @@ const CardShow = ({ navigation, name, subtitle, image, sport = "footbal" }) => {
 }
 
 const ProductListing = ({ navigation }) => {
-	for (let data of ProductListingDataArr) {
-		let c = 0
+	if (ProductListingArr.length !== 0) {
+		for (let count = 0; count < ProductListingArr.length; count++) {
+			ProductsComponents.push(
+				<CardShow
+					navigation={navigation}
+					key={count}
+					id={ProductListingArr[count]}
+				/>,
+			)
+		}
+	} else if (ProductListingArr.length === 0) {
 		ProductsComponents.push(
-			<CardShow navigation={navigation} key={c} {...data} />,
+			<View style={[styles.center]}>
+				<Text>Você ainda não é dono de nenhuma quadra!</Text>
+			</View>,
 		)
-		c++
 	}
 	return (
 		<>
@@ -93,7 +98,7 @@ const ProductListing = ({ navigation }) => {
 						onPress={() => navigation.navigate("main")}
 					/>
 					<View style={styles.center}>
-						<Title style={[styles.titleSecondary]}>
+						<Title style={[styles.titleSecondary, styles.mt2]}>
 							Suas Quadras
 						</Title>
 					</View>
