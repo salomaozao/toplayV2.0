@@ -11,7 +11,9 @@
 			"18/2": []
 		},
 		"price": 110.5,
-		"sport": "footbal"
+		"sport": "footbal",
+		"address": "Rua Exemplo, 123",
+		"atributes": {}
 	},
 	"0001": {
 		"name": "Quadra São Carlos",
@@ -25,7 +27,9 @@
 			"18/2": []
 		},
 		"price": 90.5,
-		"sport": "footbal"
+		"sport": "footbal",
+		"address": "Rua de Lá, 22",
+		"atributes": {}
 	},
 	"0002": {
 		"name": "Quadra Seu João",
@@ -39,7 +43,9 @@
 			"18/2": ["11:00", "17:00", "18:00", "19:00"]
 		},
 		"price": 30.99,
-		"sport": "footbal"
+		"sport": "footbal",
+		"address": "Rua Inexistente, 321",
+		"atributes": {}
 	},
 	"0003": {
 		"name": "São João Tênis Clube",
@@ -53,6 +59,8 @@
 			"18/2": []
 		},
 		"price": 30.99,
-		"sport": "basket"
+		"sport": "basket",
+		"address": "Rua Dos Loucos, 0",
+		"atributes": {}
 	}
 }

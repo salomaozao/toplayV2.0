@@ -52,13 +52,10 @@ const App = () => {
 	const { userData, setUserData } = useState({ username: "Gabriel Salomão" })
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
-			{/* <UploadyWrapper
-				destination={{ url: "https://my-server.test.com/upload" }}
-			> */}
 			<NavigationContainer>
 				<PaperProvider theme={theme}>
 					<BottomTab.Navigator
-						lazy={false}
+						lazy={true}
 						tabBar={({ navigation }) => (
 							<Footer navigation={navigation} />
 						)}
@@ -93,6 +90,7 @@ const App = () => {
 						<BottomTab.Screen
 							name="manager_upload"
 							component={Manager_PageUplaod}
+							options={{}}
 						/>
 
 						<BottomTab.Screen

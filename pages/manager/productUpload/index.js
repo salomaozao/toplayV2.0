@@ -8,11 +8,13 @@ import {
 	Colors,
 	TextInput,
 } from "react-native-paper"
-import styles from "../../styles/styles"
 
 import Calendar from "./components/calendar"
 import DatatableInsert from "./components/datatableInsert"
 import PopupDialog from "./components/PopupDialog"
+
+import styles from "../../styles/styles"
+import data from "../../testing/data/quadras.json"
 
 /* 
 TODO: 
@@ -22,6 +24,7 @@ TODO:
 4) image upload
 5) popups check
 
+6) edition of existing products
 */
 
 import Icon from "react-native-vector-icons/FontAwesome"
@@ -53,7 +56,9 @@ const ProductUpload = ({ navigation, route }) => {
 	const showDialog = () => setDialogVisible(true)
 
 	const [isAboutVisible, setAboutVisible] = React.useState(false)
-	const showAbout = () => setAboutVisible(true)
+	const showAbout = () => setAboutVisible(true) 
+	// const product = route.productId ? data[route.productId] : false
+	const product = data["0001"] // ! for debbungging
 
 	return (
 		<>
@@ -67,7 +72,8 @@ const ProductUpload = ({ navigation, route }) => {
 						<View style={styles.title}>
 							<TextInput
 								mode="outlined"
-								label="Nome da quadra"
+								label={"Nome da sua quadra"}
+								value={product.name}
 								style={styles.m2}
 							/>
 						</View>
@@ -84,8 +90,9 @@ const ProductUpload = ({ navigation, route }) => {
 								source={{ uri: "https://picsum.photos/700" }}
 								style={styles.mr2}
 							/>
+							{/* ! userData */}
 							<Text style={[styles.small]}>
-								São João Nascimento
+								São João Nascimento {/* ! userData*/}
 							</Text>
 						</View>
 					</View>

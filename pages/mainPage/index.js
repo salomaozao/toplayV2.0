@@ -28,7 +28,7 @@ const mainPage = ({ userData, navigation }) => {
 		name: "Gabriel",
 	}
 
-	const recommendedProdsIds = ["0000", "0001", "0002"]
+	const recommendedProdsIds = ["0000", "0001", "0002", "0003"]
 
 	return (
 		<ScrollView>
@@ -69,7 +69,9 @@ const mainPage = ({ userData, navigation }) => {
 					</TouchableOpacity>
 				</View>
 			</View>
-			<SearchBar />
+			<View styles={styles.shadowXl}>
+				<SearchBar />
+			</View>
 			<View style={styles.mt4}>
 				<Text
 					style={[
@@ -82,9 +84,18 @@ const mainPage = ({ userData, navigation }) => {
 					Mais recentes
 				</Text>
 				<View style={[{ alignItems: "center" }]}>
-					<CardRect id={recommendedProdsIds[0]} navigation={navigation} />
-					<CardRect id={recommendedProdsIds[1]} navigation={navigation} />
-					<CardRect id={recommendedProdsIds[2]} navigation={navigation} />
+					<CardRect
+						id={recommendedProdsIds[0]}
+						navigation={navigation}
+					/>
+					<CardRect
+						id={recommendedProdsIds[1]}
+						navigation={navigation}
+					/>
+					<CardRect
+						id={recommendedProdsIds[2]}
+						navigation={navigation}
+					/>
 				</View>
 			</View>
 			<View style={styles.my2}>
@@ -97,7 +108,7 @@ const mainPage = ({ userData, navigation }) => {
 						{ color: Colors.grey800 },
 					]}
 				>
-					Populares na sua cidade (slider)
+					Populares na sua cidade
 				</Text>
 				<CardGroup navigation={navigation} />
 			</View>
@@ -106,7 +117,7 @@ const mainPage = ({ userData, navigation }) => {
 					style={[
 						styles.titleSecondary,
 						styles.ml2,
-						styles.my2,
+						styles.my4,
 						styles.textCenter,
 						{ color: Colors.grey800 },
 					]}
@@ -114,13 +125,21 @@ const mainPage = ({ userData, navigation }) => {
 					Você também pode gostar
 				</Text>
 				<View>
-					<CardRectBigger side="left" i={0} navigation={navigation} />
 					<CardRectBigger
-						side="right"
-						i={1}
+						side="left"
+						id={recommendedProdsIds[0]}
 						navigation={navigation}
 					/>
-					<CardRectBigger side="left" i={2} navigation={navigation} />
+					<CardRectBigger
+						side="right"
+						id={recommendedProdsIds[1]}
+						navigation={navigation}
+					/>
+					<CardRectBigger
+						side="left"
+						id={recommendedProdsIds[3]}
+						navigation={navigation}
+					/>
 				</View>
 			</View>
 		</ScrollView>

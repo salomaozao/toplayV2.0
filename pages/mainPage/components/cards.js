@@ -1,10 +1,18 @@
 import * as React from "react"
-import { View, Dimensions, Image, TouchableOpacity } from "react-native"
+import {
+	View,
+	Dimensions,
+	Image,
+	TouchableOpacity,
+	TouchableHighlight,
+} from "react-native"
 import { Text, Colors, Button, IconButton, Surface } from "react-native-paper"
 
 import media from "../../../media/media"
 import styles from "../../styles/styles"
 import data from "../../testing/data/quadras.json"
+// ! note para back-end: limitar o tamanho de textos, principalmente endereços!
+
 const imgs = [media.quadra3, media.quadra2, media.quadra1]
 
 const CardSquare = ({ id, navigation }) => {
@@ -14,7 +22,7 @@ const CardSquare = ({ id, navigation }) => {
 	const iconSize = Dimensions.get("screen").width * 0.035
 
 	return (
-		<TouchableOpacity onPress={() => navigation.navigate("product")}>
+		<TouchableHighlight onPress={() => navigation.navigate("product")}>
 			<Surface
 				style={[
 					{ width: width, height: height },
@@ -42,7 +50,7 @@ const CardSquare = ({ id, navigation }) => {
 							{ fontWeight: "500" },
 						]}
 					>
-						Quadra são joão
+						{data[id].name}
 					</Text>
 				</View>
 				<View
@@ -67,11 +75,13 @@ const CardSquare = ({ id, navigation }) => {
 							size={iconSize}
 							style={{ bottom: iconSize / 2 }}
 						/>
-						<Text style={{ width: "100%" }}>Rua exemplo, 123</Text>
+						<Text style={{ width: "100%" }}>
+							{data[id].address}
+						</Text>
 					</View>
 				</View>
 			</Surface>
-		</TouchableOpacity>
+		</TouchableHighlight>
 	)
 }
 
@@ -112,7 +122,7 @@ const CardRect = ({ id, navigation }) => (
 	</Surface>
 )
 
-const CardRectBigger = ({ i, side, navigation }) => {
+const CardRectBigger = ({ id, side, navigation }) => {
 	const iconSize = Dimensions.get("screen").width * 0.035
 	return (
 		<Surface
@@ -134,8 +144,8 @@ const CardRectBigger = ({ i, side, navigation }) => {
 		>
 			<View style={[styles.center, { width: "45%" }]}>
 				<Image
-					source={{ uri: imgs[i] }}
-					style={{ width: "95%", height: "95%" }}
+					source={{ uri: media[data[id].img] }}
+					style={[styles.roundSm, { width: "95%", height: "95%" }]}
 				/>
 			</View>
 			<View
@@ -146,7 +156,16 @@ const CardRectBigger = ({ i, side, navigation }) => {
 					{ alignContent: "center", justifyContent: "space-between" },
 				]}
 			>
-				<View>
+				<View
+					style={[
+						{
+							alignSelf:
+								side === "left" ? "flex-start" : "flex-end",
+							maxWidth: "98%",
+							alignItems: "center",
+						},
+					]}
+				>
 					<Text
 						style={[
 							styles.titleSecondary,
@@ -154,7 +173,7 @@ const CardRectBigger = ({ i, side, navigation }) => {
 							{ fontSize: 20 },
 						]}
 					>
-						Quadra Seu José
+						{data[id].name}
 					</Text>
 					<View style={[styles.row, { alignContent: "center" }]}>
 						<IconButton
@@ -163,7 +182,7 @@ const CardRectBigger = ({ i, side, navigation }) => {
 							style={{ bottom: iconSize / 2 }}
 						/>
 						<Text style={{ color: Colors.grey500 }}>
-							Rua exemplo, 123
+							{data[id].address}
 						</Text>
 					</View>
 				</View>
