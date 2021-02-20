@@ -1,5 +1,11 @@
 import React from "react"
-import { View, ScrollView, TouchableOpacity } from "react-native"
+import {
+	View,
+	ScrollView,
+	TouchableOpacity,
+	Image,
+	Dimensions,
+} from "react-native"
 import {
 	Text,
 	Button,
@@ -13,8 +19,12 @@ import Calendar from "./components/calendar"
 import DatatableInsert from "./components/datatableInsert"
 import PopupDialog from "./components/PopupDialog"
 
+import Icon from "react-native-vector-icons/FontAwesome"
+import DocumentPicker from "react-native-document-picker"
+
 import styles from "../../styles/styles"
 import data from "../../testing/data/quadras.json"
+import media from "../../../media/media"
 
 /* 
 TODO: 
@@ -27,36 +37,52 @@ TODO:
 6) edition of existing products
 */
 
-import Icon from "react-native-vector-icons/FontAwesome"
-import DocumentPicker from "react-native-document-picker"
+const ImgList = ({ imgsArr }) => {
+	const [imgsCompArr, setImgCompArr] = React.useState([])
 
-const ImagesUploadBox = () => (
-	<TouchableOpacity
-		style={[
-			styles.my2,
-			styles.centerSelf,
-			styles.center,
-			{
-				width: "90%",
-				height: 200,
-				borderWidth: 4,
-				borderStyle: "dashed",
-				borderRadius: 1,
-			},
-		]}
-		onPress={() => console.log(DocumentPicker.pickMultiple())}
-	>
-		<Icon name="camera" size={24} />
-		<Text style={styles.titleSecondary}>Fazer upload de imagens!</Text>
-	</TouchableOpacity>
-)
+	let c = 0
+	const width = Dimensions.get("window").width * 0.1
+	const height = width * 2
+	return
+}
+
+const ImagesUploadBox = () => {
+	const [imgs, setImgs] = React.useState([
+		media.quadra1,
+		media.quadra2,
+		media.quadra3,
+	])
+	return (
+		<TouchableOpacity
+			style={[
+				styles.my2,
+				styles.centerSelf,
+				styles.center,
+				{
+					width: "90%",
+					height: 200,
+					borderWidth: 4,
+					borderStyle: "dashed",
+					borderRadius: 1,
+				},
+			]}
+			onPress={() => console.log(DocumentPicker.pickMultiple())}
+		>
+			<Icon name="camera" size={24} />
+			<Text style={styles.titleSecondary}>Fazer upload de imagens!</Text>
+			<View>{/* <ImgList />
+			 */}</View>
+		</TouchableOpacity>
+	)
+}
 
 const ProductUpload = ({ navigation, route }) => {
 	const [isDialogVisile, setDialogVisible] = React.useState(false)
 	const showDialog = () => setDialogVisible(true)
 
 	const [isAboutVisible, setAboutVisible] = React.useState(false)
-	const showAbout = () => setAboutVisible(true) 
+	const showAbout = () => setAboutVisible(true)
+
 	// const product = route.productId ? data[route.productId] : false
 	const product = data["0001"] // ! for debbungging
 
