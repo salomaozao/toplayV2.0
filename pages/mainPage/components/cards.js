@@ -94,7 +94,9 @@ const CardRect = ({ id, navigation }) => (
 			{ justifyContent: "center", height: 50, width: "95%" },
 		]}
 	>
-		<TouchableOpacity onPress={() => navigation.navigate("product")}>
+		<TouchableOpacity
+			onPress={() => navigation.navigate("product", { productId: id })}
+		>
 			<Image
 				style={[
 					{

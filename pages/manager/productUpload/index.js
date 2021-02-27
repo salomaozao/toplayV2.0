@@ -5,6 +5,7 @@ import {
 	TouchableOpacity,
 	Image,
 	Dimensions,
+	TextInput as NativeTextInput,
 } from "react-native"
 import {
 	Text,
@@ -18,9 +19,9 @@ import {
 import Calendar from "./components/calendar"
 import DatatableInsert from "./components/datatableInsert"
 import PopupDialog from "./components/PopupDialog"
+import { launchCamera, launchImageLibrary } from "react-native-image-picker"
 
 import Icon from "react-native-vector-icons/FontAwesome"
-import DocumentPicker from "react-native-document-picker"
 
 import styles from "../../styles/styles"
 import data from "../../testing/data/quadras.json"
@@ -36,14 +37,18 @@ TODO:
 
 6) edition of existing products
 */
-
 const ImgList = ({ imgsArr }) => {
 	const [imgsCompArr, setImgCompArr] = React.useState([])
 
 	let c = 0
-	const width = Dimensions.get("window").width * 0.1
-	const height = width * 2
-	return
+	return (
+		<Image
+			style={{
+				width: Dimensions.get("window").width * 0.1,
+				height: width * 2,
+			}}
+		/>
+	)
 }
 
 const ImagesUploadBox = () => {
@@ -66,28 +71,41 @@ const ImagesUploadBox = () => {
 					borderRadius: 1,
 				},
 			]}
-			onPress={() => console.log(DocumentPicker.pickMultiple())}
+			// onPress={s }
 		>
 			<Icon name="camera" size={24} />
 			<Text style={styles.titleSecondary}>Fazer upload de imagens!</Text>
-			<View>{/* <ImgList />
-			 */}</View>
+			<View>
+				{/* <ImgList />
+				 */}
+			</View>
 		</TouchableOpacity>
 	)
 }
-
 const ProductUpload = ({ navigation, route }) => {
-	const [isDialogVisile, setDialogVisible] = React.useState(false)
-	const showDialog = () => setDialogVisible(true)
+	const [isDialogVisible, setDialogVisible] = React.useState(false)
 
-	const [isAboutVisible, setAboutVisible] = React.useState(false)
-	const showAbout = () => setAboutVisible(true)
+	const product = data[route.params.productId]
+	// const product = data["0001"] // ! for debbungging
 
-	// const product = route.productId ? data[route.productId] : false
-	const product = data["0001"] // ! for debbungging
+	const [nameVal, setNameVal] = React.useState(product.name)
+	const [priceVal, setPriceVal] = React.useState(
+		product.price.toPrecision(product.price.toString().length).toString(),
+	)
+	const [abtVal, setAbtVal] = React.useState(product.about)
 
 	return (
 		<>
+			<PopupDialog
+				confirmFunction={() => {}}
+				hideDialog={() => setDialogVisible(!isDialogVisible)}
+				visible={isDialogVisible}
+				values={{
+					name: nameVal,
+					price: priceVal,
+					about: abtVal,
+				}}
+			/>
 			<ScrollView
 				style={{
 					marginTop: 20,
@@ -99,7 +117,8 @@ const ProductUpload = ({ navigation, route }) => {
 							<TextInput
 								mode="outlined"
 								label={"Nome da sua quadra"}
-								value={product.name}
+								value={nameVal}
+								onChangeText={(text) => setNameVal(text)}
 								style={styles.m2}
 							/>
 						</View>
@@ -117,17 +136,17 @@ const ProductUpload = ({ navigation, route }) => {
 								style={styles.mr2}
 							/>
 							{/* ! userData */}
-							<Text style={[styles.small]}>
-								São João Nascimento {/* ! userData*/}
-							</Text>
+							<Text style={[styles.small]}>{product.owner}</Text>
 						</View>
 					</View>
 
 					<ImagesUploadBox />
 
-					<Surface style={[styles.py2, styles.my2, styles.shadowLg]}>
+					{/* <Surface style={[styles.py2, styles.my2, styles.shadowLg]}>
 						<DatatableInsert />
 					</Surface>
+					// ! Para v2.00
+					*/}
 					<View style={styles.col}>
 						<View>
 							<Calendar />
@@ -152,6 +171,17 @@ const ProductUpload = ({ navigation, route }) => {
 										<TextInput
 											placeholder="Preço"
 											mode="outlined"
+											value={priceVal}
+											// ! Make a proper filter
+											onChangeText={(text) => {
+												if (
+													!text.includes(
+														"abcdefghijklmnopqrstuvwxyz",
+													)
+												) {
+													setPriceVal(text)
+												}
+											}}
 											theme={{
 												colors: { text: "white" },
 											}}
@@ -166,19 +196,12 @@ const ProductUpload = ({ navigation, route }) => {
 											style={[
 												styles.small,
 												styles.textLight2,
+												{ marginBottom: 5 },
 											]}
 										>
 											por hora
 										</Text>
 									</View>
-
-									<Button
-										mode="contained"
-										contentStyle={styles.bgPrimary}
-										onPress={showDialog}
-									>
-										alugar
-									</Button>
 								</Surface>
 							</View>
 							<View
@@ -201,12 +224,15 @@ const ProductUpload = ({ navigation, route }) => {
 								</Text>
 								<TextInput
 									style={[{ height: 100 }, styles.my2]}
+									value={abtVal}
+									onChangeText={(text) => setAbtVal(text)}
 								/>
 							</View>
 							<Button
 								color={Colors.grey900}
 								mode="outlined"
 								style={[styles.bgPrimary]}
+								onPress={() => setDialogVisible(true)}
 							>
 								Anúnciar!
 							</Button>

@@ -62,7 +62,9 @@ const CardShow = ({ navigation, id }) => {
 				<Menu.Item
 					onPress={() => {
 						closeMenu()
-						navigation.navigate("manager_upload", { productId: id })
+						navigation.navigate("manager_upload", {
+							productId: id,
+						})
 					}}
 					title="Personalizar"
 				/>
@@ -89,9 +91,10 @@ const ProductListing = ({ navigation }) => {
 			</View>,
 		)
 	}
+
 	return (
 		<>
-			<ScrollView style={{ marginTop: 30 }}>
+			<ScrollView style={{ paddingTop: 30 }}>
 				<View style={[styles.row, { justifyContent: "space-between" }]}>
 					<IconButton
 						icon="home"
@@ -112,11 +115,7 @@ const ProductListing = ({ navigation }) => {
 						}}
 						small
 						icon="plus"
-						onPress={() =>
-							navigation.navigate("manager_upload", {
-								un: "Jorge",
-							})
-						}
+						onPress={() => navigation.navigate("manager_upload")}
 					/>
 				</View>
 

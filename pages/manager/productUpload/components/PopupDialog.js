@@ -1,77 +1,58 @@
 import * as React from "react"
 import { View, ScrollView, Dimensions } from "react-native"
-import { Button, Paragraph, Dialog, Portal, Text } from "react-native-paper"
+import {
+	Button,
+	Paragraph,
+	Dialog,
+	Portal,
+	Text,
+	Colors,
+} from "react-native-paper"
 
 import styles from "../../../styles/styles"
 
-const PopupDialog = ({ visible, setVisible, hideDialog }) => {
+const PopupDialog = ({
+	visible,
+	hideDialog,
+	confirmFunction,
+	values = {
+		name: "Falha ao carregar",
+		price: "Falha ao carregar",
+		about: "Falha ao carregar",
+	},
+}) => {
 	return (
 		<Portal>
 			<Dialog visible={visible} onDismiss={hideDialog}>
-				<Dialog.Title>Horários</Dialog.Title>
+				<Dialog.Title>
+					Quase lá! Se liga no que você escreveu:
+				</Dialog.Title>
 				<Dialog.Content>
-					<Dialog.ScrollArea
-						style={{
-							maxHeight: Dimensions.get("screen").width * 0.6,
-						}}
-					>
-						<ScrollView
-							contentContainerStyle={{ paddingHorizontal: 24 }}
-						>
-							<Button
-								mode="contained"
-								compact
-								style={{
-									marginVertical: 5,
-									backgroundColor: "#d9d9d9",
-									borderWidth: 2,
-									borderColor: "#bfbfbf",
-								}}
-							>
-								15:00
-							</Button>
-							<Button
-								mode="contained"
-								compact
-								style={{
-									marginVertical: 5,
-									backgroundColor: "#d9d9d9",
-									borderWidth: 2,
-									borderColor: "#bfbfbf",
-								}}
-							>
-								16:00
-							</Button>
-							<Button
-								mode="contained"
-								compact
-								style={{
-									marginVertical: 5,
-									backgroundColor: "#d9d9d9",
-									borderWidth: 2,
-									borderColor: "#bfbfbf",
-								}}
-							>
-								15:00
-							</Button>
-							<Button
-								mode="contained"
-								compact
-								style={{
-									marginVertical: 5,
-									backgroundColor: "#d9d9d9",
-									borderWidth: 2,
-									borderColor: "#bfbfbf",
-								}}
-							>
-								15:00
-							</Button>
-						</ScrollView>
-					</Dialog.ScrollArea>
+					<Text>Nome da quadra: {values.name}</Text>
+					<Text>
+						Preço da quadra: R${values.price.replace(".", ",")}
+					</Text>
+					<Text>Texto sobre : {values.about}</Text>
 				</Dialog.Content>
 				<Dialog.Actions>
-					<Button onPress={hideDialog} style={styles.textPrimary}>
-						Fechar
+					<Button
+						color={Colors.grey900}
+						mode="outlined"
+						style={{ backgroundColor: Colors.red700 }}
+						onPress={hideDialog}
+					>
+						Não, volte
+					</Button>
+					<Button
+						color={Colors.grey900}
+						mode="outlined"
+						style={[styles.bgPrimary]}
+						onPress={() => {
+							confirmFunction()
+							hideDialog()
+						}}
+					>
+						Anúnciar!
 					</Button>
 				</Dialog.Actions>
 			</Dialog>

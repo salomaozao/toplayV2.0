@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { TextInput as NativeInput } from "react-native"
 import {
 	DataTable,
 	Avatar,
@@ -57,13 +58,13 @@ const DatatableAdd = ({ setAdding, contentState }) => {
 				icon="bookmark-check"
 				style={{ top: 10 }}
 				color={Colors.grey200}
-				onPress={() => add({ labelVal: contVal })} //STATE NOT WORKING
+				onPress={() => add()} //STATE NOT WORKING
 			/>
-			<TextInput
+			<NativeInput
 				placeholder="disp./quant."
 				mode="outlined"
 				value={contVal}
-				onKeyPress={(text) => setContVal(text)}
+				onKeyPress={(text = "a") => setContVal(text)}
 				style={[
 					styles.mr2,
 					{

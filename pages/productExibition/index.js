@@ -17,7 +17,9 @@ import {
 	Dialog,
 	Colors,
 } from "react-native-paper"
+
 import styles from "../styles/styles"
+import data from "../testing/data/quadras.json"
 
 import Carousel from "./components/carousel"
 import Calendar from "./components/calendar"
@@ -25,12 +27,20 @@ import Datatable from "./components/datatable"
 
 //Todo: receive product details and pass it on to payment thrue routing
 
-const PopupDialog = ({ visible, hideDialog, navigation }) => {
+const PopupDialog = ({
+	visible,
+	hideDialog,
+	navigation,
+	availableTimes,
+	id,
+}) => {
 	const TimesBttn = ({ time }) => (
 		<Button
 			onPress={() => {
 				hideDialog()
-				navigation.navigate("payment", { prodId: "0000" }) // ? pass only one productID?
+				navigation.navigate("payment", {
+					productId: id,
+				})
 			}}
 			mode="contained"
 			compact
@@ -50,18 +60,9 @@ const PopupDialog = ({ visible, hideDialog, navigation }) => {
 	)
 
 	let BttnsArr = []
-	const availableTimes = [
-		"11:15",
-		"12:00",
-		"15:00",
-		"16:00",
-		"17:00",
-		"18:00",
-	]
+
 	for (let data of availableTimes) {
-		BttnsArr.push(
-			<TimesBttn navigation={navigation} time={data} {...data} />,
-		)
+		BttnsArr.push(<TimesBttn navigation={navigation} time={data} />)
 	}
 
 	return (
@@ -116,7 +117,7 @@ const PopupAbout = ({ visible, hideDialog }) => (
 					<Text style={{ textAlign: "left" }}>
 						orem ipsum dolor sit amet, consectetur adipiscing it.In
 						quis erat eget nisi mattis ornare dictum a a.Donec
-						dignissim neque sit amet molestie consequat
+						dignissim neque sit amet molestie consequat // ! routes
 					</Text>
 				</View>
 			</Dialog.Content>
@@ -135,19 +136,31 @@ const PopupAbout = ({ visible, hideDialog }) => (
 	</Portal>
 )
 
-const ProductView = ({ navigation }) => {
+const ProductView = ({ navigation, route }) => {
 	const [isDialogVisile, setDialogVisible] = React.useState(false)
 	const showDialog = () => setDialogVisible(true)
 
 	const [isAboutVisible, setAboutVisible] = React.useState(false)
 	const showAbout = () => setAboutVisible(true)
 
+	const product = data["0000"]
+
+	const date = new Date()
+	const dd = String(date.getDate()).padStart(2, "0")
+	const mm = String(date.getMonth() + 1).padStart(2, "0") //January is 0!
+	const yyyy = date.getFullYear()
+
+	const today = yyyy + "/" + mm + "/" + dd
+
+	var { width, height } = Dimensions.get("window")
 	return (
 		<>
 			<PopupDialog
 				visible={isDialogVisile}
 				hideDialog={() => setDialogVisible(false)}
 				navigation={navigation}
+				availableTimes={product.daysTimes[today]}
+				id={route.params.productId}
 			/>
 
 			<PopupAbout
@@ -163,7 +176,7 @@ const ProductView = ({ navigation }) => {
 					<View style={[styles.mx2, { marginTop: 25 }]}>
 						<View style={styles.title}>
 							<Text style={[styles.title, styles.textCenter]}>
-								Quadra São João
+								{product.name}
 							</Text>
 						</View>
 						<View
@@ -179,9 +192,7 @@ const ProductView = ({ navigation }) => {
 								source={{ uri: "https://picsum.photos/700" }}
 								style={styles.mr2}
 							/>
-							<Text style={[styles.small]}>
-								São João Nascimento
-							</Text>
+							<Text style={[styles.small]}>{product.owner}</Text>
 						</View>
 						<View
 							style={[
@@ -190,14 +201,7 @@ const ProductView = ({ navigation }) => {
 								styles.mt2,
 								styles.centerX,
 							]}
-						>
-							<Chip
-								icon="information"
-								onPress={() => console.log("Pressed")}
-							>
-								Esta quadra não é aberta em fins de semana
-							</Chip>
-						</View>
+						></View>
 						<View style={styles.centerX}>
 							<Drawer.Item
 								style={{ backgroundColor: "#5dc8d4" }}
@@ -232,7 +236,7 @@ const ProductView = ({ navigation }) => {
 											styles.textLight2,
 										]}
 									>
-										R$18,00
+										{product.price}
 										<Text
 											style={[
 												styles.small,
@@ -246,6 +250,7 @@ const ProductView = ({ navigation }) => {
 										mode="contained"
 										contentStyle={styles.bgPrimary}
 										onPress={showDialog}
+										style={{ width: width, height: 200 }}
 									>
 										alugar
 									</Button>

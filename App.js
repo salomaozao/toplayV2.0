@@ -24,7 +24,8 @@ import Acc from "./pages/acc/index"
 import Login from "./pages/login/index"
 import MainPage from "./pages/mainPage/index"
 import Payment from "./pages/payment/index"
-0
+import Apagar from "./pages/testing/apagar"
+
 //admin pages
 import Manager_PageUplaod from "./pages/manager/productUpload/index"
 import Manager_MainPage from "./pages/manager/mainPage/index"
@@ -90,7 +91,6 @@ const App = () => {
 						<BottomTab.Screen
 							name="manager_upload"
 							component={Manager_PageUplaod}
-							options={{}}
 						/>
 
 						<BottomTab.Screen

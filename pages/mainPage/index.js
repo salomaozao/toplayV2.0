@@ -23,6 +23,9 @@ import styles from "../styles/styles"
 import media from "../../media/media"
 import data from "../testing/data/quadras.json"
 
+
+
+
 const mainPage = ({ userData, navigation }) => {
 	userData = {
 		name: "Gabriel",
