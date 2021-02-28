@@ -13,6 +13,7 @@ import {
 } from "react-native-paper"
 
 import styles from "../styles/styles"
+import data from "../testing/data/quadras.json"
 
 //todo: separate components
 
@@ -94,8 +95,12 @@ const PopupAbout = ({ visible, hideDialog }) => (
 	</Portal>
 )
 
-const PaymentsPage = ({ routes, navigation }) => {
+const PaymentsPage = ({ route, navigation }) => {
 	const [isPopupVisible, setPopupVisible] = React.useState(false)
+	// const product = data[routes.params.productId]
+	const product = data["0001"]
+	const apointmentTime = route.params.apointmentTime
+
 	return (
 		<>
 			<PopupAbout
@@ -115,19 +120,34 @@ const PaymentsPage = ({ routes, navigation }) => {
 						},
 					]}
 				>
-					<Text style={[styles.title]}>R$80,99</Text>
+					<Text style={[styles.title]}>R${product.price}</Text>
 					<Text style={[styles.titleSecondary, styles.mb2]}>
-						15:00
+						{apointmentTime}
 					</Text>
-					<Text style={{ fontSize: 16 }}>Quadra São João</Text>
+					<Text style={{ fontSize: 16 }}>{product.name}</Text>
+					<Button
+						style={styles.my2}
+						onPress={
+							() =>
+								navigation.navigate("product", {
+									productId: route.params.productId,
+								}) 	
+						}
+					>
+						Visitar
+					</Button>
 				</View>
 				<View style={[styles.my2, { alignItems: "center" }]}>
 					<Text style={styles.titleSecondary}>Suas informações:</Text>
 					<View style={styles.row}>
 						<Text>Para alterar estes dados, acesse </Text>
 						<TouchableOpacity
-							style={styles.underline}
-							onPress={() => {}}
+							style={[
+								styles.underline,
+								styles.bgLight,
+								{ paddingHorizontal: 5 },
+							]}
+							onPress={() => navigation.navigate("acc")}
 						>
 							<Text>Sua Conta</Text>
 						</TouchableOpacity>
@@ -141,19 +161,19 @@ const PaymentsPage = ({ routes, navigation }) => {
 							}}
 							info2={{
 								title: "Quadra",
-								content: "Quadra São João",
+								content: product.name,
 								icon: "rename-box",
 							}}
 						/>
 						<InfoRow
 							info1={{
 								title: "Hora",
-								content: "15:00",
+								content: apointmentTime,
 								icon: "timer",
 							}}
 							info2={{
 								title: "Total",
-								content: "80,99",
+								content: product.price,
 								icon: "cash",
 							}}
 						/>
