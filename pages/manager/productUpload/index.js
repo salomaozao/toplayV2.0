@@ -35,7 +35,6 @@ TODO:
 4) image upload
 5) popups check
 
-6) edition of existing products
 */
 const ImgList = ({ imgsArr }) => {
 	const [imgsCompArr, setImgCompArr] = React.useState([])

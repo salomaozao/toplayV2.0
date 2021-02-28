@@ -1,99 +1,15 @@
 import React from "react"
 import { View, _View } from "react-native"
 import { TouchableOpacity } from "react-native-gesture-handler"
-import {
-	Text,
-	Button,
-	Surface,
-	IconButton,
-	Avatar,
-	Colors,
-	Portal,
-	Dialog,
-} from "react-native-paper"
+import { Text, Button } from "react-native-paper"
+
+import PopupAbout from "./components/popupAbout"
+import InfoRow from "./components/infoRow"
 
 import styles from "../styles/styles"
 import data from "../testing/data/quadras.json"
 
 //todo: separate components
-
-const TextInfo = ({ title, content, icon, side }) => (
-	<View
-		style={[
-			styles.col,
-			styles.my2,
-			{ alignItems: side === "left" ? "flex-start" : "flex-end" },
-		]}
-	>
-		<View style={styles.row}>
-			{side === "right" ? (
-				<>
-					<Text style={{ fontSize: 20, marginHorizontal: 5 }}>
-						{title}
-					</Text>
-					<Avatar.Icon
-						icon={icon}
-						size={18}
-						style={[styles.iconPos]}
-					/>
-				</>
-			) : (
-				<>
-					<Avatar.Icon
-						icon={icon}
-						size={18}
-						style={[styles.iconPos]}
-					/>
-					<Text style={{ fontSize: 20, marginHorizontal: 5 }}>
-						{title}
-					</Text>
-				</>
-			)}
-		</View>
-		<Text style={[{ color: Colors.grey600 }]}>{content}</Text>
-	</View>
-)
-
-const InfoRow = ({ info1, info2 }) => (
-	<View
-		style={[
-			{
-				justifyContent: "space-between",
-				flexDirection: "row",
-			},
-		]}
-	>
-		<TextInfo
-			title={info1.title}
-			content={info1.content}
-			icon={info1.icon}
-			side="left"
-		/>
-
-		<TextInfo
-			title={info2.title}
-			content={info2.content}
-			icon={info2.icon}
-			side="right"
-		/>
-	</View>
-)
-const PopupAbout = ({ visible, hideDialog }) => (
-	<Portal theme={{ colors: { text: Colors.grey400 } }}>
-		<Dialog visible={visible} onDismiss={hideDialog}>
-			<Dialog.Title>Tem Certeza?</Dialog.Title>
-			<Dialog.Content>
-				<Text>Ao confirmar a quadra será alugada.</Text>
-			</Dialog.Content>
-			<Dialog.Actions>
-				<Button onPress={hideDialog} style={styles.textPrimary}>
-					Fechar
-				</Button>
-				<Button icon="share" />
-			</Dialog.Actions>
-		</Dialog>
-	</Portal>
-)
 
 const PaymentsPage = ({ route, navigation }) => {
 	const [isPopupVisible, setPopupVisible] = React.useState(false)
@@ -127,11 +43,10 @@ const PaymentsPage = ({ route, navigation }) => {
 					<Text style={{ fontSize: 16 }}>{product.name}</Text>
 					<Button
 						style={styles.my2}
-						onPress={
-							() =>
-								navigation.navigate("product", {
-									productId: route.params.productId,
-								}) 	
+						onPress={() =>
+							navigation.navigate("product", {
+								productId: route.params.productId,
+							})
 						}
 					>
 						Visitar

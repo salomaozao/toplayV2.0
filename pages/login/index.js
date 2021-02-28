@@ -8,31 +8,13 @@ import {
 	IconButton,
 	Colors,
 } from "react-native-paper"
+
+import Input from "./components/textInput";
+
 import media from "../../media/media"
 import Dialog from "../acc/components/dialogs"
 import styles from "../styles/styles"
 
-const Input = ({ label, isSecure, onPress, secret }) => {
-	let pwIcon = isSecure ? "eye-off" : "eye"
-	return (
-		<TextInput
-			mode="outlined"
-			label={label}
-			secureTextEntry={isSecure}
-			style={[
-				{ width: "80%", border: 0 },
-				styles.mx4,
-				styles.my4,
-				styles.bg,
-				styles.round,
-				styles.shadowXl,
-			]}
-			right={
-				secret ? <TextInput.Icon icon={pwIcon} onPress={onPress} /> : {}
-			}
-		/>
-	)
-}
 
 const login = ({navigation}) => {
 	const [isPwVisible, setPwVisible] = useState(true)
