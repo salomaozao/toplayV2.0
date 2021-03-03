@@ -3,15 +3,14 @@ import { Image, View } from "react-native"
 import { TextInput, Text, Button } from "react-native-paper"
 import styles from "../styles/styles"
 import media from "../../media/media"
-import { max } from "moment"
 
 const AreasData = [
 	[{ label: "Seu nome aqui" }, { label: "Coloque aqui seu email" }],
-	[{ label: "aksd" }, { label: "Coloque aqui seu email" }],
-	[{ label: "sdolsmfkds" }, { label: "Coloque aqui seu email" }],
+	[{ label: "Coloque sua senha" }, { label: "Confirme sua senha" }],
+	[{ label: "N° de RG" }, { label: "Qual seu CEP?" }],
 ]
 
-const FormInputArea = ({ i, bttn }) => {
+const FormInputArea = ({ i }) => {
 	return (
 		<View
 			style={[
@@ -33,17 +32,18 @@ const FormInputArea = ({ i, bttn }) => {
 				<TextInput style={[styles.my2]} label={AreasData[i][1].label} />
 			</View>
 
-			<View>{bttn}</View>
 		</View>
 	)
 }
 
-const Cadastro = (navigation) => {
+const Cadastro = ({navigation}) => {
 	const [index, setIndex] = useState(0)
 
-	const updateIndex = () =>
+	const updateIndex = () => {
 		index + 1 !== AreasData.length ? setIndex(index + 1) : {}
+}
 
+var valuesList = []
 	return (
 		<View>
 			<Image
@@ -61,20 +61,20 @@ const Cadastro = (navigation) => {
 			>
 				<FormInputArea
 					i={index}
-					bttn={
-						<Button
-							onPress={
-								index !== AreasData.length
-									? updateIndex
-									: console.log("Acabou")
-							}
-						>
-							{index + 1 !== AreasData.length
-								? "Próximo"
-								: "Finalizar!"}
-						</Button>
-					}
+					list={valuesList}
+					
 				/>
+				<Button
+					onPress={
+						index !== AreasData.length
+							? updateIndex
+							: navigation.navigate("termsAndConditions")
+					}
+				>
+					{index + 1 !== AreasData.length
+						? "Próximo"
+						: "Finalizar!"}
+				</Button>
 			</View>
 		</View>
 	)

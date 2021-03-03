@@ -20,6 +20,7 @@ import Calendar from "./components/calendar"
 import DatatableInsert from "./components/datatableInsert"
 import PopupDialog from "./components/PopupDialog"
 import { launchCamera, launchImageLibrary } from "react-native-image-picker"
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 import Icon from "react-native-vector-icons/FontAwesome"
 
@@ -27,16 +28,6 @@ import styles from "../../styles/styles"
 import data from "../../testing/data/quadras.json"
 import media from "../../../media/media"
 
-/* 
-TODO: 
-1) DATATABLE COMPONENTS AD INPUTS
-2) VALIDATION AND DIALOG
-3) INPUT FORMATS (ex.: XXX-XX-XXX)
-4) image upload
-5) popups check
-
-6) edition of existing products
-*/
 const ImgList = ({ imgsArr }) => {
 	const [imgsCompArr, setImgCompArr] = React.useState([])
 
@@ -94,8 +85,16 @@ const ProductUpload = ({ navigation, route }) => {
 	)
 	const [abtVal, setAbtVal] = React.useState(product.about)
 
+	const [showTimeSelect, setTimeSelectShow] = React.useState(false)
+
 	return (
 		<>
+		{showTimeSelect && 
+			<DateTimePicker 
+			 mode="time"
+			 is24Hour={true}
+			 display="clock"
+			/>}
 			<PopupDialog
 				confirmFunction={() => {}}
 				hideDialog={() => setDialogVisible(!isDialogVisible)}
@@ -150,6 +149,7 @@ const ProductUpload = ({ navigation, route }) => {
 					<View style={styles.col}>
 						<View>
 							<Calendar />
+							<Button onPress={()=>setTimeSelectShow(true)}>Selecionar Horas</Button>
 							<View
 								style={[{ alignSelf: "flex-end" }, styles.mx4]}
 							>

@@ -95,16 +95,18 @@ const login = ({navigation}) => {
 								]}
 							>
 								<Button
+								mode="text"
 									style={[
+										styles.mx2,
 										{
 											alignSelf: "center",
-											padding: 0,
 										},
 									]}
+
+									contentStyle={styles.bgPrimary}
 									onPress={() => {}}
 								>
-									Fazer login!
-								</Button>
+Confirmar								</Button>
 								<Text>OU</Text>
 								<IconButton
 									icon="google"

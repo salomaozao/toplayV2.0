@@ -38,9 +38,11 @@ const PopupDialog = ({
 	)
 
 	let BttnsArr = []
-
+			if (availableTimes !== undefined) {
 	for (let data of availableTimes) {
 		BttnsArr.push(<TimesBttn navigation={navigation} time={data} />)
+	}} else {
+		BttnsArr.push(<Text>Não há horários disponíveis para hoje!</Text>)
 	}
 
 	return (
