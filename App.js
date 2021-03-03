@@ -56,7 +56,7 @@ const App = () => {
 			<NavigationContainer>
 				<PaperProvider theme={theme}>
 					<BottomTab.Navigator
-						lazy={true}
+						lazy={false}
 						tabBar={({ navigation }) => (
 							<Footer navigation={navigation} />
 						)}
