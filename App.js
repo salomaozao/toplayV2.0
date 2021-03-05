@@ -24,7 +24,7 @@ import Acc from "./pages/acc/index"
 import Login from "./pages/login/index"
 import MainPage from "./pages/mainPage/index"
 import Payment from "./pages/payment/index"
-import Apagar from "./pages/testing/apagar"
+import TermsAndConditions from "./pages/termsAndConditions/termsAndConditions"
 
 //admin pages
 import Manager_PageUplaod from "./pages/manager/productUpload/index"
@@ -85,7 +85,7 @@ const App = () => {
 
 						<BottomTab.Screen
 							name="termsAndConditions"
-							component={Acc}
+							component={TermsAndConditions}
 						/>
 
 						<BottomTab.Screen

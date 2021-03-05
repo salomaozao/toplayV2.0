@@ -43,7 +43,7 @@ const PopupDialog = ({
 		for (let data of availableTimes) {
 			BttnsArr.push(
 				<ScrollView contentContainerStyle={{ paddingHorizontal: 24 }}>
-					<TimesBttn navigation={navigation} time={data} /> 
+					<TimesBttn navigation={navigation} time={data} />
 				</ScrollView>,
 			)
 		}

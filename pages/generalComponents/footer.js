@@ -15,7 +15,7 @@ const BottomNavItemGroup = ({ navigation }) => (
 		<BottomNavItem
 			icon="a"
 			navigation={navigation}
-			route="manager_mainPage"
+			route="termsAndConditions"
 		/>
 		<BottomNavItem icon="home" navigation={navigation} route="main" />
 		<BottomNavItem icon="account" navigation={navigation} route="acc" />
