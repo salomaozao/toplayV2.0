@@ -84,14 +84,16 @@ const ImagesUploadBox = () => {
 const ProductUpload = ({ navigation, route }) => {
 	const [isDialogVisible, setDialogVisible] = React.useState(false)
 
+	const { create } = route.params
+
 	const product = data[route.params.productId]
 	// const product = data["0001"] // ! for debbungging
 
-	const [nameVal, setNameVal] = React.useState(product.name)
+	const [nameVal, setNameVal] = React.useState(create ? "" : product.name)
 	const [priceVal, setPriceVal] = React.useState(
-		product.price.toPrecision(product.price.toString().length).toString(),
+		create ? "" : product.price.toFixed(2).toString().replace(".", ","),
 	)
-	const [abtVal, setAbtVal] = React.useState(product.about)
+	const [abtVal, setAbtVal] = React.useState(create ? "" : product.about)
 
 	return (
 		<>
@@ -135,17 +137,14 @@ const ProductUpload = ({ navigation, route }) => {
 								style={styles.mr2}
 							/>
 							{/* ! userData */}
-							<Text style={[styles.small]}>{product.owner}</Text>
+							<Text style={[styles.small]}>
+								{/*userData.name */} Você
+							</Text>
 						</View>
 					</View>
 
 					<ImagesUploadBox />
 
-					{/* <Surface style={[styles.py2, styles.my2, styles.shadowLg]}>
-						<DatatableInsert />
-					</Surface>
-					// ! Para v2.00
-					*/}
 					<View style={styles.col}>
 						<View>
 							<Calendar />

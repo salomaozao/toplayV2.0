@@ -17,9 +17,11 @@ import media from "../../../media/media"
 import styles from "../../styles/styles"
 import data from "../../testing/data/quadras.json"
 
-const ProductListingArr = ["0000", "0003"]
+var ProductListingArr = []
 
-const ProductsComponents = []
+var ProductListingArr = ["0000", "0003"]
+
+var ProductsComponents = []
 
 const ProductListing = ({ navigation }) => {
 	if (ProductListingArr.length !== 0) {
@@ -63,7 +65,7 @@ const ProductListing = ({ navigation }) => {
 						}}
 						small
 						icon="plus"
-						onPress={() => navigation.navigate("manager_upload")}
+						onPress={() => navigation.navigate("manager_upload", {create: true})}
 					/>
 				</View>
 

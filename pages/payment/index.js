@@ -13,8 +13,8 @@ import data from "../testing/data/quadras.json"
 
 const PaymentsPage = ({ route, navigation }) => {
 	const [isPopupVisible, setPopupVisible] = React.useState(false)
-	// const product = data[routes.params.productId]
-	const product = data["0001"]
+	const product = data[route.params.productId]
+	// const product = data["0001"]
 	const apointmentTime = route.params.apointmentTime
 
 	return (
@@ -36,7 +36,10 @@ const PaymentsPage = ({ route, navigation }) => {
 						},
 					]}
 				>
-					<Text style={[styles.title]}>R${product.price}</Text>
+					<Text style={[styles.title]}>
+						R$
+						{product.price.toFixed(2).toString().replace(".", ",")}
+					</Text>
 					<Text style={[styles.titleSecondary, styles.mb2]}>
 						{apointmentTime}
 					</Text>
@@ -88,7 +91,11 @@ const PaymentsPage = ({ route, navigation }) => {
 							}}
 							info2={{
 								title: "Total",
-								content: product.price,
+								content: product.price
+									.toFixed(2)
+									.toString()
+									.replace(".", ","),
+
 								icon: "cash",
 							}}
 						/>

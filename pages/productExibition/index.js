@@ -36,7 +36,7 @@ const ProductView = ({ navigation, route }) => {
 	const [isAboutVisible, setAboutVisible] = React.useState(false)
 	const showAbout = () => setAboutVisible(true)
 
-	const product = data["0001"]
+	const product = data[route.params.productId]
 
 	const date = new Date()
 	const dd = String(date.getDate()).padStart(2, "0")
@@ -127,7 +127,10 @@ const ProductView = ({ navigation, route }) => {
 											styles.textLight2,
 										]}
 									>
-										{product.price}
+										{product.price
+											.toFixed(2)
+											.toString()
+											.replace(".", ",")}
 										<Text
 											style={[
 												styles.small,

@@ -1,6 +1,9 @@
 import React from "react"
 import { View } from "react-native"
 import { Menu, Card, Colors } from "react-native-paper"
+
+import data from "../../../testing/data/quadras.json"
+import media from "../../../../media/media"
 import styles from "../../../styles/styles"
 
 const CardShow = ({ navigation, id }) => {

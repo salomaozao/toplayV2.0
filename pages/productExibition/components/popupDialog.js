@@ -1,6 +1,6 @@
 import React from "react"
 import { View, ScrollView, Dimensions } from "react-native"
-import { Button, Dialog, Portal, Colors } from "react-native-paper"
+import { Button, Dialog, Portal, Colors, Text } from "react-native-paper"
 
 import styles from "../../styles/styles"
 
@@ -39,8 +39,20 @@ const PopupDialog = ({
 
 	let BttnsArr = []
 
-	for (let data of availableTimes) {
-		BttnsArr.push(<TimesBttn navigation={navigation} time={data} />)
+	if (availableTimes !== undefined) {
+		for (let data of availableTimes) {
+			BttnsArr.push(
+				<ScrollView contentContainerStyle={{ paddingHorizontal: 24 }}>
+					<TimesBttn navigation={navigation} time={data} /> 
+				</ScrollView>,
+			)
+		}
+	} else {
+		BttnsArr.push(
+			<View style={styles.my4}>
+				<Text>Não há horários hoje nessa quadra! </Text>
+			</View>,
+		)
 	}
 
 	return (
@@ -57,11 +69,7 @@ const PopupDialog = ({
 							maxHeight: Dimensions.get("screen").width * 0.6,
 						}}
 					>
-						<ScrollView
-							contentContainerStyle={{ paddingHorizontal: 24 }}
-						>
-							{BttnsArr}
-						</ScrollView>
+						{BttnsArr}
 					</Dialog.ScrollArea>
 				</Dialog.Content>
 				<Dialog.Actions>

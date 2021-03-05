@@ -3,6 +3,7 @@ import { View } from "react-native"
 import { Text, Avatar, Colors } from "react-native-paper"
 
 import styles from "../../styles/styles"
+import data from "../../testing/data/quadras.json"
 
 const TextInfo = ({ title, content, icon, side }) => (
 	<View

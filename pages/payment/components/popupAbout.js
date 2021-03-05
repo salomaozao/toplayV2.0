@@ -13,7 +13,9 @@ const PopupAbout = ({ visible, hideDialog }) => (
 				<Button onPress={hideDialog} style={styles.textPrimary}>
 					Fechar
 				</Button>
-				<Button icon="share" />
+                <Button onPress={hideDialog} style={styles.textPrimary}>
+					Beleza!
+				</Button>
 			</Dialog.Actions>
 		</Dialog>
 	</Portal>
