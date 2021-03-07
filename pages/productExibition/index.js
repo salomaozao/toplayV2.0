@@ -96,11 +96,11 @@ const ProductView = ({ navigation, route }) => {
 							]}
 						></View>
 						<View style={styles.centerX}>
-							<Drawer.Item
+							{/* <Drawer.Item
 								style={{ backgroundColor: "#5dc8d4" }}
 								icon="star"
 								label="CAMPEONATOS!"
-							/>
+							/> */}
 						</View>
 					</View>
 					<Surface style={[styles.py2, styles.my2, styles.shadowLg]}>

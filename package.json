@@ -8,7 +8,7 @@
 		"test": "jest"
 	},
 	"dependencies": {
-		"@react-native-community/datetimepicker": "^3.0.9",
+		"@react-native-community/datetimepicker": "3.0.4",
 		"@react-native-community/masked-view": "^0.1.10",
 		"@react-navigation/bottom-tabs": "^5.11.2",
 		"@react-navigation/native": "^5.8.10",
@@ -25,7 +25,8 @@
 		"react-native": "~0.63.4",
 		"react-native-calendar-picker": "^7.0.8",
 		"react-native-gesture-handler": "^1.8.0",
-		"react-native-image-picker": "^3.2.1",
+		"react-native-image-crop-picker": "^0.36.0",
+		"react-native-image-picker": "^1.1.0",
 		"react-native-navigation-bar-color": "^2.0.1",
 		"react-native-paper": "^4.6.0",
 		"react-native-reanimated": "^1.13.2",

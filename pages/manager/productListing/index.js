@@ -65,7 +65,12 @@ const ProductListing = ({ navigation }) => {
 						}}
 						small
 						icon="plus"
-						onPress={() => navigation.navigate("manager_upload", {create: true})}
+						onPress={() =>
+							navigation.navigate("manager_upload", {
+								create: true,
+								productId: "9999",
+							})
+						}
 					/>
 				</View>
 

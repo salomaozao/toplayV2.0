@@ -50,7 +50,7 @@ const theme = {
 const BottomTab = createBottomTabNavigator()
 
 const App = () => {
-	const { userData, setUserData } = useState({ username: "Gabriel Salomão" })
+	const { userData, setUserData } = useState({ userId: "0001" })
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 			<NavigationContainer>

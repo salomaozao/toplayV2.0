@@ -75,5 +75,16 @@
 		"address": "Rua Dos Loucos, 0",
 		"atributes": {},
 		"about": "text long"
+	},
+	"9999": {
+		"name": "",
+		"owner": "",
+		"img": "",
+		"daysTimes": [],
+		"price": "",
+		"sport": "",
+		"address": "",
+		"atributes": "",
+		"about": ""
 	}
 }

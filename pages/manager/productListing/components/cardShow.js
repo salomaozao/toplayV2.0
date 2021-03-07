@@ -43,7 +43,7 @@ const CardShow = ({ navigation, id }) => {
 				<Menu.Item
 					onPress={() => {
 						closeMenu()
-						navigation.navigate("product")
+						navigation.navigate("product", { productId: id })
 					}}
 					title="Visitar"
 				/>
@@ -52,6 +52,7 @@ const CardShow = ({ navigation, id }) => {
 						closeMenu()
 						navigation.navigate("manager_upload", {
 							productId: id,
+							create: false,
 						})
 					}}
 					title="Personalizar"

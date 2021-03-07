@@ -13,8 +13,8 @@ import data from "../testing/data/quadras.json"
 
 const PaymentsPage = ({ route, navigation }) => {
 	const [isPopupVisible, setPopupVisible] = React.useState(false)
+
 	const product = data[route.params.productId]
-	// const product = data["0001"]
 	const apointmentTime = route.params.apointmentTime
 
 	return (
