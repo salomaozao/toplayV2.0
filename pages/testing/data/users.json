@@ -1,0 +1,46 @@
+{
+	"0000": {
+		"name": "Gabriel S.",
+		"pw": "12345",
+		"email": "salomao.bertolucci@gmail.com",
+		"card": "111-111-111-11",
+		"type": "user",
+		"imageURI": "https://st2.depositphotos.com/2931363/5249/i/600/depositphotos_52492703-stock-photo-confident-mature-man-in-shirt.jpg"
+	},
+
+	"0000": {
+		"name": "Seu João",
+		"pw": "00000000a",
+		"email": "joao@hotmail.com",
+		"card": "111-111-111-11",
+		"type": "owner",
+		"imageURI": ""
+	},
+
+	"0002": {
+		"name": "Seu Carlos",
+		"pw": "12345",
+		"email": "carlao@gmail.com",
+		"card": "111-111-111-11",
+		"type": "owner",
+		"imageURI": "https://st2.depositphotos.com/2931363/5249/i/600/depositphotos_52492703-stock-photo-confident-mature-man-in-shirt.jpg"
+	},
+
+	"0003": {
+		"name": "Seu Pedro",
+		"pw": "12345",
+		"email": "pedro@gmail.com",
+		"card": "111-111-111-11",
+		"type": "owner",
+		"imageURI": "https://st2.depositphotos.com/2931363/5249/i/600/depositphotos_52492703-stock-photo-confident-mature-man-in-shirt.jpg"
+	},
+
+	"0004": {
+		"name": "Vitor R.",
+		"pw": "12345",
+		"email": "salomao.bertolucci@gmail.com",
+		"card": "111-111-111-11",
+		"type": "user",
+		"imageURI": ""
+	}
+}

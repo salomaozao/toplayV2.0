@@ -193,7 +193,15 @@ const ProductUpload = ({ navigation, route }) => {
 	const [time, setTime] = React.useState("")
 
 	React.useEffect(() => {
-		document.title = `You click`
+		if (create) {
+			setNameVal("")
+			setPriceVal("")
+			setAbtVal("")
+		} else {
+			setNameVal(product.name)
+			setPriceVal(product.price.toFixed(2).toString().replace(".", ","))
+			setAbtVal(product.about)
+		}
 	})
 
 	return (

@@ -32,8 +32,6 @@ const AccPage = ({ navigation }) => {
 		cartao: "111 111 1111 11",
 	}
 
-	// const userInfo = "unlogged"
-
 	const [showInpts, setShowInpts] = useState(true)
 	const [showConfirmDialog, setShowConfirmDialog] = useState(false)
 	const [showLogoutDialog, setShowLogoutDialog] = useState(false)

@@ -1,6 +1,5 @@
 //basic shit
-import React, { useState } from "react"
-import "react-native-gesture-handler"
+import React from "react"
 
 import { SafeAreaView } from "react-native"
 import {
@@ -12,9 +11,6 @@ import {
 //navigation
 import { NavigationContainer } from "@react-navigation/native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-
-//Document handling
-// import UploadyWrapper from "@rpldy/uploady"
 
 //pages
 import Agendamentos from "./pages/agendamentos/index"
@@ -50,7 +46,6 @@ const theme = {
 const BottomTab = createBottomTabNavigator()
 
 const App = () => {
-	const { userData, setUserData } = useState({ userId: "0001" })
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 			<NavigationContainer>
@@ -61,7 +56,11 @@ const App = () => {
 							<Footer navigation={navigation} />
 						)}
 					>
-						<BottomTab.Screen name="main" component={MainPage} />
+						<BottomTab.Screen
+							name="main"
+							component={MainPage}
+							initialParams={{ userId: "0000" }}
+						/>
 
 						<BottomTab.Screen
 							name="product"
@@ -91,11 +90,6 @@ const App = () => {
 						<BottomTab.Screen
 							name="manager_upload"
 							component={Manager_PageUplaod}
-						/>
-
-						<BottomTab.Screen
-							name="manager_mainPage"
-							component={Manager_MainPage}
 						/>
 
 						<BottomTab.Screen

@@ -76,7 +76,6 @@ export default function Carousel() {
 
 		if (roundIndex !== indexRef.current && !isNoMansLand) {
 			setIndex(roundIndex)
-			
 		}
 	}, [])
 

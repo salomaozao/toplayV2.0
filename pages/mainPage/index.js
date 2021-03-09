@@ -12,6 +12,7 @@ import {
 	Avatar,
 	Button,
 	IconButton,
+	TouchableRipple,
 	Surface,
 } from "react-native-paper"
 
@@ -22,11 +23,12 @@ import { CardRect, CardRectBigger } from "./components/cards"
 import styles from "../styles/styles"
 import media from "../../media/media"
 import data from "../testing/data/quadras.json"
+import userDataJSON from "../testing/data/users.json"
 
-const mainPage = ({ userData, navigation }) => {
-	userData = {
-		name: "Gabriel",
-	}
+const mainPage = ({ navigation, route }) => {
+	// const userId = route.params.userId
+	const userId = "0001"
+	const userData = userData[userId] || none
 
 	const recommendedProdsIds = ["0000", "0001", "0002", "0003"]
 
@@ -49,9 +51,24 @@ const mainPage = ({ userData, navigation }) => {
 						justifyContent: "center",
 						bottom: 10,
 						left: 5,
+						flexDirection: "column",
 					}}
 				>
 					<Text style={[styles.title]}>Olá, {userData.name}!</Text>
+					{userData.type === "owner" && (
+						<TouchableRipple
+							rippleColor="rgba(100,100,100,0.4)"
+							onPress={() =>
+								navigation.navigate("manager_ProductListing", {
+									userId: userId,
+								})
+							}
+						>
+							<Text style={[styles.underline, styles.small]}>
+								Acessar suas quadras
+							</Text>
+						</TouchableRipple>
+					)}
 				</View>
 				<View
 					style={[
@@ -63,9 +80,18 @@ const mainPage = ({ userData, navigation }) => {
 					]}
 				>
 					<TouchableOpacity
-						onPress={() => navigation.navigate("acc")}
+						onPress={() =>
+							navigation.navigate("acc", { userId: userId })
+						}
 					>
-						<Avatar.Text size={48} label="GS" />
+						{userData.imageURI ? (
+							<Avatar.Image
+								size={48}
+								source={{ uri: userData.imageURI }}
+							/>
+						) : (
+							<Avatar.Text size={48} label={userData.name[0]} />
+						)}
 					</TouchableOpacity>
 				</View>
 			</View>
