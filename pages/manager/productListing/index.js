@@ -15,7 +15,8 @@ import CardShow from "./components/cardShow"
 
 import media from "../../../media/media"
 import styles from "../../styles/styles"
-import data from "../../testing/data/quadras.json"
+import productsData from "../../testing/data/quadras.json"
+import usersDataJson from "../../testing/data/users.json"
 
 var ProductListingArr = []
 
@@ -23,18 +24,14 @@ var ProductListingArr = ["0000", "0003"]
 
 var ProductsComponents = []
 
-const ProductListing = ({ navigation }) => {
-	if (ProductListingArr.length !== 0) {
-		for (let count = 0; count < ProductListingArr.length; count++) {
+const ProductListing = ({ navigation, route }) => {
+	if (userProducts.length !== 0) {
+		for (let component of userProducts) {
 			ProductsComponents.push(
-				<CardShow
-					navigation={navigation}
-					key={count}
-					id={ProductListingArr[count]}
-				/>,
+				<CardShow navigation={navigation} key={count} id={component} />,
 			)
 		}
-	} else if (ProductListingArr.length === 0) {
+	} else {
 		ProductsComponents.push(
 			<View style={[styles.center]}>
 				<Text>Você ainda não é dono de nenhuma quadra!</Text>
@@ -42,13 +39,19 @@ const ProductListing = ({ navigation }) => {
 		)
 	}
 
+	// const userData = usersDataJson[route.params.userId]
+	const userData = usersDataJson["0002"]
+	const userProducts = userData["productsIds"]
+
 	return (
 		<>
 			<ScrollView style={{ paddingTop: 30 }}>
 				<View style={[styles.row, { justifyContent: "space-between" }]}>
 					<IconButton
 						icon="home"
-						onPress={() => navigation.navigate("main")}
+						onPress={() =>
+							navigation.navigate("main", { userId: id })
+						}
 					/>
 					<View style={styles.center}>
 						<Title style={[styles.titleSecondary, styles.mt2]}>

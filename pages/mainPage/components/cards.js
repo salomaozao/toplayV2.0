@@ -15,14 +15,18 @@ import data from "../../testing/data/quadras.json"
 
 const imgs = [media.quadra3, media.quadra2, media.quadra1]
 
-const CardSquare = ({ id, navigation }) => {
+const CardSquare = ({ id, userId, navigation }) => {
 	const width = Dimensions.get("screen").width * 0.4
 	const height = width * 1.2
 
 	const iconSize = Dimensions.get("screen").width * 0.035
 
 	return (
-		<TouchableHighlight onPress={() => navigation.navigate("product")}>
+		<TouchableHighlight
+			onPress={() =>
+				navigation.navigate("product", { productId: id, ...userId })
+			}
+		>
 			<Surface
 				style={[
 					{ width: width, height: height },
@@ -85,7 +89,7 @@ const CardSquare = ({ id, navigation }) => {
 	)
 }
 
-const CardRect = ({ id, navigation }) => (
+const CardRect = ({ id, userId, navigation }) => (
 	<Surface
 		style={[
 			styles.my2,
@@ -95,7 +99,9 @@ const CardRect = ({ id, navigation }) => (
 		]}
 	>
 		<TouchableOpacity
-			onPress={() => navigation.navigate("product", { productId: id })}
+			onPress={() =>
+				navigation.navigate("product", { productId: id, ...userId })
+			}
 		>
 			<Image
 				style={[
@@ -124,7 +130,7 @@ const CardRect = ({ id, navigation }) => (
 	</Surface>
 )
 
-const CardRectBigger = ({ id, side, navigation }) => {
+const CardRectBigger = ({ id, side, userId, navigation }) => {
 	const iconSize = Dimensions.get("screen").width * 0.035
 	return (
 		<Surface
@@ -191,7 +197,12 @@ const CardRectBigger = ({ id, side, navigation }) => {
 				<View>
 					<Button
 						mode="contained"
-						onPress={() => navigation.navigate("product")}
+						onPress={() =>
+							navigation.navigate("product", {
+								productId: id,
+								...userId,
+							})
+						}
 						style={[
 							{
 								backgroundColor: Colors.green500,

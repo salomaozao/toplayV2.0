@@ -4,17 +4,20 @@
 		"pw": "12345",
 		"email": "salomao.bertolucci@gmail.com",
 		"card": "111-111-111-11",
+		"cpf": "Inserir CPF de exemplo",
 		"type": "user",
 		"imageURI": "https://st2.depositphotos.com/2931363/5249/i/600/depositphotos_52492703-stock-photo-confident-mature-man-in-shirt.jpg"
 	},
 
-	"0000": {
+	"0001": {
 		"name": "Seu João",
 		"pw": "00000000a",
 		"email": "joao@hotmail.com",
 		"card": "111-111-111-11",
+		"cpf": "Inserir CPF de exemplo",
 		"type": "owner",
-		"imageURI": ""
+		"imageURI": "",
+		"productsIds": ["0000"]
 	},
 
 	"0002": {
@@ -22,8 +25,10 @@
 		"pw": "12345",
 		"email": "carlao@gmail.com",
 		"card": "111-111-111-11",
+		"cpf": "Inserir CPF de exemplo",
 		"type": "owner",
-		"imageURI": "https://st2.depositphotos.com/2931363/5249/i/600/depositphotos_52492703-stock-photo-confident-mature-man-in-shirt.jpg"
+		"imageURI": "https://st2.depositphotos.com/2931363/5249/i/600/depositphotos_52492703-stock-photo-confident-mature-man-in-shirt.jpg",
+		"productsIds": []
 	},
 
 	"0003": {
@@ -31,8 +36,10 @@
 		"pw": "12345",
 		"email": "pedro@gmail.com",
 		"card": "111-111-111-11",
+		"cpf": "Inserir CPF de exemplo",
 		"type": "owner",
-		"imageURI": "https://st2.depositphotos.com/2931363/5249/i/600/depositphotos_52492703-stock-photo-confident-mature-man-in-shirt.jpg"
+		"imageURI": "https://st2.depositphotos.com/2931363/5249/i/600/depositphotos_52492703-stock-photo-confident-mature-man-in-shirt.jpg",
+		"productsIds": ["0002", "0003"]
 	},
 
 	"0004": {
@@ -40,6 +47,7 @@
 		"pw": "12345",
 		"email": "salomao.bertolucci@gmail.com",
 		"card": "111-111-111-11",
+		"cpf": "Inserir CPF de exemplo",
 		"type": "user",
 		"imageURI": ""
 	}

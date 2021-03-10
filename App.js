@@ -24,7 +24,6 @@ import TermsAndConditions from "./pages/termsAndConditions/termsAndConditions"
 
 //admin pages
 import Manager_PageUplaod from "./pages/manager/productUpload/index"
-import Manager_MainPage from "./pages/manager/mainPage/index"
 import Manager_ProductListing from "./pages/manager/productListing/index"
 
 //components
@@ -59,7 +58,7 @@ const App = () => {
 						<BottomTab.Screen
 							name="main"
 							component={MainPage}
-							initialParams={{ userId: "0000" }}
+							initialParams={{ userId: "0001" }}
 						/>
 
 						<BottomTab.Screen

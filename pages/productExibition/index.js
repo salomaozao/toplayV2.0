@@ -19,11 +19,12 @@ import {
 } from "react-native-paper"
 
 import styles from "../styles/styles"
-import data from "../testing/data/quadras.json"
+import usersData from "../testing/data/users.json"
+import productData from "../testing/data/quadras.json"
 
 import Carousel from "./components/carousel"
 import Calendar from "./components/calendar"
-import Datatable from "./components/datatable"
+// import Datatable from "./components/datatable"
 import PopupDialog from "./components/popupDialog"
 import PopupAbout from "./components/popupAbout"
 
@@ -36,7 +37,8 @@ const ProductView = ({ navigation, route }) => {
 	const [isAboutVisible, setAboutVisible] = React.useState(false)
 	const showAbout = () => setAboutVisible(true)
 
-	const product = data[route.params.productId]
+	const product = productData[route.params.productId]
+	// const product = productData["0001"]
 
 	const date = new Date()
 	const dd = String(date.getDate()).padStart(2, "0")
@@ -54,6 +56,7 @@ const ProductView = ({ navigation, route }) => {
 				navigation={navigation}
 				availableTimes={product.daysTimes[today]}
 				id={route.params.productId}
+				userId={route.params.userId}
 			/>
 
 			<PopupAbout
@@ -85,7 +88,9 @@ const ProductView = ({ navigation, route }) => {
 								source={{ uri: "https://picsum.photos/700" }}
 								style={styles.mr2}
 							/>
-							<Text style={[styles.small]}>{product.owner}</Text>
+							<Text style={[styles.small]}>
+								{usersData[product.ownerId].name}
+							</Text>
 						</View>
 						<View
 							style={[
@@ -95,17 +100,10 @@ const ProductView = ({ navigation, route }) => {
 								styles.centerX,
 							]}
 						></View>
-						<View style={styles.centerX}>
-							{/* <Drawer.Item
-								style={{ backgroundColor: "#5dc8d4" }}
-								icon="star"
-								label="CAMPEONATOS!"
-							/> */}
-						</View>
 					</View>
 					<Surface style={[styles.py2, styles.my2, styles.shadowLg]}>
 						<Carousel />
-						<Datatable />
+						{/* <Datatable /> */}
 					</Surface>
 					<View style={styles.col}>
 						<View>

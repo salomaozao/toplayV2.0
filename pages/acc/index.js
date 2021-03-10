@@ -13,9 +13,11 @@ import {
 
 import InfoInpt from "./components/infoInpt"
 import ConfirmDialog from "./components/dialogs"
-import styles from "../styles/styles"
 
-const AccPage = ({ navigation }) => {
+import styles from "../styles/styles"
+import userDataJSON from "../testing/data/users.json"
+
+const AccPage = ({ navigation, route }) => {
 	const [page, setPage] = useState(0)
 	const pageMax = 1
 	const changePage = (val) => {
@@ -24,13 +26,9 @@ const AccPage = ({ navigation }) => {
 			: {}
 	}
 
-	const userInfo = {
-		name: "Gabriel S",
-		pw: "1234",
-		email: "nome@exemplo.com",
-		cpf: "XXX. XXX. XXX-XX",
-		cartao: "111 111 1111 11",
-	}
+	const { userId } = route.params
+	// const userId = "0001"
+	const userData = userDataJSON[userId]
 
 	const [showInpts, setShowInpts] = useState(true)
 	const [showConfirmDialog, setShowConfirmDialog] = useState(false)
@@ -38,6 +36,7 @@ const AccPage = ({ navigation }) => {
 	const [showLogoutConfirmDialog, setShowLogoutConfirmDialog] = useState(
 		false,
 	)
+
 	return (
 		<>
 			<ConfirmDialog
@@ -75,7 +74,7 @@ const AccPage = ({ navigation }) => {
 						>
 							<Avatar.Text
 								size={100}
-								label="GS"
+								label={userData.name[0]}
 								style={[
 									styles.bgPrimary,
 									styles.shadowLg,
@@ -83,7 +82,7 @@ const AccPage = ({ navigation }) => {
 								]}
 							/>
 							<Text style={styles.textLight2}>
-								Gabriel Salomão
+								{userData.name}
 							</Text>
 						</View>
 						<Button
@@ -102,252 +101,160 @@ const AccPage = ({ navigation }) => {
 					</Surface>
 
 					<View>
-						{userInfo === "unlogged" ? (
-							<View
-								style={[
-									styles.center,
-									{
-										height:
-											Dimensions.get("screen").height *
-											0.2,
-									},
-								]}
-							>
-								<Button
-									style={{ width: "100%" }}
-									onPress={() =>
-										navigation.navigate("cadastro")
-									}
-								>
-									Faça Cadastro!
-								</Button>
-								<Button
-									style={{ width: "100%" }}
-									onPress={() => navigation.navigate("login")}
-								>
-									Faça login!
-								</Button>
-							</View>
-						) : (
+						<View>
 							<View>
+								<Text
+									style={[
+										styles.textCenter,
+										styles.titleSecondary,
+										styles.mb2,
+										styles.my4,
+									]}
+								>
+									Informações sobre você
+								</Text>
+
 								<View>
-									<Text
-										style={[
-											styles.textCenter,
-											styles.titleSecondary,
-											styles.mb2,
-											styles.my4,
-										]}
-									>
-										Informações sobre você
-									</Text>
-
 									<View>
-										<View>
-											<View
-												style={
-													page === 0
-														? { display: "flex" }
-														: { display: "none" }
-												}
-											>
-												<InfoInpt
-													isDisabled={showInpts}
-													label="Nome completo"
-													value={userInfo.name}
-												/>
-
-												<InfoInpt
-													isDisabled={showInpts}
-													label="Email"
-													value={userInfo.email}
-												/>
-
-												<InfoInpt
-													isDisabled={showInpts}
-													label="CPF registrado"
-													value={userInfo.cpf}
-												/>
-
-												<InfoInpt
-													isDisabled={showInpts}
-													label="Senha"
-													value={userInfo.pw}
-													secured
-												/>
-											</View>
-											<View
-												style={
-													page === 1
-														? { display: "flex" }
-														: { display: "none" }
-												}
-											>
-												<InfoInpt
-													isDisabled={showInpts}
-													label="Número de cartão"
-													value={userInfo.cartao}
-													secured
-													icon={[
-														"credit-card",
-														"credit-card-off",
-													]}
-												/>
-
-												<InfoInpt
-													isDisabled={showInpts}
-													label="Preencher"
-													value="placeholder"
-												/>
-
-												<InfoInpt
-													isDisabled={showInpts}
-													label="preencher"
-													value="placeholder"
-												/>
-
-												<InfoInpt
-													isDisabled={showInpts}
-													label="preencher"
-													value="placeholder"
-												/>
-											</View>
-										</View>
-
 										<View
-											style={{
-												flex: 1,
-												alignItems: "flex-end",
-											}}
+											style={
+												page === 0
+													? { display: "flex" }
+													: { display: "none" }
+											}
 										>
-											<View style={styles.m2}>
-												<Button
-													style={[
-														styles.bgDark,
-														styles.shadowMd,
-													]}
-													onPress={() => {
-														setShowConfirmDialog(
-															true,
-														)
+											<InfoInpt
+												isDisabled={showInpts}
+												label="Nome completo"
+												value={
+													userData === "unlogged"
+														? "Você ainda não Fez login!"
+														: userData.name
+												}
+											/>
+
+											<InfoInpt
+												isDisabled={showInpts}
+												label="Email"
+												value={userData.email}
+											/>
+
+											<InfoInpt
+												isDisabled={showInpts}
+												label="CPF registrado"
+												value={userData.cpf}
+											/>
+
+											<InfoInpt
+												isDisabled={showInpts}
+												label="Senha"
+												value={userData.pw}
+												secured
+											/>
+										</View>
+										<View
+											style={
+												page === 1
+													? { display: "flex" }
+													: { display: "none" }
+											}
+										>
+											<InfoInpt
+												isDisabled={showInpts}
+												label="Número de cartão"
+												value={userData.cartao}
+												secured
+												icon={[
+													"credit-card",
+													"credit-card-off",
+												]}
+											/>
+
+											<InfoInpt
+												isDisabled={showInpts}
+												label="Preencher"
+												value="placeholder"
+											/>
+
+											<InfoInpt
+												isDisabled={showInpts}
+												label="preencher"
+												value="placeholder"
+											/>
+
+											<InfoInpt
+												isDisabled={showInpts}
+												label="preencher"
+												value="placeholder"
+											/>
+										</View>
+									</View>
+
+									<View
+										style={{
+											flex: 1,
+											alignItems: "flex-end",
+										}}
+									>
+										<View style={styles.m2}>
+											<Button
+												style={[
+													styles.bgDark,
+													styles.shadowMd,
+												]}
+												onPress={() => {
+													setShowConfirmDialog(true)
+												}}
+											>
+												{showInpts === true
+													? "Editar"
+													: "Confirmar"}
+											</Button>
+											<View style={styles.row}>
+												<IconButton
+													icon="arrow-left"
+													disabled={page === 0}
+													onPress={() =>
+														changePage(-1)
+													}
+													size={20}
+												/>
+												<Text
+													style={{
+														position: "relative",
+														top: 10,
 													}}
 												>
-													{showInpts === true
-														? "Editar"
-														: "Confirmar"}
-												</Button>
-												<View style={styles.row}>
-													<IconButton
-														icon="arrow-left"
-														disabled={page === 0}
-														onPress={() =>
-															changePage(-1)
-														}
-														size={20}
-													/>
-													<Text
-														style={{
-															position:
-																"relative",
-															top: 10,
-														}}
-													>
-														{page + 1} de{" "}
-														{pageMax + 1}
-													</Text>
-													<IconButton
-														icon="arrow-right"
-														disabled={
-															page === pageMax
-														}
-														onPress={() =>
-															changePage(+1)
-														}
-														size={20}
-													/>
-												</View>
+													{page + 1} de {pageMax + 1}
+												</Text>
+												<IconButton
+													icon="arrow-right"
+													disabled={page === pageMax}
+													onPress={() =>
+														changePage(+1)
+													}
+													size={20}
+												/>
 											</View>
 										</View>
 									</View>
 								</View>
-
-								<Divider />
-
-								<View>
-									<Text
-										style={[
-											styles.titleSecondary,
-											styles.textCenter,
-											styles.mt2,
-										]}
-									>
-										O que você já fez:
-									</Text>
-									<View>
-										<DataTable
-											style={[
-												styles.my2,
-												{
-													width: "96%",
-													alignSelf: "center",
-												},
-											]}
-										>
-											<DataTable.Row>
-												<DataTable.Cell>
-													Quadras alugadas
-												</DataTable.Cell>
-												<DataTable.Cell numeric>
-													6
-												</DataTable.Cell>
-											</DataTable.Row>
-
-											<DataTable.Row>
-												<DataTable.Cell>
-													Quadras canceladas
-												</DataTable.Cell>
-												<DataTable.Cell numeric>
-													8.0
-												</DataTable.Cell>
-											</DataTable.Row>
-
-											<DataTable.Row>
-												<DataTable.Cell>
-													Dinheiro investido
-												</DataTable.Cell>
-												<DataTable.Cell numeric>
-													R$120,00
-												</DataTable.Cell>
-											</DataTable.Row>
-
-											<DataTable.Row>
-												<DataTable.Cell>
-													Dinheiro economizado
-												</DataTable.Cell>
-												<DataTable.Cell numeric>
-													R$25,50
-												</DataTable.Cell>
-											</DataTable.Row>
-										</DataTable>
-									</View>
-									<Button
-										style={[
-											styles.textCenter,
-											styles.my2,
-											styles.textSecondary,
-										]}
-										disabled={userInfo === "unlogged"}
-										onPress={() =>
-											setShowLogoutDialog(
-												!showLogoutDialog,
-											)
-										}
-									>
-										Fazer logout
-									</Button>
-								</View>
 							</View>
-						)}
+
+							<Button
+								style={[
+									styles.textCenter,
+									styles.my2,
+									styles.textSecondary,
+								]}
+								disabled={userData === "unlogged"}
+								onPress={() =>
+									setShowLogoutDialog(!showLogoutDialog)
+								}
+							>
+								Fazer logout
+							</Button>
+						</View>
 					</View>
 				</ScrollView>
 			</View>

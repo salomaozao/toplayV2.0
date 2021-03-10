@@ -26,9 +26,8 @@ import data from "../testing/data/quadras.json"
 import userDataJSON from "../testing/data/users.json"
 
 const mainPage = ({ navigation, route }) => {
-	// const userId = route.params.userId
-	const userId = "0001"
-	const userData = userData[userId] || none
+	const userId = route.params.userId
+	const userData = userDataJSON[userId]
 
 	const recommendedProdsIds = ["0000", "0001", "0002", "0003"]
 
@@ -113,14 +112,17 @@ const mainPage = ({ navigation, route }) => {
 					<CardRect
 						id={recommendedProdsIds[0]}
 						navigation={navigation}
+						userId={userId}
 					/>
 					<CardRect
 						id={recommendedProdsIds[1]}
 						navigation={navigation}
+						userId={userId}
 					/>
 					<CardRect
 						id={recommendedProdsIds[2]}
 						navigation={navigation}
+						userId={userId}
 					/>
 				</View>
 			</View>
@@ -136,7 +138,8 @@ const mainPage = ({ navigation, route }) => {
 				>
 					Populares na sua cidade
 				</Text>
-				<CardGroup navigation={navigation} />
+
+				<CardGroup navigation={navigation} userId={userId} />
 			</View>
 			<View>
 				<Text
@@ -155,16 +158,19 @@ const mainPage = ({ navigation, route }) => {
 						side="left"
 						id={recommendedProdsIds[0]}
 						navigation={navigation}
+						userId={userId}
 					/>
 					<CardRectBigger
 						side="right"
 						id={recommendedProdsIds[1]}
 						navigation={navigation}
+						userId={userId}
 					/>
 					<CardRectBigger
 						side="left"
 						id={recommendedProdsIds[3]}
 						navigation={navigation}
+						userId={userId}
 					/>
 				</View>
 			</View>

@@ -10,6 +10,7 @@ const PopupDialog = ({
 	navigation,
 	availableTimes,
 	id,
+	userId,
 }) => {
 	const TimesBttn = ({ time }) => (
 		<Button
@@ -17,6 +18,7 @@ const PopupDialog = ({
 				hideDialog()
 				navigation.navigate("payment", {
 					productId: id,
+					userId,
 					apointmentTime: time,
 				})
 			}}

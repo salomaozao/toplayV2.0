@@ -2,10 +2,12 @@
 import * as React from "react"
 import { IconButton, Surface, Colors } from "react-native-paper"
 
-const BottomNavItem = ({ icon, title, navigation, route }) => (
+const userId = "0000"
+
+const BottomNavItem = ({ icon, title, navigation, route, userId }) => (
 	<IconButton
 		icon={icon}
-		onPress={() => navigation.navigate(route)}
+		onPress={() => navigation.navigate(route, { ...userId })}
 		color={Colors.grey300}
 	/>
 )
@@ -15,10 +17,21 @@ const BottomNavItemGroup = ({ navigation }) => (
 		<BottomNavItem
 			icon="a"
 			navigation={navigation}
-			route="manager_mainPage"
+			route="payment"
+			userId={userId}
 		/>
-		<BottomNavItem icon="home" navigation={navigation} route="main" />
-		<BottomNavItem icon="account" navigation={navigation} route="acc" />
+		<BottomNavItem
+			icon="home"
+			navigation={navigation}
+			route="main"
+			userId={userId}
+		/>
+		<BottomNavItem
+			icon="account"
+			navigation={navigation}
+			route="acc"
+			userId={userId}
+		/>
 	</Surface>
 )
 

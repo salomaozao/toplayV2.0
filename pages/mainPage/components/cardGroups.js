@@ -5,7 +5,7 @@ import { CardSquare } from "./cards"
 
 import styles from "../../styles/styles"
 
-const Group = ({ navigation }) => {
+const Group = ({ navigation, userId }) => {
 	const width = Dimensions.get("window").width * 0.9
 	const height = width * 0.5
 	return (
@@ -21,8 +21,8 @@ const Group = ({ navigation }) => {
 				styles.my4,
 			]}
 		>
-			<CardSquare id="0000" navigation={navigation} />
-			<CardSquare id="0001" navigation={navigation} />
+			<CardSquare id="0000" navigation={navigation} userId={userId} />
+			<CardSquare id="0001" navigation={navigation} userId={userId} />
 		</View>
 	)
 }
