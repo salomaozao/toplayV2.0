@@ -49,6 +49,7 @@ const PaymentsPage = ({ route, navigation }) => {
 						onPress={() =>
 							navigation.navigate("product", {
 								productId: route.params.productId,
+								userId: route.params.userId,
 							})
 						}
 					>
