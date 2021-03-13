@@ -75,9 +75,12 @@ const ProductUpload = ({ navigation, route }) => {
 					mode={"time"}
 					is24Hour={true}
 					display="clock"
-					onChange={(e, changeTime) => setTime(changeTime)}
-					onTouchCancel={(e, changeTime) => {
-						// setTimeVisible(false)
+					onChange={(e, changeTime) => {
+						setTimeVisible(false)
+						changeTime === undefined
+							? setTime(new Date())
+							: setTime(changeTime)
+
 						console.log(changeTime)
 					}}
 				/>
