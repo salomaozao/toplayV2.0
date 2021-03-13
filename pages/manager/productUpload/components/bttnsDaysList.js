@@ -1,21 +1,19 @@
 import React from "react"
-import { View } from "react-native"
-import { Button, Colors } from "react-native-paper"
+import { ScrollView } from "react-native"
+import { List, Text, Button, Colors } from "react-native-paper"
 
 import styles from "../../../styles/styles"
 
-const BttnsDaysList = ({ days, setTimeVisible, time }) => {
-	const times = {
-		segunda: React.useState([]),
-		terça: React.useState([]),
-		quarta: React.useState([]),
-		quinta: React.useState([]),
-		sexta: React.useState([]),
-		sabado: React.useState([]),
-		domingo: React.useState([]),
-	}
+const apointments = [[{ time: "12:00" }], [], [], [], [], [], []]
 
-	const weekDays = [
+const BttnsDaysList = ({ setDatePickerVisible, date }) => {
+	// ? useEffect on date to know when it changes?
+
+	//component
+	const [expanded, setExpanded] = React.useState(false)
+	const [selectedWeekday, setSelectedWeekday] = React.useState("segunda")
+
+	const weekdays = [
 		"segunda",
 		"terça",
 		"quarta",
@@ -24,41 +22,58 @@ const BttnsDaysList = ({ days, setTimeVisible, time }) => {
 		"sábado",
 		"domingo",
 	]
+	var components = []
+	const ItemsList = () => {
+		var key = 0
+		weekdays.forEach((day) => {
+			key++
+			components.push(
+				<List.Item
+					key={key}
+					title={day}
+					onPress={() => {
+						setSelectedWeekday(day)
+						setExpanded(!expanded)
+					}}
+				/>,
+			)
+		})
 
+		return components
+	}
 	return (
-		<View
-			style={[
-				styles.center,
-				styles.row,
-				{ justifyContent: "space-evenly", alignItems: "flex-end" },
-			]}
-		>
-			<Button
-				mode="outlined"
-				style={styles.my2}
-				color={Colors.green400}
+		<>
+			<List.Accordion
+				title={selectedWeekday}
+				left={() => <List.Icon icon="calendar" />}
+				expanded={expanded}
 				onPress={() => {
-					setTimeVisible(true)
-
-					// const [dayTimes, setDayTimes] = times[days[0]]
-					// setDayTimes([dayTimes, time])
+					setExpanded(!expanded)
 				}}
 			>
-				{weekDays[days[0]]}
-			</Button>
-			{days.length === 2 && (
+				<ItemsList />
+			</List.Accordion>
+			<ScrollView
+			/*{apointments[selectedWeekday] !== true ? (
+                <Text>Não há horários para este dia!</Text>
+            ) : (
+                apointments[selectedWeekday].forEach((day)=>{
+                       
+                }
+            )}*/
+			>
+				<Text style={[styles.textSecondary, styles.textCenter]}>
+					Ainda não há quadras nesse dia!
+				</Text>
 				<Button
-					mode="outlined"
-					style={styles.my2}
+					icon="calendar-plus"
 					color={Colors.green400}
-					onPress={() => {
-						setTimeVisible(true)
-					}}
+					onPress={() => setDatePickerVisible(true)}
 				>
-					{weekDays[days[1]]}
+					Adicionar uma hora
 				</Button>
-			)}
-		</View>
+			</ScrollView>
+		</>
 	)
 }
 

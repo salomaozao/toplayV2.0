@@ -5,6 +5,7 @@ import {
 	TouchableOpacity,
 	Image,
 	TextInput as NativeTextInput,
+	Dimensions,
 } from "react-native"
 import {
 	Text,
@@ -13,6 +14,7 @@ import {
 	Surface,
 	Colors,
 	TextInput,
+	List,
 } from "react-native-paper"
 
 import Calendar from "./components/calendar"
@@ -51,7 +53,7 @@ const ProductUpload = ({ navigation, route }) => {
 	)
 	const [abtVal, setAbtVal] = React.useState(create ? "" : product.about)
 
-	const [isTimeVisible, setTimeVisible] = React.useState(false)
+	const [isDatePickerVisible, setDatePickerVisible] = React.useState(false)
 
 	const [time, setTime] = React.useState(new Date())
 
@@ -69,19 +71,17 @@ const ProductUpload = ({ navigation, route }) => {
 
 	return (
 		<>
-			{isTimeVisible && (
+			{isDatePickerVisible && (
 				<DateTimePicker
 					value={time}
 					mode={"time"}
 					is24Hour={true}
 					display="clock"
 					onChange={(e, changeTime) => {
-						setTimeVisible(false)
+						setDatePickerVisible(false)
 						changeTime === undefined
 							? setTime(new Date())
 							: setTime(changeTime)
-
-						console.log(changeTime)
 					}}
 				/>
 			)}
@@ -124,7 +124,6 @@ const ProductUpload = ({ navigation, route }) => {
 								source={{ uri: "https://picsum.photos/700" }}
 								style={styles.mr2}
 							/>
-							{/* ! userData */}
 							<Text style={[styles.small]}>
 								{/*userData.name */} Você
 							</Text>
@@ -135,36 +134,22 @@ const ProductUpload = ({ navigation, route }) => {
 
 					<View style={styles.col}>
 						<View>
-							{/* <Calendar /> */}
-							<Text
-								style={[
-									styles.centerSelf,
-									styles.titleSecondary,
-								]}
+							<Surface
+								style={[styles.shadowLg, styles.m4, styles.py2]}
 							>
-								Agendamentos
-							</Text>
+								<Text
+									style={[
+										styles.centerSelf,
+										styles.titleSecondary,
+									]}
+								>
+									Agendamentos
+								</Text>
 
-							<BttnsDaysList
-								setTimeVisible={setTimeVisible}
-								days={[0, 1]}
-								time={[time, setTime]}
-							/>
-							<BttnsDaysList
-								setTimeVisible={setTimeVisible}
-								days={[2, 3]}
-								time={[time, setTime]}
-							/>
-							<BttnsDaysList
-								setTimeVisible={setTimeVisible}
-								days={[4, 5]}
-								time={[time, setTime]}
-							/>
-							<BttnsDaysList
-								setTimeVisible={setTimeVisible}
-								days={[6]}
-								time={[time, setTime]}
-							/>
+								<BttnsDaysList
+									setDatePickerVisible={setDatePickerVisible}
+								/>
+							</Surface>
 
 							<View
 								style={[{ alignSelf: "flex-end" }, styles.mx4]}
@@ -244,18 +229,18 @@ const ProductUpload = ({ navigation, route }) => {
 									onChangeText={(text) => setAbtVal(text)}
 								/>
 							</View>
-							<Button
-								color={Colors.grey900}
-								mode="outlined"
-								style={[styles.bgPrimary]}
-								onPress={() => setDialogVisible(true)}
-							>
-								{create ? "Anúnciar!" : "Atualizar!"}
-							</Button>
 						</View>
 					</View>
 				</View>
 			</ScrollView>
+			<Button
+				color={Colors.grey900}
+				mode="outlined"
+				style={[styles.bgPrimary]}
+				onPress={() => setDialogVisible(true)}
+			>
+				{create ? "Anúnciar!" : "Atualizar!"}
+			</Button>
 		</>
 	)
 }
