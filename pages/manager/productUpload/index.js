@@ -16,171 +16,34 @@ import {
 } from "react-native-paper"
 
 import Calendar from "./components/calendar"
-import DatatableInsert from "./components/datatableInsert"
 import PopupDialog from "./components/PopupDialog"
-// import * as ImagePicker from "react-native-image-picker" //! TODO: ImageUpload
+import { BttnsDaysList } from "./components/bttnsDaysList"
+import ImagesUploadBox from "./components/imagesUploadBox"
+
+// import * as ImagePicker from "react-native-image-picker" // TODO: ImageUpload
 import * as ImagePicker from "react-native-image-crop-picker"
-import DateTimePicker from "@react-native-community/datetimepicker" // ! TODO: Times
+import DateTimePicker from "@react-native-community/datetimepicker" //  TODO: Times
 
 import Icon from "react-native-vector-icons/FontAwesome"
 
+import productsData from "../../testing/data/quadras.json"
+import userDataJSON from "../../testing/data/users.json"
+
 import styles from "../../styles/styles"
-import data from "../../testing/data/quadras.json"
 import media from "../../../media/media"
 
-const Clock = () => {
-	const [date, setDate] = useState(new Date(1598051730000))
-	const [mode, setMode] = useState("date")
-	const [show, setShow] = useState(false)
-
-	const onChange = (event, selectedDate) => {
-		const currentDate = selectedDate || date
-		setShow(Platform.OS === "ios")
-		setDate(currentDate)
-	}
-
-	const showMode = (currentMode) => {
-		setShow(true)
-		setMode(currentMode)
-	}
-
-	const showDatepicker = () => {
-		showMode("date")
-	}
-
-	const showTimepicker = () => {
-		showMode("time")
-	}
-
-	return (
-		<View>
-			<View>
-				<Button onPress={showDatepicker}>"Show date picker!"</Button>
-			</View>
-			<View>
-				<Button onPress={showTimepicker}>"Show time picker!"</Button>
-			</View>
-			{show && (
-				<DateTimePicker
-					testID="dateTimePicker"
-					value={date}
-					mode={mode}
-					is24Hour={true}
-					display="default"
-					onChange={onChange}
-				/>
-			)}
-		</View>
-	)
+const uploadImg = () => {
+	ImagePicker.openCamera({ width: 300, height: 300 })
 }
 
-const BttnsDaysList = ({ days, setTimeSelectShow }) => {
-	const times = {
-		segunda: React.useState([]),
-		terça: React.useState([]),
-		quarta: React.useState([]),
-		quinta: React.useState([]),
-		sexta: React.useState([]),
-		sabado: React.useState([]),
-		domingo: React.useState([]),
-	}
-
-	const weekDays = [
-		"segunda",
-		"terça",
-		"quarta",
-		"quinta",
-		"sexta",
-		"sábado",
-		"domingo",
-	]
-
-	return (
-		<View
-			style={[
-				styles.center,
-				styles.row,
-				{ justifyContent: "space-evenly", alignItems: "flex-end" },
-			]}
-		>
-			<Button mode="outlined" style={styles.my2} color={Colors.green400}>
-				{weekDays[days[0]]}
-			</Button>
-			{days.length === 2 && (
-				<Button
-					mode="outlined"
-					style={styles.my2}
-					color={Colors.green400}
-					onPress={() => {
-						//show clock
-						setTimeSelectShow(true)
-
-						//get clock time >> time
-
-						//hide clock
-						//times[days[1]][2](time) //<=>setStatue(time)
-					}}
-				>
-					{weekDays[days[1]]}
-				</Button>
-			)}
-		</View>
-	)
-}
-
-const ImgList = ({ imgsArr }) => {
-	const [imgsCompArr, setImgCompArr] = React.useState([])
-
-	let c = 0
-	return (
-		<Image
-			style={{
-				width: Dimensions.get("window").width * 0.1,
-				height: width * 2,
-			}}
-		/>
-	)
-}
-
-const ImagesUploadBox = () => {
-	const [imgs, setImgs] = React.useState([
-		media.quadra1,
-		media.quadra2,
-		media.quadra3,
-	])
-	return (
-		<TouchableOpacity
-			style={[
-				styles.my2,
-				styles.centerSelf,
-				styles.center,
-				{
-					width: "90%",
-					height: 200,
-					borderWidth: 4,
-					borderStyle: "dashed",
-					borderRadius: 1,
-				},
-			]}
-			onPress={() => {
-				ImagePicker.openCamera({ width: 300, height: 300 })
-			}}
-		>
-			<Icon name="camera" size={24} />
-			<Text style={styles.titleSecondary}>Fazer upload de imagens!</Text>
-			<View>
-				{/* <ImgList />
-				 */}
-			</View>
-		</TouchableOpacity>
-	)
-}
 const ProductUpload = ({ navigation, route }) => {
-	const [isDialogVisible, setDialogVisible] = React.useState(false)
+	var { create, userId, productId } = route.params
 
 	var create = undefined
-	var { create } = route.params
-	var product = data[route.params.productId]
+	var product = productsData[productId]
+	var userData = userDataJSON[userId]
+
+	const [isDialogVisible, setDialogVisible] = React.useState(false)
 
 	const [nameVal, setNameVal] = React.useState(create ? "" : product.name)
 	const [priceVal, setPriceVal] = React.useState(
@@ -188,9 +51,9 @@ const ProductUpload = ({ navigation, route }) => {
 	)
 	const [abtVal, setAbtVal] = React.useState(create ? "" : product.about)
 
-	const [showTimeSelect, setTimeSelectShow] = React.useState(true)
+	const [isTimeVisible, setTimeVisible] = React.useState(false)
 
-	const [time, setTime] = React.useState("")
+	const [time, setTime] = React.useState(new Date())
 
 	React.useEffect(() => {
 		if (create) {
@@ -206,6 +69,19 @@ const ProductUpload = ({ navigation, route }) => {
 
 	return (
 		<>
+			{isTimeVisible && (
+				<DateTimePicker
+					value={time}
+					mode={"time"}
+					is24Hour={true}
+					display="clock"
+					onChange={(e, changeTime) => setTime(changeTime)}
+					onTouchCancel={(e, changeTime) => {
+						// setTimeVisible(false)
+						console.log(changeTime)
+					}}
+				/>
+			)}
 			<PopupDialog
 				confirmFunction={() => {}}
 				hideDialog={() => setDialogVisible(!isDialogVisible)}
@@ -222,7 +98,6 @@ const ProductUpload = ({ navigation, route }) => {
 				}}
 			>
 				<View>
-					{/* <Clock /> */}
 					<View style={[styles.m2, { marginTop: 25 }]}>
 						<View style={styles.title}>
 							<TextInput
@@ -253,11 +128,11 @@ const ProductUpload = ({ navigation, route }) => {
 						</View>
 					</View>
 
-					<ImagesUploadBox />
+					{/* <ImagesUploadBox /> */}
 
 					<View style={styles.col}>
 						<View>
-							<Calendar />
+							{/* <Calendar /> */}
 							<Text
 								style={[
 									styles.centerSelf,
@@ -268,20 +143,24 @@ const ProductUpload = ({ navigation, route }) => {
 							</Text>
 
 							<BttnsDaysList
-								setTimeSelectShow={setTimeSelectShow}
+								setTimeVisible={setTimeVisible}
 								days={[0, 1]}
+								time={[time, setTime]}
 							/>
 							<BttnsDaysList
-								setTimeSelectShow={setTimeSelectShow}
+								setTimeVisible={setTimeVisible}
 								days={[2, 3]}
+								time={[time, setTime]}
 							/>
 							<BttnsDaysList
-								setTimeSelectShow={setTimeSelectShow}
+								setTimeVisible={setTimeVisible}
 								days={[4, 5]}
+								time={[time, setTime]}
 							/>
 							<BttnsDaysList
-								setTimeSelectShow={setTimeSelectShow}
+								setTimeVisible={setTimeVisible}
 								days={[6]}
+								time={[time, setTime]}
 							/>
 
 							<View

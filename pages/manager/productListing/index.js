@@ -18,15 +18,14 @@ import styles from "../../styles/styles"
 import productsData from "../../testing/data/quadras.json"
 import usersDataJson from "../../testing/data/users.json"
 
-var ProductListingArr = []
-
-var ProductListingArr = ["0000", "0003"]
-
-var ProductsComponents = []
-
 const ProductListing = ({ navigation, route }) => {
+	const userData = usersDataJson[route.params.userId]
+	const userProducts = userData.productsIds
+	var ProductsComponents = []
+	let count = 0
 	if (userProducts.length !== 0) {
 		for (let component of userProducts) {
+			count++
 			ProductsComponents.push(
 				<CardShow navigation={navigation} key={count} id={component} />,
 			)
@@ -38,10 +37,6 @@ const ProductListing = ({ navigation, route }) => {
 			</View>,
 		)
 	}
-
-	// const userData = usersDataJson[route.params.userId]
-	const userData = usersDataJson["0002"]
-	const userProducts = userData["productsIds"]
 
 	return (
 		<>
@@ -72,6 +67,7 @@ const ProductListing = ({ navigation, route }) => {
 							navigation.navigate("manager_upload", {
 								create: true,
 								productId: "9999",
+								userId: route.params.userId,
 							})
 						}
 					/>

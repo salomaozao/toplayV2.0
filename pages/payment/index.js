@@ -15,7 +15,7 @@ const PaymentsPage = ({ route, navigation }) => {
 	const [isPopupVisible, setPopupVisible] = React.useState(false)
 
 	const product = data[route.params.productId]
-	const apointmentTime = route.params.apointmentTime
+	const { apointmentTime, userId } = route.params
 
 	return (
 		<>

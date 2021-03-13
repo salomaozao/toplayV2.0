@@ -95,6 +95,11 @@ const App = () => {
 							name="manager_ProductListing"
 							component={Manager_ProductListing}
 						/>
+
+						<BottomTab.Screen
+							name="test"
+							component={Manager_ProductListing}
+						/>
 					</BottomTab.Navigator>
 				</PaperProvider>
 			</NavigationContainer>

@@ -17,7 +17,7 @@ const BottomNavItemGroup = ({ navigation }) => (
 		<BottomNavItem
 			icon="a"
 			navigation={navigation}
-			route="payment"
+			route="test"
 			userId={userId}
 		/>
 		<BottomNavItem
