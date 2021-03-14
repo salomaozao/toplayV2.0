@@ -17,14 +17,13 @@ import {
 	List,
 } from "react-native-paper"
 
-import Calendar from "./components/calendar"
 import PopupDialog from "./components/PopupDialog"
 import { BttnsDaysList } from "./components/bttnsDaysList"
 import ImagesUploadBox from "./components/imagesUploadBox"
 
 // import * as ImagePicker from "react-native-image-picker" // TODO: ImageUpload
 import * as ImagePicker from "react-native-image-crop-picker"
-import DateTimePicker from "@react-native-community/datetimepicker" //  TODO: Times
+import DateTimePicker from "@react-native-community/datetimepicker"
 
 import Icon from "react-native-vector-icons/FontAwesome"
 
@@ -134,9 +133,7 @@ const ProductUpload = ({ navigation, route }) => {
 
 					<View style={styles.col}>
 						<View>
-							<Surface
-								style={[styles.shadowLg, styles.m4, styles.py2]}
-							>
+							<Surface>
 								<Text
 									style={[
 										styles.centerSelf,
@@ -148,6 +145,11 @@ const ProductUpload = ({ navigation, route }) => {
 
 								<BttnsDaysList
 									setDatePickerVisible={setDatePickerVisible}
+									style={[
+										styles.shadowLg,
+										styles.m4,
+										styles.py2,
+									]}
 								/>
 							</Surface>
 
@@ -173,16 +175,9 @@ const ProductUpload = ({ navigation, route }) => {
 											placeholder="Preço"
 											mode="outlined"
 											value={priceVal}
-											// ! Make a proper filter
-											onChangeText={(text) => {
-												if (
-													!text.includes(
-														"abcdefghijklmnopqrstuvwxyz",
-													)
-												) {
-													setPriceVal(text)
-												}
-											}}
+											onChangeText={(text) =>
+												setPriceVal(text)
+											}
 											theme={{
 												colors: { text: "white" },
 											}}
