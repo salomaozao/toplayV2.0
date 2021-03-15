@@ -7,9 +7,6 @@ import styles from "../../../styles/styles"
 const apointments = [["12:00", "13:00"], [], [], [], [], [], []]
 
 const BttnsDaysList = ({ setDatePickerVisible, date }) => {
-	// ? useEffect on date to know when it changes?
-
-	//component
 	const [expandedTimes, setExpandedTimes] = React.useState(false)
 	const [expandedDays, setExpandedDays] = React.useState(false)
 	const [selectedWeekday, setSelectedWeekday] = React.useState("segunda")
@@ -24,23 +21,31 @@ const BttnsDaysList = ({ setDatePickerVisible, date }) => {
 		"domingo",
 	]
 
-	var components = []
-
-	const ItemsList = ({ arr, onPress, componentStyle, titleStyle }) => {
+	const ItemsList = ({
+		arr,
+		onPress,
+		componentStyle,
+		titleStyle,
+		IfArrFalse,
+	}) => {
+		var components = []
 		var key = 0
-		arr.forEach((el) => {
-			key++
-			components.push(
-				<List.Item
-					style={componentStyle}
-					titleStyle={titleStyle}
-					key={key}
-					title={el}
-					onPress={() => onPress(el)}
-				/>,
-			)
-		})
-
+		if (arr.length !== 0) {
+			arr.forEach((el) => {
+				key++
+				components.push(
+					<List.Item
+						style={componentStyle}
+						titleStyle={titleStyle}
+						key={key}
+						title={el}
+						onPress={() => onPress(el)}
+					/>,
+				)
+			})
+		} else {
+			components = <IfArrFalse />
+		}
 		return components
 	}
 
@@ -60,6 +65,7 @@ const BttnsDaysList = ({ setDatePickerVisible, date }) => {
 					onPress={() => {
 						setExpandedDays(!expandedDays)
 					}}
+					titleStyle={styles.textSecondary}
 				>
 					<ItemsList
 						arr={weekdays}
@@ -67,19 +73,21 @@ const BttnsDaysList = ({ setDatePickerVisible, date }) => {
 							setSelectedWeekday(el)
 							setExpandedDays(!expandedDays)
 						}}
+						ifArrFalse={() => (
+							<Text>Ainda não há horários para esse dia!</Text>
+						)}
 					/>
 				</List.Accordion>
 			</View>
 			<ScrollView>
 				<ItemsList
 					arr={apointments[weekdays.indexOf(selectedWeekday)]}
-					componentStyle={{}}
 					onPress={() => {}}
+					ifArrFalse={() => (
+						<Text>Ainda não há horários para esse dia!</Text>
+					)}
 				/>
 
-				<Text style={[styles.textSecondary, styles.textCenter]}>
-					Ainda não há horários marcados nesse dia!
-				</Text>
 				<Button
 					icon="calendar-plus"
 					color={Colors.green400}

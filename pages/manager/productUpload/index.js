@@ -39,13 +39,10 @@ const uploadImg = () => {
 
 const ProductUpload = ({ navigation, route }) => {
 	var { create, userId, productId } = route.params
-
-	var create = undefined
 	var product = productsData[productId]
 	var userData = userDataJSON[userId]
 
 	const [isDialogVisible, setDialogVisible] = React.useState(false)
-
 	const [nameVal, setNameVal] = React.useState(create ? "" : product.name)
 	const [priceVal, setPriceVal] = React.useState(
 		create ? "" : product.price.toFixed(2).toString().replace(".", ","),
@@ -53,20 +50,20 @@ const ProductUpload = ({ navigation, route }) => {
 	const [abtVal, setAbtVal] = React.useState(create ? "" : product.about)
 
 	const [isDatePickerVisible, setDatePickerVisible] = React.useState(false)
-
 	const [time, setTime] = React.useState(new Date())
 
-	React.useEffect(() => {
-		if (create) {
-			setNameVal("")
-			setPriceVal("")
-			setAbtVal("")
-		} else {
-			setNameVal(product.name)
-			setPriceVal(product.price.toFixed(2).toString().replace(".", ","))
-			setAbtVal(product.about)
-		}
-	})
+	// React.useEffect(() => {
+	// 	if (create == true) {
+	// 		var { create, userId, productId } = route.params
+	// 		setNameVal("")
+	// 		setPriceVal("")
+	// 		setAbtVal("")
+	// 	} else {
+	// 		setNameVal(product.name)
+	// 		setPriceVal(product.price.toFixed(2).toString().replace(".", ","))
+	// 		setAbtVal(product.about)
+	// 	}
+	// })
 
 	return (
 		<>
@@ -96,7 +93,7 @@ const ProductUpload = ({ navigation, route }) => {
 			/>
 			<ScrollView
 				style={{
-					marginTop: 20,
+					paddingTop: 20,
 				}}
 			>
 				<View>
@@ -105,7 +102,7 @@ const ProductUpload = ({ navigation, route }) => {
 							<TextInput
 								mode="outlined"
 								label={"Nome da sua quadra"}
-								value={nameVal}
+								value={create}
 								onChangeText={(text) => setNameVal(text)}
 								style={styles.m2}
 							/>
