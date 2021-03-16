@@ -2,11 +2,11 @@ import React from "react"
 import { ScrollView, View } from "react-native"
 import { List, Text, Button, Colors } from "react-native-paper"
 
-import styles from "../../../styles/styles"
+import styles from "../../styles/styles"
 
 const apointments = [["12:00", "13:00"], [], [], [], [], [], []] // ! for debbugging
 
-const BttnsDaysList = ({ setDatePickerVisible, times }) => {
+const BttnsDaysList = ({ setDatePickerVisible, times, onPress }) => {
 	const [expandedTimes, setExpandedTimes] = React.useState(false)
 	const [expandedDays, setExpandedDays] = React.useState(false)
 	const [selectedWeekday, setSelectedWeekday] = React.useState("segunda")
@@ -27,7 +27,9 @@ const BttnsDaysList = ({ setDatePickerVisible, times }) => {
 		componentStyle,
 		titleStyle,
 		IfArrFalse = () => (
-			<Text style={styles.textCenter}>Não há itens na lista!</Text>
+			<Text style={[styles.textCenter, styles.m2]}>
+				Não há itens na lista!
+			</Text>
 		),
 	}) => {
 		var components = []
@@ -84,12 +86,12 @@ const BttnsDaysList = ({ setDatePickerVisible, times }) => {
 			<ScrollView>
 				<ItemsList
 					arr={times[weekdays.indexOf(selectedWeekday)]}
-					onPress={() => {}}
+					onPress={() => onPress()}
 					ifArrFalse={() => (
 						<Text>Ainda não há horários para esse dia!</Text>
 					)}
 				/>
-
+				{/* 
 				<Button
 					icon="calendar-plus"
 					color={Colors.green400}
@@ -97,7 +99,7 @@ const BttnsDaysList = ({ setDatePickerVisible, times }) => {
 					style={[styles.py2]}
 				>
 					Adicionar uma hora
-				</Button>
+				</Button> */}
 			</ScrollView>
 		</>
 	)

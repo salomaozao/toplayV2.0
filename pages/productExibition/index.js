@@ -23,10 +23,11 @@ import usersData from "../testing/data/users.json"
 import productData from "../testing/data/quadras.json"
 
 import Carousel from "./components/carousel"
-import Calendar from "./components/calendar"
+// import Calendar from "./components/calendar"
 // import Datatable from "./components/datatable"
 import PopupDialog from "./components/popupDialog"
 import PopupAbout from "./components/popupAbout"
+import { BttnsDaysList } from "./components/bttnsDaysList"
 
 //Todo: receive product details and pass it on to payment thrue routing
 
@@ -107,7 +108,36 @@ const ProductView = ({ navigation, route }) => {
 					</Surface>
 					<View style={styles.col}>
 						<View>
-							<Calendar />
+							<Surface>
+								<Text
+									style={[
+										styles.centerSelf,
+										styles.titleSecondary,
+										styles.py2,
+									]}
+								>
+									Agendamentos
+								</Text>
+
+								<BttnsDaysList
+									// times={[
+									// 	["12:00 || duração: 40min"],
+									// 	[],
+									// 	[],
+									// 	[],
+									// 	[],
+									// 	[],
+									// 	[],
+									// ]}
+									times={product.availableTimes}
+									style={[
+										styles.shadowLg,
+										styles.m4,
+										styles.py2,
+									]}
+									onPress
+								/>
+							</Surface>
 							<View
 								style={[{ alignSelf: "flex-end" }, styles.mx4]}
 							>

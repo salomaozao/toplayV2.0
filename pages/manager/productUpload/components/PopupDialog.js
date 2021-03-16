@@ -29,9 +29,7 @@ const PopupDialog = ({
 				</Dialog.Title>
 				<Dialog.Content>
 					<Text>Nome da quadra: {values.name}</Text>
-					<Text>
-						Preço da quadra: R${values.price.replace(".", ",")}
-					</Text>
+					<Text>Preço da quadra: R${values.price}</Text>
 					<Text>Texto sobre : {values.about}</Text>
 				</Dialog.Content>
 				<Dialog.Actions>
