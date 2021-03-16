@@ -3,8 +3,8 @@ import { View, TouchableHighlight } from "react-native"
 import { Colors, Text, Title, Menu, Surface } from "react-native-paper"
 import styles from "../../styles/styles"
 
-const Apointments = ({ navigation, name, date, passed }) => {
-	const color = passed ? Colors.red500 : Colors.green500
+const Apointments = ({ navigation, name, date, past }) => {
+	const color = past ? Colors.red500 : Colors.green500
 
 	const [menuVisible, setMenuVisible] = useState(false)
 

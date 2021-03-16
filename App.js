@@ -44,6 +44,8 @@ const theme = {
 
 const BottomTab = createBottomTabNavigator()
 
+const userId = "0001" // ! for debugging
+
 const App = () => {
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
@@ -58,7 +60,7 @@ const App = () => {
 						<BottomTab.Screen
 							name="main"
 							component={MainPage}
-							initialParams={{ userId: "0001" }}
+							initialParams={{ userId: userId }}
 						/>
 
 						<BottomTab.Screen
@@ -68,7 +70,11 @@ const App = () => {
 
 						<BottomTab.Screen name="payment" component={Payment} />
 
-						<BottomTab.Screen name="acc" component={Acc} />
+						<BottomTab.Screen
+							name="acc"
+							component={Acc}
+							initialParams={{ userId: userId }}
+						/>
 
 						<BottomTab.Screen name="login" component={Login} />
 

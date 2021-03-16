@@ -18,7 +18,11 @@ const styles = StyleSheet.create({
 
 	p3: { padding: 12 },
 
-	py2: { paddingVertical: 20 },
+	py2: { paddingVertical: 8 },
+
+	py3: { paddingVertical: 12 },
+
+	pb2: { paddingBottom: 8 },
 
 	m2: { margin: 8 },
 

@@ -16,6 +16,7 @@ import {
 	Portal,
 	Dialog,
 	Colors,
+	shadow,
 } from "react-native-paper"
 
 import styles from "../styles/styles"
@@ -32,14 +33,8 @@ import { BttnsDaysList } from "./components/bttnsDaysList"
 //Todo: receive product details and pass it on to payment thrue routing
 
 const ProductView = ({ navigation, route }) => {
-	const [isDialogVisile, setDialogVisible] = React.useState(false)
-	const showDialog = () => setDialogVisible(true)
-
-	const [isAboutVisible, setAboutVisible] = React.useState(false)
-	const showAbout = () => setAboutVisible(true)
-
-	const product = productData[route.params.productId]
-	// const product = productData["0001"]
+	const { productId } = route.params
+	const product = productData[productId]
 
 	const date = new Date()
 	const dd = String(date.getDate()).padStart(2, "0")
@@ -49,17 +44,21 @@ const ProductView = ({ navigation, route }) => {
 	const today = yyyy + "/" + mm + "/" + dd
 
 	var { width } = Dimensions.get("window")
+
+	const [isAboutVisible, setAboutVisible] = React.useState(false)
+
+	const shadowStyle = {
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 0,
+			height: 12,
+		},
+		shadowOpacity: 0.58,
+		shadowRadius: 16.0,
+		elevation: 24,
+	}
 	return (
 		<>
-			<PopupDialog
-				visible={isDialogVisile}
-				hideDialog={() => setDialogVisible(false)}
-				navigation={navigation}
-				availableTimes={product.daysTimes[today]}
-				id={route.params.productId}
-				userId={route.params.userId}
-			/>
-
 			<PopupAbout
 				visible={isAboutVisible}
 				hideDialog={() => setAboutVisible(false)}
@@ -102,105 +101,96 @@ const ProductView = ({ navigation, route }) => {
 							]}
 						></View>
 					</View>
-					<Surface style={[styles.py2, styles.my2, styles.shadowLg]}>
-						<Carousel />
-						{/* <Datatable /> */}
-					</Surface>
+
 					<View style={styles.col}>
 						<View>
 							<Surface>
+								<View
+									style={[
+										styles.pt2,
+										styles.my2,
+										styles.shadowLg,
+									]}
+								>
+									<Carousel />
+									{/* <Datatable /> */}
+								</View>
 								<Text
 									style={[
 										styles.centerSelf,
 										styles.titleSecondary,
-										styles.py2,
+										styles.px1,
+										styles.my2,
 									]}
 								>
 									Agendamentos
 								</Text>
 
 								<BttnsDaysList
-									// times={[
-									// 	["12:00 || duração: 40min"],
-									// 	[],
-									// 	[],
-									// 	[],
-									// 	[],
-									// 	[],
-									// 	[],
-									// ]}
-									times={product.availableTimes}
-									style={[
-										styles.shadowLg,
-										styles.m4,
-										styles.py2,
-									]}
-									onPress
+									times={product.daysTimes}
+									onPress={(e) => showDialog()}
 								/>
-							</Surface>
-							<View
-								style={[{ alignSelf: "flex-end" }, styles.mx4]}
-							>
-								<Surface
+								<View
 									style={[
-										styles.shadowLg,
-										styles.my2,
-										styles.round,
-										{ padding: 8 },
+										{ alignSelf: "flex-end" },
+										styles.mx4,
 									]}
 								>
-									<Text
+									<Surface
 										style={[
-											styles.title,
-											styles.textLight2,
+											shadowStyle,
+											styles.my2,
+											styles.round,
+											{ padding: 8 },
 										]}
 									>
-										{product.price
-											.toFixed(2)
-											.toString()
-											.replace(".", ",")}
 										<Text
 											style={[
-												styles.small,
+												styles.title,
 												styles.textLight2,
 											]}
 										>
-											por hora
-										</Text>
-									</Text>
-
-									<View>
-										<TouchableOpacity>
+											{product.price
+												.toFixed(2)
+												.toString()
+												.replace(".", ",")}
 											<Text
 												style={[
 													styles.small,
-													styles.mt2,
-													styles.underline,
 													styles.textLight2,
-													{
-														textAlign: "right",
-													},
 												]}
-												onPress={showAbout}
 											>
-												Saber mais
+												por hora
 											</Text>
-										</TouchableOpacity>
-									</View>
-								</Surface>
-							</View>
+										</Text>
+
+										<View>
+											<TouchableOpacity>
+												<Text
+													style={[
+														styles.small,
+														styles.mt2,
+														styles.underline,
+														styles.textLight2,
+														{
+															textAlign: "right",
+														},
+													]}
+													onPress={() =>
+														setAboutVisible(true)
+													}
+												>
+													Saber mais
+												</Text>
+											</TouchableOpacity>
+										</View>
+									</Surface>
+								</View>
+							</Surface>
 						</View>
 					</View>
 				</View>
 			</ScrollView>
-			<Button
-				mode="contained"
-				contentStyle={styles.bgPrimary}
-				onPress={showDialog}
-				style={{ width: width }}
-			>
-				alugar
-			</Button>
 		</>
 	)
 }

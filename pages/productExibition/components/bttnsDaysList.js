@@ -6,8 +6,7 @@ import styles from "../../styles/styles"
 
 const apointments = [["12:00", "13:00"], [], [], [], [], [], []] // ! for debbugging
 
-const BttnsDaysList = ({ setDatePickerVisible, times, onPress }) => {
-	const [expandedTimes, setExpandedTimes] = React.useState(false)
+const BttnsDaysList = ({ times, stylesProp, onPress = () => {} }) => {
 	const [expandedDays, setExpandedDays] = React.useState(false)
 	const [selectedWeekday, setSelectedWeekday] = React.useState("segunda")
 
@@ -27,9 +26,7 @@ const BttnsDaysList = ({ setDatePickerVisible, times, onPress }) => {
 		componentStyle,
 		titleStyle,
 		IfArrFalse = () => (
-			<Text style={[styles.textCenter, styles.m2]}>
-				Não há itens na lista!
-			</Text>
+			<Text style={styles.textCenter}>Não há itens na lista!</Text>
 		),
 	}) => {
 		var components = []
@@ -58,7 +55,9 @@ const BttnsDaysList = ({ setDatePickerVisible, times, onPress }) => {
 			<View
 				style={[
 					styles.shadowMd,
-					styles.mx2,
+					styles.m2,
+					styles.p1,
+
 					{ backgroundColor: "rgba(250, 250, 250, 0.9)" },
 				]}
 			>
@@ -86,20 +85,11 @@ const BttnsDaysList = ({ setDatePickerVisible, times, onPress }) => {
 			<ScrollView>
 				<ItemsList
 					arr={times[weekdays.indexOf(selectedWeekday)]}
-					onPress={() => onPress()}
+					onPress={(e) => onPress(e)}
 					ifArrFalse={() => (
 						<Text>Ainda não há horários para esse dia!</Text>
 					)}
 				/>
-				{/* 
-				<Button
-					icon="calendar-plus"
-					color={Colors.green400}
-					onPress={() => setDatePickerVisible(true)}
-					style={[styles.py2]}
-				>
-					Adicionar uma hora
-				</Button> */}
 			</ScrollView>
 		</>
 	)

@@ -27,7 +27,7 @@ const AccPage = ({ navigation, route }) => {
 	}
 
 	const { userId } = route.params
-	// const userId = "0001"
+	// const userId = "0001" // ! for debugging
 	const userData = userDataJSON[userId]
 
 	const [showInpts, setShowInpts] = useState(true)
@@ -86,6 +86,7 @@ const AccPage = ({ navigation, route }) => {
 							</Text>
 						</View>
 						<Button
+							color={Colors.green400}
 							mode="outlined"
 							style={[
 								styles.mx4,
@@ -94,7 +95,11 @@ const AccPage = ({ navigation, route }) => {
 								{ borderWidth: 1 },
 							]}
 							icon="calendar"
-							onPress={() => navigation.navigate("agendamentos")}
+							onPress={() =>
+								navigation.navigate("agendamentos", {
+									userId: userId,
+								})
+							}
 						>
 							Agendamentos
 						</Button>
@@ -198,6 +203,7 @@ const AccPage = ({ navigation, route }) => {
 									>
 										<View style={styles.m2}>
 											<Button
+												color={Colors.green400}
 												style={[
 													styles.bgDark,
 													styles.shadowMd,
@@ -242,6 +248,7 @@ const AccPage = ({ navigation, route }) => {
 							</View>
 
 							<Button
+								color={Colors.green400}
 								style={[
 									styles.textCenter,
 									styles.my2,

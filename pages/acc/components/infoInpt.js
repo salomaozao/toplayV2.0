@@ -9,7 +9,6 @@ const InfoInpt = ({
 	isDisabled,
 	secured = false,
 	icon = null,
-	validationProccess = () => true,
 }) => {
 	const [stateValue, setValue] = useState(value)
 	const [isSecuredHidden, setsecuredHidden] = useState(true)
@@ -29,7 +28,7 @@ const InfoInpt = ({
 							: null,
 					},
 				]}
-				mode="outlined"
+				mode="flat"
 				label={label}
 				value={stateValue}
 				onKeyPress={(text) => setValue(text)}
