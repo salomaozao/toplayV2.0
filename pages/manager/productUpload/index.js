@@ -38,32 +38,36 @@ const uploadImg = () => {
 }
 
 const ProductUpload = ({ navigation, route }) => {
+	// routes
 	var { create, userId, productId } = route.params
 	var product = productsData[productId]
 	var userData = userDataJSON[userId]
 
-	const [isDialogVisible, setDialogVisible] = React.useState(false)
-	const [nameVal, setNameVal] = React.useState(create ? "" : product.name)
-	const [priceVal, setPriceVal] = React.useState(
-		create ? "" : product.price.toFixed(2).toString().replace(".", ","),
-	)
-	const [abtVal, setAbtVal] = React.useState(create ? "" : product.about)
+	// states
+	const [nameVal, setNameVal] = React.useState("")
+	const [priceVal, setPriceVal] = React.useState("")
+	const [abtVal, setAbtVal] = React.useState("")
 
+	React.useEffect(() => {
+		create ? clearValues() : setValues()
+	})
+
+	function setValues() {
+		setNameVal(product.name)
+		setPriceVal(product.price.toFixed(2).toString().replace(".", ","))
+		setAbtVal(product.about)
+	}
+
+	function clearValues() {
+		setNameVal()
+		setPriceVal()
+		setAbtVal()
+	}
+
+	// DOM
 	const [isDatePickerVisible, setDatePickerVisible] = React.useState(false)
+	const [isDialogVisible, setDialogVisible] = React.useState(false)
 	const [time, setTime] = React.useState(new Date())
-
-	// React.useEffect(() => {
-	// 	if (create == true) {
-	// 		var { create, userId, productId } = route.params
-	// 		setNameVal("")
-	// 		setPriceVal("")
-	// 		setAbtVal("")
-	// 	} else {
-	// 		setNameVal(product.name)
-	// 		setPriceVal(product.price.toFixed(2).toString().replace(".", ","))
-	// 		setAbtVal(product.about)
-	// 	}
-	// })
 
 	return (
 		<>
@@ -102,8 +106,8 @@ const ProductUpload = ({ navigation, route }) => {
 							<TextInput
 								mode="outlined"
 								label={"Nome da sua quadra"}
-								value={create}
-								onChangeText={(text) => setNameVal(text)}
+								value={nameVal}
+								onChange={(text) => setNameVal(text)}
 								style={styles.m2}
 							/>
 						</View>
@@ -135,12 +139,18 @@ const ProductUpload = ({ navigation, route }) => {
 									style={[
 										styles.centerSelf,
 										styles.titleSecondary,
+										styles.py2,
 									]}
 								>
 									Agendamentos
 								</Text>
 
 								<BttnsDaysList
+									times={
+										create
+											? [[], [], [], [], [], [], []]
+											: product.daysTimes
+									}
 									setDatePickerVisible={setDatePickerVisible}
 									style={[
 										styles.shadowLg,
@@ -172,7 +182,7 @@ const ProductUpload = ({ navigation, route }) => {
 											placeholder="Preço"
 											mode="outlined"
 											value={priceVal}
-											onChangeText={(text) =>
+											onChange={(text) =>
 												setPriceVal(text)
 											}
 											theme={{
@@ -218,7 +228,7 @@ const ProductUpload = ({ navigation, route }) => {
 								<TextInput
 									style={[{ height: 100 }, styles.my2]}
 									value={abtVal}
-									onChangeText={(text) => setAbtVal(text)}
+									onChange={(text) => setAbtVal(text)}
 								/>
 							</View>
 						</View>
